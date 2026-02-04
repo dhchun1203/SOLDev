@@ -3,12 +3,37 @@
     BlinkMacSystemFont, 'Segoe UI', sans-serif;
   line-height: 1.6;
   font-weight: 400;
-  color: #1f2933;
-  background-color: #f8f8f6;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+  
+  /* 라이트 모드 색상 */
+  --bg-primary: #f8f8f6;
+  --bg-secondary: #f1f1ee;
+  --bg-card: #ffffff;
+  --text-primary: #1f2933;
+  --text-secondary: #5b6470;
+  --text-tertiary: #6d7480;
+  --border-color: #e7e5e2;
+  --shadow-sm: rgba(31, 41, 51, 0.05);
+  --shadow-md: rgba(31, 41, 51, 0.12);
+  --shadow-lg: rgba(31, 41, 51, 0.18);
+}
+
+.dark {
+  /* 다크 모드 색상 */
+  --bg-primary: #111827;
+  --bg-secondary: #1f2937;
+  --bg-card: #1f2937;
+  --text-primary: #f9fafb;
+  --text-secondary: #d1d5db;
+  --text-tertiary: #9ca3af;
+  --border-color: #374151;
+  --shadow-sm: rgba(0, 0, 0, 0.3);
+  --shadow-md: rgba(0, 0, 0, 0.4);
+  --shadow-lg: rgba(0, 0, 0, 0.5);
 }
 
 * {
@@ -18,7 +43,13 @@
 body {
   margin: 0;
   min-width: 320px;
-  background: #f8f8f6;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 a {
@@ -34,4 +65,18 @@ img {
 button {
   font: inherit;
   cursor: pointer;
+  touch-action: manipulation;
+}
+
+/* 모바일 터치 최적화 */
+@media (max-width: 767px) {
+  button,
+  a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  button {
+    -webkit-tap-highlight-color: transparent;
+  }
 }
