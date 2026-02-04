@@ -1,0 +1,259 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container {
+  width: min(1120px, 92%);
+  margin: 0 auto;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(248, 248, 246, 0.9);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #e7e5e2;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+  gap: 1.5rem;
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.04em;
+  color: inherit;
+}
+
+.nav {
+  display: flex;
+  gap: 1.2rem;
+  font-size: 0.95rem;
+}
+
+.cta {
+  border: 1px solid #1f2933;
+  background: #1f2933;
+  color: #fff;
+  padding: 0.55rem 1.2rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+}
+
+.section {
+  padding: 5rem 0;
+}
+
+.section.muted {
+  background: #f1f1ee;
+}
+
+.section-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.section-header h2 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.section-header p {
+  max-width: 420px;
+  margin: 0;
+  color: #5b6470;
+}
+
+.hero {
+  padding-top: 6rem;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.hero-copy h1 {
+  font-size: clamp(2.4rem, 4vw, 3.4rem);
+  margin: 0.6rem 0 1rem;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  color: #6d7480;
+  margin: 0;
+}
+
+.lead {
+  color: #3f4954;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-bottom: 2.5rem;
+}
+
+.primary,
+.ghost {
+  border-radius: 999px;
+  padding: 0.7rem 1.4rem;
+  font-size: 0.95rem;
+  border: 1px solid #1f2933;
+  background: #1f2933;
+  color: #fff;
+}
+
+.ghost {
+  background: transparent;
+  color: #1f2933;
+}
+
+.hero-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1rem;
+}
+
+.hero-meta strong {
+  display: block;
+  font-size: 1.4rem;
+}
+
+.hero-meta span {
+  color: #6d7480;
+  font-size: 0.85rem;
+}
+
+.hero-card {
+  border-radius: 24px;
+  background: #1f2933;
+  color: #fff;
+  padding: 2.2rem;
+  min-height: 260px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.card-content h3 {
+  margin: 0.8rem 0 0.6rem;
+  font-size: 1.3rem;
+}
+
+.card-content p {
+  color: rgba(255, 255, 255, 0.72);
+  margin-bottom: 1.4rem;
+}
+
+.tag {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+  font-size: 0.75rem;
+}
+
+.text-link {
+  background: transparent;
+  border: none;
+  color: #fff;
+  padding: 0;
+  font-size: 0.9rem;
+}
+
+.grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.grid.three {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.info-card,
+.portfolio-card,
+.price-card {
+  background: #fff;
+  border: 1px solid #eceae7;
+  border-radius: 20px;
+  padding: 1.8rem;
+  box-shadow: 0 14px 30px rgba(31, 41, 51, 0.05);
+}
+
+.portfolio-card span {
+  color: #6d7480;
+  font-size: 0.85rem;
+}
+
+.price-card .price {
+  font-size: 1.8rem;
+  margin: 0.8rem 0 1rem;
+}
+
+.price-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem;
+  color: #5b6470;
+  line-height: 1.7;
+}
+
+.price-card li {
+  margin-bottom: 0.4rem;
+}
+
+.price-card.featured {
+  border-color: #1f2933;
+  box-shadow: 0 18px 38px rgba(31, 41, 51, 0.12);
+}
+
+.site-footer {
+  margin-top: auto;
+  padding: 2rem 0;
+  border-top: 1px solid #e7e5e2;
+  background: #f8f8f6;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  color: #6d7480;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 720px) {
+  .header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav {
+    flex-wrap: wrap;
+  }
+
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
