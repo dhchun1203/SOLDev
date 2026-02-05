@@ -138,6 +138,35 @@ function App() {
       </header>
 
       <main>
+        <section className="hero-cosmic" aria-label="메인 비주얼">
+          <div className="hero-cosmic-bg" aria-hidden="true" />
+          <div className="hero-cosmic-inner">
+            <div className="hero-cosmic-badge">
+              <span className="hero-cosmic-badge-dot" />
+              SOLDev · 웹서비스 제작
+            </div>
+            <h1 className="hero-cosmic-title">실제로 쓰이는 웹서비스</h1>
+            <p className="hero-cosmic-subtitle">
+              예쁘기만 한 웹사이트가 아니라,
+              <br />
+              오픈하자마자 바로 운영할 수 있는
+              <br />
+              <span className="hero-cosmic-highlight">&lsquo;실제로 쓰이는 웹서비스&rsquo;</span>를 만듭니다.
+            </p>
+            <div className="hero-cosmic-actions">
+              <a href="#portfolio" className="hero-cosmic-btn hero-cosmic-btn-primary">
+                포트폴리오 보기
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </a>
+              <a href="#pricing" className="hero-cosmic-btn hero-cosmic-btn-secondary">
+                가격 확인하기
+              </a>
+            </div>
+          </div>
+        </section>
+
         <section id="hero" className="section hero">
           <div className="container hero-grid">
             <div className="hero-copy">
@@ -216,6 +245,27 @@ function App() {
 
         <section id="portfolio" className="section muted">
           <div className="container">
+            <div className="section-header">
+              <h2>이런 결과물을 제공합니다</h2>
+            </div>
+            <div className="grid two">
+              <div className="portfolio-card">
+                <span>제공 형태</span>
+                <h3>웹사이트가 아닌 웹서비스</h3>
+                <p className="subtle">
+                  이 상품은 &quot;웹사이트&quot;가 아니라{' '}
+                  <strong>오픈 후 바로 운영 가능한 웹서비스</strong>를 구축합니다.
+                </p>
+              </div>
+              <div className="portfolio-card">
+                <span>운영 흐름</span>
+                <h3>방문자 → 관리자</h3>
+                <p className="subtle">
+                  방문자는 예약/문의를 남기고 → 관리자는 관리자 페이지에서
+                  내역을 확인하고 상태를 관리합니다.
+                </p>
+              </div>
+            </div>
             <div className="section-header">
               <h2>진행 방식 &amp; 기술 사양</h2>
             </div>
