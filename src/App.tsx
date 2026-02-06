@@ -1,16 +1,52 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import './App.css'
+
+const NAV_LINKS: { href: string; label: string }[] = [
+  { href: '#hero', label: '소개' },
+  { href: '#services', label: '오픈 특가' },
+  { href: '#portfolio', label: '제공 내용' },
+  { href: '#works', label: '포트폴리오' },
+  { href: '#pricing', label: '가격' },
+]
+
+function DarkModeIcon({ isDark }: { isDark: boolean }) {
+  const size = 14
+  const stroke = { strokeWidth: 2, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const }
+  return isDark ? (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" {...stroke}>
+      <circle cx="12" cy="12" r="5" />
+      <line x1="12" y1="1" x2="12" y2="3" />
+      <line x1="12" y1="21" x2="12" y2="23" />
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+      <line x1="1" y1="12" x2="3" y2="12" />
+      <line x1="21" y1="12" x2="23" y2="12" />
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+    </svg>
+  ) : (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" {...stroke}>
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+    </svg>
+  )
+}
 
 function App() {
   const observerRef = useRef<IntersectionObserver | null>(null)
+  const scrollTopRef = useRef(false)
   const [isDark, setIsDark] = useState(() => {
-    // localStorage에서 저장된 설정 불러오기
     const saved = localStorage.getItem('darkMode')
     if (saved !== null) return saved === 'true'
-    // 시스템 설정 감지
     return window.matchMedia('(prefers-color-scheme: dark)').matches
   })
   const [showScrollTop, setShowScrollTop] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
+
+  const closeMenu = useCallback(() => setMenuOpen(false), [])
+  const toggleDarkMode = useCallback(() => setIsDark((d) => !d), [])
+  const scrollToTop = useCallback(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
 
   useEffect(() => {
     // Intersection Observer 설정
@@ -39,31 +75,31 @@ function App() {
       observerRef.current?.observe(el)
     })
 
-    // 헤더 스크롤 효과 및 ScrollToTop 버튼 표시
+    let rafId = 0
     const handleScroll = () => {
+      const y = window.scrollY
       const header = document.querySelector('.site-header')
-      if (window.scrollY > 50) {
-        header?.classList.add('scrolled')
-      } else {
-        header?.classList.remove('scrolled')
-      }
-      
-      // ScrollToTop 버튼 표시 (300px 이상 스크롤 시)
-      if (window.scrollY > 300) {
-        setShowScrollTop(true)
-      } else {
-        setShowScrollTop(false)
+      if (y > 50) header?.classList.add('scrolled')
+      else header?.classList.remove('scrolled')
+
+      const shouldShow = y > 300
+      if (shouldShow !== scrollTopRef.current) {
+        scrollTopRef.current = shouldShow
+        setShowScrollTop(shouldShow)
       }
     }
+    const onScroll = () => {
+      if (rafId) cancelAnimationFrame(rafId)
+      rafId = requestAnimationFrame(handleScroll)
+    }
 
-    window.addEventListener('scroll', handleScroll)
-    handleScroll() // 초기 상태 확인
+    window.addEventListener('scroll', onScroll, { passive: true })
+    handleScroll()
 
     return () => {
-      elementsToObserve.forEach((el) => {
-        observerRef.current?.unobserve(el)
-      })
-      window.removeEventListener('scroll', handleScroll)
+      elementsToObserve.forEach((el) => observerRef.current?.unobserve(el))
+      window.removeEventListener('scroll', onScroll)
+      if (rafId) cancelAnimationFrame(rafId)
     }
   }, [])
 
@@ -78,28 +114,29 @@ function App() {
     }
   }, [isDark])
 
-  const toggleDarkMode = () => {
-    setIsDark(!isDark)
-  }
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    })
-  }
+  // 모바일 메뉴 열림 시 body 스크롤 잠금
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [menuOpen])
 
   return (
     <div className="page">
       <header className="site-header">
         <div className="container header-inner">
-          <a className="logo" href="#hero">
+          <a className="logo" href="#hero" onClick={closeMenu}>
             SOLDev
           </a>
-          <nav className="nav">
-            <a href="#services">서비스</a>
-            <a href="#portfolio">포트폴리오</a>
-            <a href="#pricing">가격</a>
+          <nav className="nav header-nav">
+            {NAV_LINKS.map(({ href, label }) => (
+              <a key={href} href={href} onClick={closeMenu}>{label}</a>
+            ))}
           </nav>
           <div className="header-actions">
             <button
@@ -110,23 +147,7 @@ function App() {
             >
               <span className="toggle-track">
                 <span className="toggle-thumb">
-                  {isDark ? (
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <circle cx="12" cy="12" r="5" />
-                      <line x1="12" y1="1" x2="12" y2="3" />
-                      <line x1="12" y1="21" x2="12" y2="23" />
-                      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-                      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-                      <line x1="1" y1="12" x2="3" y2="12" />
-                      <line x1="21" y1="12" x2="23" y2="12" />
-                      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-                      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-                    </svg>
-                  ) : (
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-                    </svg>
-                  )}
+                  <DarkModeIcon isDark={isDark} />
                 </span>
               </span>
             </button>
@@ -134,8 +155,57 @@ function App() {
               문의하기
             </button>
           </div>
+          <button
+            type="button"
+            className={`header-menu-btn ${menuOpen ? 'header-menu-btn--open' : ''}`}
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label={menuOpen ? '메뉴 닫기' : '메뉴 열기'}
+            aria-expanded={menuOpen}
+          >
+            <span className="header-menu-btn-inner">
+              <span />
+              <span />
+              <span />
+            </span>
+          </button>
         </div>
       </header>
+
+      {/* 모바일 사이드 메뉴 */}
+      <div
+        className={`side-menu ${menuOpen ? 'side-menu--open' : ''}`}
+        aria-hidden={!menuOpen}
+      >
+        <div
+          className="side-menu-overlay"
+          onClick={closeMenu}
+          aria-hidden="true"
+        />
+        <aside className="side-menu-drawer">
+          <nav className="side-menu-nav">
+            {NAV_LINKS.map(({ href, label }) => (
+              <a key={href} href={href} onClick={closeMenu}>{label}</a>
+            ))}
+          </nav>
+          <div className="side-menu-actions">
+            <button
+              className="dark-toggle"
+              type="button"
+              onClick={toggleDarkMode}
+              aria-label={isDark ? '라이트 모드로 전환' : '다크 모드로 전환'}
+            >
+              <span className="toggle-track">
+                <span className="toggle-thumb">
+                  <DarkModeIcon isDark={isDark} />
+                </span>
+              </span>
+            </button>
+            <button className="cta" type="button" onClick={closeMenu}>
+              문의하기
+            </button>
+          </div>
+        </aside>
+      </div>
 
       <main>
         <section className="hero-cosmic" aria-label="메인 비주얼">
@@ -450,11 +520,9 @@ function App() {
             </p>
           </div>
           <nav className="footer-nav">
-            <a href="#services">서비스</a>
-            <a href="#portfolio">포트폴리오</a>
-            <a href="#pricing">가격</a>
-            <a href="#hero">소개</a>
-            <a href="#contact">문의</a>
+            {NAV_LINKS.map(({ href, label }) => (
+              <a key={href} href={href}>{label}</a>
+            ))}
           </nav>
           <div className="footer-copyright">
             <span>© 2026 SOLDev™. All Rights Reserved.</span>

@@ -3,6 +3,9 @@
 SOLDev 웹 개발 서비스를 소개하는 **단일 페이지 애플리케이션(SPA)** 포트폴리오 사이트입니다.  
 백엔드 없이 정적 프론트엔드만으로 구성되어 있으며, 미니멀하고 깔끔한 디자인을 지향합니다.
 
+**배포 (Live)**  
+[https://sol-dev-eight.vercel.app/](https://sol-dev-eight.vercel.app/)
+
 ---
 
 ## 기술 스택
@@ -13,7 +16,7 @@ SOLDev 웹 개발 서비스를 소개하는 **단일 페이지 애플리케이�
 | **언어** | TypeScript |
 | **빌드/개발** | Vite 7 |
 | **스타일** | CSS (CSS Variables 기반 테마) |
-| **배포** | 정적 빌드 (Vercel 등 호스팅 가능) |
+| **배포** | Vercel ([sol-dev-eight.vercel.app](https://sol-dev-eight.vercel.app/)) |
 
 - **백엔드**: 없음 (정적 SPA)
 - **라우팅**: 앵커 링크 기반 단일 페이지
@@ -25,9 +28,8 @@ SOLDev 웹 개발 서비스를 소개하는 **단일 페이지 애플리케이�
 ### 페이지 구성
 
 1. **코스믹 히어로 (상단 비주얼)**  
-   - 다크 그라데이션 + 별 패턴 애니메이션 배경 (20초 주기)  
+   - 다크 그라데이션 + 별 패턴 애니메이션 배경 (40초 주기, GPU 레이어·그라데이션 수 최소화로 성능 최적화)  
    - 배지, 글로우 타이틀 "실제로 쓰이는 웹서비스", 강조 문구  
-   - "예쁘기만 한 웹사이트가 아니라, 오픈하자마자 바로 운영할 수 있는 '실제로 쓰이는 웹서비스'를 만듭니다."  
    - CTA: 포트폴리오 보기 / 가격 확인하기  
    - 뷰포트 100vh 풀 화면, 헤더 뒤로 배경이 겹치도록 구성
 
@@ -37,63 +39,81 @@ SOLDev 웹 개발 서비스를 소개하는 **단일 페이지 애플리케이�
 3. **오픈 특가 안내 (Services)**  
    - 오픈 특가 조건, 포트폴리오 활용 안내
 
-4. **진행 방식 & 기술 사양 (Portfolio)**  
-   - **이런 결과물을 제공합니다**: 카드 2개 (웹사이트가 아닌 웹서비스 / 방문자→관리자 운영 흐름)  
-   - 진행 방식(5단계), 기술 사양(React/Next.js, 반응형, Vercel, SEO, 인터랙티브 UI), 분쟁 방지 안내
+4. **제공 내용 & 진행 방식·기술 사양 (Portfolio)**  
+   - **이런 결과물을 제공합니다**: 카드 2개 (웹서비스 형태, 방문자→관리자 흐름)  
+   - **진행 방식 & 기술 사양**: 5단계 프로세스, React/Next.js·반응형·Vercel·SEO, 분쟁 방지 안내
 
 5. **포트폴리오 (Works)**  
-   - 제작 프로젝트 카드(이미지, 카테고리, 설명, 태그) — 현재 더미 이미지 사용
+   - 제작 프로젝트 카드(이미지, 카테고리, 설명, 태그)
 
 6. **가격 (Pricing)**  
    - 베이직 패키지 / 서비스형 패키지 (오픈 특가·정상가 표시)
 
 7. **푸터**  
-   - 브랜드(로고·설명), 네비게이션, 저작권
+   - 브랜드(로고·설명), 네비게이션(헤더와 동일 메뉴), 저작권
+
+### 네비게이션
+
+- **메뉴 항목** (섹션과 일치): 소개 → 오픈 특가 → 제공 내용 → 포트폴리오 → 가격  
+- **데스크톱**: 헤더에 로고 + 네비 링크 + 다크모드 토글 + 문의하기  
+- **모바일**: 헤더에는 로고 + 햄버거 버튼만 노출, 나머지는 **왼쪽 슬라이드 사이드 메뉴** (햄버거 클릭 시 열림, X 형태로 전환 애니메이션). 오버레이·링크 클릭 시 메뉴 닫힘, body 스크롤 잠금 적용.
 
 ### UI/UX
 
 - **헤더**  
-  - **최상단**: 배경 완전 투명 → 코스믹 히어로 배경이 비치고, 로고·네비·버튼은 밝은 색으로 표시  
-  - **스크롤 시**: 반투명 배경(불투명도 0.7) + blur, 테마에 맞는 텍스트 색상  
-  - 코스믹 섹션에 `margin-top: -75px`로 배경이 헤더 뒤까지 겹치도록 구성
+  - **최상단**: 배경 투명, 로고·네비·버튼 밝은 색  
+  - **스크롤 시**: 반투명 배경 + **backdrop-filter** (`blur(8px) saturate(150%)`) 유리 효과, 테두리·상단 광택  
+  - 코스믹 섹션 `margin-top: -75px`로 배경이 헤더 뒤까지 겹침
 
 - **다크 모드**  
-  - 헤더 토글 스위치로 전환  
+  - 헤더·사이드 메뉴 토글 스위치로 전환  
   - `localStorage` 저장 및 `prefers-color-scheme` 초기 감지  
   - CSS Variables로 라이트/다크 테마 전환
 
 - **반응형**  
-  - 모바일 / 태블릿 / 데스크탑 브레이크포인트  
-  - 그리드 열 수 및 레이아웃 조정
+  - **모바일 (≤767px)**: 1열 그리드, 사이드 메뉴, 푸터 터치 영역·safe-area 적용  
+  - **태블릿 (768px~1023px)**: 2열 그리드  
+  - **데스크톱 (≥1024px)**: 2~3열 그리드  
+  - `viewport-fit=cover`로 노치·홈 인디케이터 영역 대응
+
+- **섹션 헤더**  
+  - 왼쪽 테일 그라데이션 악센트 바, font-weight 700, 호버 시 바 두께 확장
 
 - **스크롤 인터랙션**  
-  - Intersection Observer로 섹션 헤더·카드 등에 fade-in / slide-up 애니메이션  
-  - 스크롤 시 헤더 스타일 변경 (`scrolled` 클래스)  
-  - 300px 이상 스크롤 시 **맨 위로** 버튼 표시 (우측 하단, 부드러운 스크롤)
+  - Intersection Observer로 섹션 헤더·카드 fade-in / slide-up  
+  - 스크롤 시 헤더 `scrolled` 클래스·스타일 변경  
+  - **ScrollToTop**: 300px 이상 스크롤 시 우측 하단 표시, RAF 스로틀·상태 변경 시에만 리렌더
 
-- **인터랙션**  
-  - 네비게이션·버튼·카드 호버 효과 (0.26s~0.28s 전환, 호버 시 `transition-delay: 0s`로 즉시 반응)  
-  - GPU 가속(`transform3d`, `will-change`)으로 전환 부드럽게 처리
+- **성능**  
+  - 코스믹 별: 그라데이션 5개, `will-change: transform`, 40초 애니메이션  
+  - 헤더 블러 `blur(8px)`로 부담 완화 (그래픽 가속 권장)  
+  - 스크롤 핸들러 `requestAnimationFrame` + 300px 구간에서만 `setShowScrollTop` 호출
+
+---
+
+## 코드·빌드 최적화
+
+- **상수·컴포넌트**: 네비 링크 `NAV_LINKS` 단일 소스, 다크모드 아이콘 `DarkModeIcon` 재사용  
+- **콜백**: `closeMenu`, `toggleDarkMode`, `scrollToTop` `useCallback` 메모이제이션  
+- **Vite**: `target: es2020`, `manualChunks`로 react/react-dom vendor 분리, CSS minify
 
 ---
 
 ## 프로젝트 구조
 
 ```
-Portfolio/
-├── public/           # 정적 자산
+SOLDev/
+├── public/
 ├── src/
-│   ├── App.tsx       # 메인 SPA 컴포넌트 (헤더, 섹션, 푸터, 다크모드/스크롤 로직)
-│   ├── App.css       # 섹션·카드·버튼·반응형·다크모드 스타일
-│   ├── index.css     # 전역 스타일, CSS Variables(라이트/다크)
-│   ├── main.tsx      # 진입점
+│   ├── App.tsx       # 메인 SPA (헤더, 사이드 메뉴, 섹션, 푸터, 다크/스크롤/메뉴 로직)
+│   ├── App.css       # 레이아웃·반응형·다크·애니메이션 스타일
+│   ├── index.css     # 전역, CSS Variables(라이트/다크)
+│   ├── main.tsx
 │   └── assets/
 ├── index.html
 ├── package.json
-├── tsconfig.json
-├── tsconfig.app.json
-├── tsconfig.node.json
 ├── vite.config.ts
+├── tsconfig*.json
 └── eslint.config.js
 ```
 
@@ -102,16 +122,9 @@ Portfolio/
 ## 로컬 실행
 
 ```bash
-# 의존성 설치
 npm install
-
-# 개발 서버 실행 (HMR)
-npm run dev
-
-# 프로덕션 빌드
-npm run build
-
-# 빌드 결과 미리보기
+npm run dev    # 개발 서버 (HMR)
+npm run build  # 프로덕션 빌드
 npm run preview
 ```
 
@@ -119,7 +132,9 @@ npm run preview
 
 ## 요약
 
-- **SOLDev** 브랜드의 **오픈 특가** 포트폴리오/웹 제작 안내용 SPA  
-- **React + TypeScript + Vite** 기반, **CSS Variables**로 다크 모드 및 테마 관리  
-- **반응형 + 스크롤 애니메이션 + 토글 다크모드 + ScrollToTop** 등 인터랙티브 요소 포함  
-- 백엔드 없이 정적 배포 가능 (Vercel 등)
+- **SOLDev** 오픈 특가·포트폴리오/웹 제작 안내용 SPA  
+- **React + TypeScript + Vite**, CSS Variables 다크 모드  
+- **모바일**: 로고 + 햄버거, 왼쪽 슬라이드 메뉴  
+- **헤더**: 스크롤 시 유리 효과(backdrop-filter), 반응형·터치·safe-area  
+- **성능**: 코스믹·스크롤·빌드 최적화, 브라우저 그래픽 가속 권장  
+- 정적 배포 가능 (Vercel 등)
