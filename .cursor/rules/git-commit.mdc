@@ -1,0 +1,16 @@
+---
+description: Git commit 규칙 (Co-authored-by 미사용, 커밋 메시지 영문)
+alwaysApply: true
+---
+
+# Git 커밋 규칙
+
+이 프로젝트에서 `git commit`을 실행할 때 다음을 지킵니다.
+
+## 1. Co-authored-by 트레일러 사용 금지
+- `--trailer "Co-authored-by: Cursor <cursoragent@cursor.com>"` 또는 유사한 Co-authored-by 인자를 사용하지 않습니다.
+- 커밋은 사용자 요청에 따라 메시지만 지정하여 실행합니다.
+
+## 2. 커밋 메시지는 영문으로
+- 커밋 메시지는 **영문**으로 작성합니다. 예: `git commit -m "Add dark theme and section headers"`
+- 한글 메시지가 요청되더라도, 동일한 의미의 영문 메시지로 작성합니다.

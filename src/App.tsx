@@ -459,6 +459,78 @@ function App() {
                 </div>
               </div>
             </div>
+            <div id="works">
+              <div className="section-header">
+                <span className="section-header-badge">Works</span>
+                <h2>
+                  <span className="section-header-title-accent">만든 결과물을</span>
+                  <span className="section-header-title-line">직접 확인하세요</span>
+                </h2>
+                <p>실제 프로젝트 사례를 통해 품질과 완성도를 확인할 수 있습니다. 비슷한 목적의 프로젝트를 찾아 참고해 보세요.</p>
+              </div>
+              <div className="grid three">
+              <div className="work-card">
+                <div className="work-image">
+                  <img
+                    src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&h=450&fit=crop"
+                    alt="브랜드 리뉴얼 프로젝트"
+                  />
+                </div>
+                <div className="work-content">
+                  <span className="work-category">랜딩 페이지</span>
+                  <h3>브랜드 리뉴얼 프로젝트</h3>
+                  <p className="work-description">
+                    React 기반 반응형 랜딩 페이지 제작. 인터랙티브 UI와 SEO 최적화를 적용했습니다.
+                  </p>
+                  <div className="work-tags">
+                    <span className="tag">React</span>
+                    <span className="tag">TypeScript</span>
+                    <span className="tag">반응형</span>
+                  </div>
+                </div>
+              </div>
+              <div className="work-card">
+                <div className="work-image">
+                  <img
+                    src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=450&fit=crop"
+                    alt="예약 관리 시스템"
+                  />
+                </div>
+                <div className="work-content">
+                  <span className="work-category">웹 서비스</span>
+                  <h3>예약 관리 시스템</h3>
+                  <p className="work-description">
+                    Next.js와 Supabase를 활용한 예약 관리 웹 서비스. 관리자 페이지와 사용자 페이지를 구축했습니다.
+                  </p>
+                  <div className="work-tags">
+                    <span className="tag">Next.js</span>
+                    <span className="tag">Supabase</span>
+                    <span className="tag">관리자</span>
+                  </div>
+                </div>
+              </div>
+              <div className="work-card">
+                <div className="work-image">
+                  <img
+                    src="https://images.unsplash.com/photo-1558655146-364adaf1fcc9?w=800&h=450&fit=crop"
+                    alt="프로모션 캠페인"
+                  />
+                </div>
+                <div className="work-content">
+                  <span className="work-category">마이크로 사이트</span>
+                  <h3>프로모션 캠페인</h3>
+                  <p className="work-description">
+                    스크롤 애니메이션과 인터랙티브 요소가 포함된 프로모션 페이지. 모바일 최적화를 적용했습니다.
+                  </p>
+                  <div className="work-tags">
+                    <span className="tag">React</span>
+                    <span className="tag">애니메이션</span>
+                    <span className="tag">모바일</span>
+                  </div>
+                </div>
+              </div>
+              </div>
+            </div>
             <div className="section-header">
               <span className="section-header-badge">Process</span>
               <h2>
@@ -521,81 +593,6 @@ function App() {
           </div>
         </section>
 
-        <section id="works" className="section muted">
-          <div className="container">
-            <div className="section-header">
-              <span className="section-header-badge">Works</span>
-              <h2>
-                <span className="section-header-title-accent">만든 결과물을</span>
-                <span className="section-header-title-line">직접 확인하세요</span>
-              </h2>
-              <p>실제 프로젝트 사례를 통해 품질과 완성도를 확인할 수 있습니다. 비슷한 목적의 프로젝트를 찾아 참고해 보세요.</p>
-            </div>
-            <div className="grid three">
-              <div className="work-card">
-                <div className="work-image">
-                  <img
-                    src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&h=450&fit=crop"
-                    alt="브랜드 리뉴얼 프로젝트"
-                  />
-                </div>
-                <div className="work-content">
-                  <span className="work-category">랜딩 페이지</span>
-                  <h3>브랜드 리뉴얼 프로젝트</h3>
-                  <p className="work-description">
-                    React 기반 반응형 랜딩 페이지 제작. 인터랙티브 UI와 SEO 최적화를 적용했습니다.
-                  </p>
-                  <div className="work-tags">
-                    <span className="tag">React</span>
-                    <span className="tag">TypeScript</span>
-                    <span className="tag">반응형</span>
-                  </div>
-                </div>
-              </div>
-              <div className="work-card">
-                <div className="work-image">
-                  <img
-                    src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=450&fit=crop"
-                    alt="예약 관리 시스템"
-                  />
-                </div>
-                <div className="work-content">
-                  <span className="work-category">웹 서비스</span>
-                  <h3>예약 관리 시스템</h3>
-                  <p className="work-description">
-                    Next.js와 Supabase를 활용한 예약 관리 웹 서비스. 관리자 페이지와 사용자 페이지를 구축했습니다.
-                  </p>
-                  <div className="work-tags">
-                    <span className="tag">Next.js</span>
-                    <span className="tag">Supabase</span>
-                    <span className="tag">관리자</span>
-                  </div>
-                </div>
-              </div>
-              <div className="work-card">
-                <div className="work-image">
-                  <img
-                    src="https://images.unsplash.com/photo-1558655146-364adaf1fcc9?w=800&h=450&fit=crop"
-                    alt="프로모션 캠페인"
-                  />
-                </div>
-                <div className="work-content">
-                  <span className="work-category">마이크로 사이트</span>
-                  <h3>프로모션 캠페인</h3>
-                  <p className="work-description">
-                    스크롤 애니메이션과 인터랙티브 요소가 포함된 프로모션 페이지. 모바일 최적화를 적용했습니다.
-                  </p>
-                  <div className="work-tags">
-                    <span className="tag">React</span>
-                    <span className="tag">애니메이션</span>
-                    <span className="tag">모바일</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
         <section id="pricing" className="section">
           <div className="container">
             <div className="section-header">
@@ -635,7 +632,6 @@ function App() {
                 </div>
               </div>
               <div className="price-card featured">
-                <span className="price-badge">BEST</span>
                 <span className="card-icon price-icon-featured" aria-hidden><CardIcon type="credit" /></span>
                 <div className="card-body">
                   <h3>서비스형 패키지</h3>

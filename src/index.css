@@ -29,6 +29,19 @@
   --price-featured: #ec4899;
   --price-featured-glow: rgba(236, 72, 153, 0.35);
   --price-check-basic: #22c55e;
+
+  /* 간격 스케일 (일관된 상하·컴포넌트 간격) */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 2.5rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  --space-4xl: 5rem;
+  --space-section: 5rem;
+  --space-block: 2.5rem;
+  --space-component: 1.5rem;
 }
 
 .light {
