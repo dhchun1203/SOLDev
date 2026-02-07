@@ -2,9 +2,8 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import './App.css'
 
 const NAV_LINKS: { href: string; label: string }[] = [
-  { href: '#hero', label: '소개' },
-  { href: '#services', label: '오픈 특가' },
-  { href: '#portfolio', label: '제공 내용' },
+  { href: '#hero', label: '오픈 특가' },
+  { href: '#introduce', label: '소개' },
   { href: '#works', label: '포트폴리오' },
   { href: '#pricing', label: '가격' },
 ]
@@ -220,7 +219,9 @@ function App() {
       <header className="site-header">
         <div className="container header-inner">
           <a className="logo" href="#hero" onClick={closeMenu}>
-            <span className="logo-icon" aria-hidden="true">?</span>
+            <span className="logo-icon" aria-hidden="true">
+              <img src="/logo-icon.svg" alt="" width="24" height="24" />
+            </span>
             SOLDev
           </a>
           <nav className="nav header-nav">
@@ -317,7 +318,7 @@ function App() {
               <span className="hero-cosmic-badge-dot" />
               SOLDev · 웹서비스 제작
             </div>
-            <h1 className="hero-cosmic-title">실제로 쓰이는 웹서비스</h1>
+            <h1 className="hero-cosmic-title"><span className="hero-cosmic-neon">실제로</span> 쓰이는 웹서비스</h1>
             <p className="hero-cosmic-subtitle">
               예쁘기만 한 웹사이트가 아니라,
               <br />
@@ -326,7 +327,7 @@ function App() {
               <span className="hero-cosmic-highlight">&lsquo;실제로 쓰이는 웹서비스&rsquo;</span>를 만듭니다.
             </p>
             <div className="hero-cosmic-actions">
-              <a href="#portfolio" className="hero-cosmic-btn hero-cosmic-btn-primary">
+              <a href="#introduce" className="hero-cosmic-btn hero-cosmic-btn-primary">
                 포트폴리오 보기
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M5 12h14M12 5l7 7-7 7" />
@@ -425,10 +426,10 @@ function App() {
           </div>
         </section>
 
-        <section id="portfolio" className="section muted">
+        <section id="introduce" className="section muted">
           <div className="container">
             <div className="section-header">
-              <span className="section-header-badge">Portfolio</span>
+              <span className="section-header-badge">Introduce</span>
               <h2>
                 <span className="section-header-title-accent">이런 결과물을</span>
                 <span className="section-header-title-line">제공합니다</span>
@@ -448,13 +449,16 @@ function App() {
                 </div>
               </div>
               <div className="portfolio-card">
-                <span className="card-icon" aria-hidden><CardIcon type="flow" /></span>
+                <span className="card-icon" aria-hidden><CardIcon type="layers" /></span>
                 <div className="card-body">
                   <span className="card-label">운영 흐름</span>
-                  <h3>방문자 → 관리자</h3>
+                  <h3>관리자까지 포함된 서비스 구조</h3>
                   <p className="subtle">
-                    방문자는 예약/문의를 남기고 → 관리자는 관리자 페이지에서
-                    내역을 확인하고 상태를 관리합니다.
+                    방문자는 예약·문의만 남기고,
+                    관리자는 별도의 관리자 페이지에서
+                    내역 확인·상태 관리까지 바로 할 수 있습니다.
+                    <br /><br />
+                    즉, 운영을 전제로 설계된 완성형 웹서비스입니다.
                   </p>
                 </div>
               </div>
@@ -534,50 +538,40 @@ function App() {
             <div className="section-header">
               <span className="section-header-badge">Process</span>
               <h2>
-                <span className="section-header-title-accent">진행 방식 &amp;</span>
-                <span className="section-header-title-line">기술 사양</span>
+                <span className="section-header-title-accent">진행 방식</span>
               </h2>
-              <p>요청 전달부터 배포·검수까지 투명한 단계로 진행합니다. 최신 웹 기술로 안정적이고 빠른 결과를 드립니다.</p>
+              <p>요청 전달부터 배포·검수까지 투명한 단계로 진행합니다.</p>
             </div>
-            <div className="grid three">
-              <div className="portfolio-card">
-                <span className="card-icon" aria-hidden><CardIcon type="layers" /></span>
-                <div className="card-body">
-                  <span className="card-label">진행 방식</span>
-                  <h3>간단하고 명확한 프로세스</h3>
-                  <ol className="list ordered">
-                    <li>요청사항/참고 사이트 전달</li>
-                    <li>페이지 구성안 확정</li>
-                    <li>개발 진행</li>
-                    <li>배포 및 도메인 연결</li>
-                    <li>최종 검수 후 완료</li>
-                  </ol>
+            <div className="process-rows">
+              <div className="process-flow">
+                <div className="process-track" aria-hidden />
+                <div className="process-step">
+                  <span className="process-node"><span className="process-num">1</span></span>
+                  <span className="process-label">요청사항 / 참고 사이트 전달</span>
+                  <p className="process-desc">원하시는 방향만 편하게 알려주세요.<br />참고 사이트가 있다면 함께 전달해주시면 좋아요.<br />정리되지 않아도 괜찮아요, 제가 기준을 잡아드립니다.</p>
+                </div>
+                <div className="process-step">
+                  <span className="process-node"><span className="process-num">2</span></span>
+                  <span className="process-label">페이지 구성안 확정</span>
+                  <p className="process-desc">전달주신 내용을 바탕으로 페이지 구성과 기능 흐름을 먼저 정리해드립니다.<br />이 단계에서 방향만 맞추면 이후는 빠르게 진행됩니다.</p>
+                </div>
+                <div className="process-step">
+                  <span className="process-node"><span className="process-num">3</span></span>
+                  <span className="process-label">개발 진행</span>
+                  <p className="process-desc">확정된 구성안을 기준으로 디자인과 기능 개발을 동시에 진행합니다.<br />중간중간 확인이 필요할 경우 공유드려요.</p>
+                </div>
+                <div className="process-step">
+                  <span className="process-node"><span className="process-num">4</span></span>
+                  <span className="process-label">배포 및 도메인 연결</span>
+                  <p className="process-desc">완성된 웹서비스를 실제 서비스 환경에 배포합니다.<br />도메인이 있다면 연결까지 함께 진행해드립니다.<br />오픈 준비는 이 단계에서 마무리돼요.</p>
+                </div>
+                <div className="process-step">
+                  <span className="process-node"><span className="process-num">5</span></span>
+                  <span className="process-label">최종 검수 후 완료</span>
+                  <p className="process-desc">최종 확인 후 바로 운영하실 수 있도록 정리해드립니다.<br />이후 간단한 수정이나 문의도 편하게 남겨주세요.</p>
                 </div>
               </div>
-              <div className="portfolio-card">
-                <span className="card-icon" aria-hidden><CardIcon type="code" /></span>
-                <div className="card-body">
-                  <span className="card-label">기술 사양</span>
-                  <h3>최신 웹 기술 기반</h3>
-                  <p className="subtle">
-                    최신 웹 기술 기반으로 빠르고 안정적인 웹사이트를 제작합니다.
-                  </p>
-                  <ul className="list">
-                    <li>React / Next.js 기반 웹 제작</li>
-                    <li>반응형 웹 (모바일/PC)</li>
-                    <li>관리자 페이지 및 서버 연동</li>
-                    <li>안정적인 배포 환경 (Vercel)</li>
-                    <li>SEO 기본 최적화 포함</li>
-                    <li>
-                      인터랙티브 UI 적용
-                      <span className="subtle">
-                        클릭·스크롤에 자연스럽게 반응하는 사용자 중심 인터랙션
-                      </span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div className="portfolio-card">
+              <div className="disclaimer-block">
                 <span className="card-icon" aria-hidden><CardIcon type="shield" /></span>
                 <div className="card-body">
                   <span className="card-label">꼭 확인해주세요</span>
@@ -586,6 +580,61 @@ function App() {
                     <li>제작 기간은 자료 전달 완료 후 기준</li>
                     <li>기획 변경/기능 추가 시 비용·기간 증가</li>
                     <li>도메인/배포 계정은 고객 명의 권장</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div className="section-header">
+              <span className="section-header-badge">Tech</span>
+              <h2>
+                <span className="section-header-title-accent">기술 사양</span>
+                <span className="section-header-title-line">최신 웹 기술 기반</span>
+              </h2>
+              <p>최신 웹 기술 기반으로 빠르고 안정적인 웹사이트를 제작합니다.</p>
+            </div>
+            <div className="grid two tech-spec-center">
+              <div className="portfolio-card">
+                <span className="card-icon" aria-hidden><CardIcon type="code" /></span>
+                <div className="card-body">
+                  <span className="card-label">기술 사양</span>
+                  <h3>최신 웹 기술 기반</h3>
+                  <ul className="list">
+                    <li>
+                      React / Next.js 기반 웹 제작
+                      <span className="subtle">
+                        검증된 라이브러리로 유지보수와 확장이 쉬운 구조를 만듭니다.
+                      </span>
+                    </li>
+                    <li>
+                      반응형 웹 (모바일/PC)
+                      <span className="subtle">
+                        화면 크기에 맞춰 레이아웃이 자동으로 최적화됩니다.
+                      </span>
+                    </li>
+                    <li>
+                      관리자 페이지 및 서버 연동
+                      <span className="subtle">
+                        예약·문의 내역 확인과 상태 관리를 한 곳에서 할 수 있습니다.
+                      </span>
+                    </li>
+                    <li>
+                      안정적인 배포 환경 (Vercel)
+                      <span className="subtle">
+                        빠른 속도와 안정적인 서비스 운영을 위한 인프라를 사용합니다.
+                      </span>
+                    </li>
+                    <li>
+                      SEO 기본 최적화 포함
+                      <span className="subtle">
+                        검색 노출에 유리한 기본 구조와 메타 설정을 적용합니다.
+                      </span>
+                    </li>
+                    <li>
+                      인터랙티브 UI 적용
+                      <span className="subtle">
+                        클릭·스크롤에 자연스럽게 반응하는 사용자 중심 인터랙션
+                      </span>
+                    </li>
                   </ul>
                 </div>
               </div>

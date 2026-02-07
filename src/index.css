@@ -1,5 +1,5 @@
 :root {
-  font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, system-ui,
+  font-family: 'IBM Plex Sans KR', -apple-system, BlinkMacSystemFont, system-ui,
     'Segoe UI', sans-serif;
   line-height: 1.6;
   font-weight: 400;
@@ -80,6 +80,14 @@ body {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  word-break: keep-all;
+  overflow-wrap: normal;
+}
+
+/* 텍스트 요소 전반 워드 브레이킹 최소화 */
+h1, h2, h3, h4, h5, h6, p, span, a, li, td, th, label {
+  word-break: keep-all;
+  overflow-wrap: normal;
 }
 
 a {
