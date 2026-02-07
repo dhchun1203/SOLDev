@@ -73,7 +73,7 @@
 }
 
 .container {
-  width: min(1120px, 92%);
+  width: 70%;
   margin: 0 auto;
   padding: 0 1rem;
 }
@@ -611,7 +611,7 @@
 .hero-cosmic-inner {
   position: relative;
   z-index: 1;
-  width: min(640px, 92%);
+  width: 70%;
   margin: 0 auto;
   text-align: center;
 }
@@ -1429,6 +1429,7 @@
 @media (max-width: 767px) {
   .process-flow {
     max-width: none;
+    padding-left: 0;
   }
 
   .process-track {
@@ -1439,14 +1440,25 @@
   .process-step {
     grid-template-columns: auto 1fr;
     gap: 0.35rem 1rem;
+    padding-left: 0;
   }
 
   .process-step .process-node {
     grid-column: 1;
+    flex-shrink: 0;
   }
 
   .process-step .process-label,
   .process-step .process-desc {
+    grid-column: 2;
+    text-align: left;
+    min-width: 0;
+    padding-left: 0.5rem;
+  }
+
+  /* 모바일: 짝수 단계도 텍스트를 노드 오른쪽(2열)에 고정해 스테퍼 영역 침범 방지 */
+  .process-step:nth-child(even) .process-label,
+  .process-step:nth-child(even) .process-desc {
     grid-column: 2;
     text-align: left;
   }
@@ -1465,11 +1477,14 @@
   align-items: flex-start;
   gap: var(--space-md);
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
   padding: var(--space-lg);
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: 16px;
   box-shadow: 0 4px 24px var(--shadow-sm), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  box-sizing: border-box;
 }
 
 .disclaimer-block .card-icon {
@@ -1512,6 +1527,29 @@
   color: var(--text-secondary);
   font-size: 0.95rem;
   line-height: 1.7;
+}
+
+@media (max-width: 767px) {
+  .disclaimer-block {
+    flex-direction: column;
+    align-items: stretch;
+    padding: var(--space-md);
+    gap: var(--space-sm);
+  }
+
+  .disclaimer-block .card-icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .disclaimer-block h3 {
+    font-size: 1.1rem;
+  }
+
+  .disclaimer-block .list {
+    font-size: 0.9rem;
+    padding-left: 1.125rem;
+  }
 }
 
 @media (max-width: 767px) {
