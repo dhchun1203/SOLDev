@@ -119,6 +119,19 @@ SOLDev/
 
 ---
 
+## AI 상담 챗봇 (Google Gemini)
+
+- **Google Generative AI (Gemini 1.5 Flash)** 기반 상담 챗봇
+- **다국어**: 한국어/영어 자동 감지 후 해당 언어로 응답
+- **대화 기록**: `localStorage`에 저장, 패널에서 삭제 버튼으로 초기화
+- **플로팅 UI**: 우측 하단 FAB → 클릭 시 패널 열림, 모바일에서는 하단 시트 형태로 최적화
+
+**설정**: [Google AI Studio](https://aistudio.google.com/apikey)에서 API 키 발급 후, 프로젝트 루트에 `.env` 생성해 `VITE_GOOGLE_AI_API_KEY=발급한키` 추가. (`.env.example` 참고.)
+
+> API 키는 클라이언트에 노출되므로 프로토타입/소규모용에 적합합니다. 운영 환경에서는 백엔드 프록시 사용을 권장합니다.
+
+---
+
 ## 로컬 실행
 
 ```bash

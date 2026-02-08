@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import './App.css'
+import ChatBot from './components/ChatBot'
 
 const NAV_LINKS: { href: string; label: string }[] = [
   { href: '#hero', label: '오픈 특가' },
@@ -349,6 +350,7 @@ function App() {
               </h1>
               <p className="lead">
                 서비스 런칭 초기 단계로 한정 수량 오픈 특가로 진행합니다.
+                <br />
                 정상가 기준의 작업 품질과 구성은 동일하게 제공되며, 수량 소진 시
                 정상가로 전환됩니다.
               </p>
@@ -381,6 +383,7 @@ function App() {
                 <h3>포트폴리오 활용 가능</h3>
                 <p>
                   작업 결과물은 포트폴리오로 활용될 수 있습니다.
+                  <br />
                   민감 정보/계정 정보는 노출하지 않습니다.
                 </p>
                 <button className="text-link" type="button">
@@ -399,7 +402,9 @@ function App() {
                 <span className="section-header-title-accent">오픈 특가로</span>
                 <span className="section-header-title-line">부담 없이 시작하세요</span>
               </h2>
-              <p>포트폴리오 구축 목적의 한정 수량 혜택으로 진행합니다. 정상가와 동일한 품질을 특가로 경험해 보세요.</p>
+              <p>포트폴리오 구축 목적의 한정 수량 혜택으로 진행합니다.
+                <br />
+                정상가와 동일한 품질을 특가로 경험해 보세요.</p>
             </div>
             <div className="grid two">
               <div className="info-card">
@@ -417,8 +422,9 @@ function App() {
                 <div className="card-body">
                   <h3>포트폴리오 활용</h3>
                   <p className="subtle">
-                    작업 결과물은 포트폴리오로 활용될 수 있습니다. 민감 정보와 계정
-                    정보는 노출하지 않습니다.
+                    작업 결과물은 포트폴리오로 활용될 수 있습니다.
+                    <br />
+                    민감 정보와 계정 정보는 노출하지 않습니다.
                   </p>
                 </div>
               </div>
@@ -434,7 +440,9 @@ function App() {
                 <span className="section-header-title-accent">이런 결과물을</span>
                 <span className="section-header-title-line">제공합니다</span>
               </h2>
-              <p>기획부터 개발까지, 실제로 쓰이는 웹 서비스를 한 번에 완성해 드립니다. 웹사이트가 아닌 운영 가능한 서비스를 만나 보세요.</p>
+              <p>기획부터 개발까지, 실제로 쓰이는 웹 서비스를 한 번에 완성해 드립니다.
+                <br />
+                웹사이트가 아닌 운영 가능한 서비스를 만나 보세요.</p>
             </div>
             <div className="grid two">
               <div className="portfolio-card">
@@ -470,7 +478,9 @@ function App() {
                   <span className="section-header-title-accent">만든 결과물을</span>
                   <span className="section-header-title-line">직접 확인하세요</span>
                 </h2>
-                <p>실제 프로젝트 사례를 통해 품질과 완성도를 확인할 수 있습니다. 비슷한 목적의 프로젝트를 찾아 참고해 보세요.</p>
+                <p>실제 프로젝트 사례를 통해 품질과 완성도를 확인할 수 있습니다.
+                <br />
+                비슷한 목적의 프로젝트를 찾아 참고해 보세요.</p>
               </div>
               <div className="grid three">
               <div className="work-card">
@@ -484,7 +494,9 @@ function App() {
                   <span className="work-category">랜딩 페이지</span>
                   <h3>브랜드 리뉴얼 프로젝트</h3>
                   <p className="work-description">
-                    React 기반 반응형 랜딩 페이지 제작. 인터랙티브 UI와 SEO 최적화를 적용했습니다.
+                    React 기반 반응형 랜딩 페이지 제작.
+                    <br />
+                    인터랙티브 UI와 SEO 최적화를 적용했습니다.
                   </p>
                   <div className="work-tags">
                     <span className="tag">React</span>
@@ -504,7 +516,9 @@ function App() {
                   <span className="work-category">웹 서비스</span>
                   <h3>예약 관리 시스템</h3>
                   <p className="work-description">
-                    Next.js와 Supabase를 활용한 예약 관리 웹 서비스. 관리자 페이지와 사용자 페이지를 구축했습니다.
+                    Next.js와 Supabase를 활용한 예약 관리 웹 서비스.
+                    <br />
+                    관리자 페이지와 사용자 페이지를 구축했습니다.
                   </p>
                   <div className="work-tags">
                     <span className="tag">Next.js</span>
@@ -524,7 +538,9 @@ function App() {
                   <span className="work-category">마이크로 사이트</span>
                   <h3>프로모션 캠페인</h3>
                   <p className="work-description">
-                    스크롤 애니메이션과 인터랙티브 요소가 포함된 프로모션 페이지. 모바일 최적화를 적용했습니다.
+                    스크롤 애니메이션과 인터랙티브 요소가 포함된 프로모션 페이지.
+                    <br />
+                    모바일 최적화를 적용했습니다.
                   </p>
                   <div className="work-tags">
                     <span className="tag">React</span>
@@ -612,6 +628,12 @@ function App() {
                       </span>
                     </li>
                     <li>
+                      인터랙티브 UI 적용
+                      <span className="subtle">
+                        클릭·스크롤에 자연스럽게 반응하는 사용자 중심 인터랙션
+                      </span>
+                    </li>
+                    <li>
                       관리자 페이지 및 서버 연동
                       <span className="subtle">
                         예약·문의 내역 확인과 상태 관리를 한 곳에서 할 수 있습니다.
@@ -629,12 +651,6 @@ function App() {
                         검색 노출에 유리한 기본 구조와 메타 설정을 적용합니다.
                       </span>
                     </li>
-                    <li>
-                      인터랙티브 UI 적용
-                      <span className="subtle">
-                        클릭·스크롤에 자연스럽게 반응하는 사용자 중심 인터랙션
-                      </span>
-                    </li>
                   </ul>
                 </div>
               </div>
@@ -650,7 +666,9 @@ function App() {
                 <span className="section-header-title-accent">합리적인</span>
                 <span className="section-header-title-line">가격으로 시작하세요</span>
               </h2>
-              <p>목적에 맞는 플랜을 선택해 부담 없이 시작할 수 있습니다. 오픈 특가로 더 낮은 비용으로 품질 있는 결과물을 경험해 보세요.</p>
+              <p>목적에 맞는 플랜을 선택해 부담 없이 시작할 수 있습니다.
+                <br />
+                오픈 특가로 더 낮은 비용으로 품질 있는 결과물을 경험해 보세요.</p>
             </div>
             <div className="grid two">
               <div className="price-card">
@@ -720,6 +738,7 @@ function App() {
             </div>
             <p className="footer-description">
               최신 웹 기술로 빠르고 안정적인 웹사이트를 제작합니다.
+              <br />
               React/Next.js 기반의 반응형 웹 개발 서비스를 제공합니다.
             </p>
           </div>
@@ -755,6 +774,7 @@ function App() {
           </svg>
         </button>
       )}
+      <ChatBot />
     </div>
   )
 }

@@ -2260,7 +2260,7 @@
   }
 }
 
-/* ScrollToTop 버튼 – 테마와 통일 */
+/* ScrollToTop 버튼 – 우측 하단 (챗봇 FAB은 이 버튼 위에 배치) */
 .scroll-to-top {
   position: fixed;
   bottom: 2rem;
