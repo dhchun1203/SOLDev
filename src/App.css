@@ -162,6 +162,10 @@
   gap: 1.5rem;
 }
 
+.site-header .container.header-inner {
+  width: 95%;
+}
+
 .logo {
   display: inline-flex;
   align-items: center;

@@ -1,9 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { GoogleGenerativeAI, type Content } from '@google/generative-ai'
 import './ChatBot.css'
 
 const STORAGE_KEY = 'soldev_chat_history'
 const MAX_HISTORY = 50
+const GROQ_CHAT_URL = 'https://api.groq.com/openai/v1/chat/completions'
+const GROQ_MODEL = 'llama-3.3-70b-versatile'
 
 function detectLanguage(text: string): 'ko' | 'en' {
   const koreanRegex = /[\uAC00-\uD7A3]/
@@ -55,11 +56,10 @@ export default function ChatBot() {
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [detectedLang, setDetectedLang] = useState<'ko' | 'en'>('ko')
   const listRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
 
-  const apiKey = import.meta.env.VITE_GOOGLE_AI_API_KEY as string | undefined
+  const apiKey = import.meta.env.VITE_GROQ_API_KEY as string | undefined
 
   useEffect(() => {
     if (messages.length) saveHistory(messages)
@@ -83,12 +83,11 @@ export default function ChatBot() {
   const sendMessage = useCallback(async () => {
     const text = input.trim()
     if (!text || loading || !apiKey) {
-      if (!apiKey) setError('API 키가 설정되지 않았습니다. VITE_GOOGLE_AI_API_KEY를 확인하세요.')
+      if (!apiKey) setError('API 키가 설정되지 않았습니다. VITE_GROQ_API_KEY를 확인하세요.')
       return
     }
     setError(null)
     const lang = detectLanguage(text)
-    setDetectedLang(lang)
     const userMsg: ChatMessage = {
       id: `user-${Date.now()}`,
       role: 'user',
@@ -110,37 +109,57 @@ export default function ChatBot() {
     setMessages((prev) => [...prev, modelMsg])
 
     try {
-      const genAI = new GoogleGenerativeAI(apiKey)
-      const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' })
       const systemPrompt = getSystemPrompt(lang)
       const historyWithUser: ChatMessage[] = [...messages, userMsg]
-      const historyForApi: Content[] = historyWithUser
-        .filter((m) => m.role === 'user' || m.role === 'model')
-        .map((m) => ({
-          role: m.role === 'user' ? 'user' : 'model',
-          parts: [{ text: m.text }],
-        }))
-      const prevTurns = historyForApi.slice(0, -1).slice(-20)
-      const isFirstTurn = prevTurns.length === 0
-      const messageToSend = isFirstTurn
-        ? `${systemPrompt}\n\n---\n\n[User]: ${text}`
-        : text
-      const chat = model.startChat({ history: prevTurns })
-      const result = await chat.sendMessage(messageToSend)
-      const response = result.response
-      const reply = response.text() ?? ''
+      const prevTurns = historyWithUser.slice(0, -1).slice(-20)
+      const apiMessages: { role: 'system' | 'user' | 'assistant'; content: string }[] = [
+        { role: 'system', content: systemPrompt },
+        ...prevTurns.map((m) => ({
+          role: (m.role === 'user' ? 'user' : 'assistant') as 'user' | 'assistant',
+          content: m.text,
+        })),
+        { role: 'user', content: text },
+      ]
+
+      const res = await fetch(GROQ_CHAT_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${apiKey}`,
+        },
+        body: JSON.stringify({
+          model: GROQ_MODEL,
+          messages: apiMessages,
+          max_tokens: 1024,
+        }),
+      })
+
+      if (!res.ok) {
+        const errBody = await res.text()
+        let errMessage = errBody
+        try {
+          const j = JSON.parse(errBody)
+          errMessage = j.error?.message ?? errBody
+        } catch {
+          // use errBody as is
+        }
+        throw new Error(`${res.status} ${errMessage}`)
+      }
+
+      const data = await res.json() as { choices?: Array<{ message?: { content?: string } }> }
+      const reply = data.choices?.[0]?.message?.content?.trim() ?? ''
 
       setMessages((prev) =>
         prev.map((m) => (m.id === modelMsgId ? { ...m, text: reply } : m))
       )
     } catch (err) {
       const raw = err instanceof Error ? err.message : '응답을 가져오지 못했습니다.'
-      const is429 = raw.includes('429') || raw.toLowerCase().includes('quota')
+      const is429 = raw.includes('429') || raw.toLowerCase().includes('rate limit') || raw.toLowerCase().includes('quota')
       const userMessage = is429
-        ? 'API 사용량 한도를 초과했습니다. Google AI Studio에서 할당량을 확인하거나 잠시 후 다시 시도해 주세요.'
-        : `일시적인 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.`
+        ? 'API 사용량 한도를 초과했습니다. Groq 콘솔에서 할당량을 확인하거나 잠시 후 다시 시도해 주세요.'
+        : '일시적인 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.'
       const errorDisplay = is429
-        ? '사용량 한도 초과(429). Google AI Studio 할당량/요금제를 확인하거나 내일 다시 시도해 주세요.'
+        ? '사용량 한도 초과(429). Groq 할당량/요금제를 확인하거나 잠시 후 다시 시도해 주세요.'
         : raw
       setError(errorDisplay)
       setMessages((prev) =>
