@@ -157,7 +157,7 @@ function App() {
 
     // 관찰할 요소들 선택 (히어로 섹션 제외)
     const elementsToObserve = document.querySelectorAll(
-      '.section-header, .info-card, .portfolio-card, .price-card, .work-card'
+      '.section-header, .info-card, .portfolio-card, .price-card, .work-card, .pricing-lead'
     )
 
     elementsToObserve.forEach((el) => {
@@ -223,7 +223,7 @@ function App() {
             <span className="logo-icon" aria-hidden="true">
               <img src="/logo-icon.svg" alt="" width="24" height="24" />
             </span>
-            SOLDev
+            <span className="logo-text">SOLDev</span>
           </a>
           <nav className="nav header-nav">
             {NAV_LINKS.map(({ href, label }) => (
@@ -321,11 +321,9 @@ function App() {
             </div>
             <h1 className="hero-cosmic-title"><span className="hero-cosmic-neon">실제로</span> 쓰이는 웹서비스</h1>
             <p className="hero-cosmic-subtitle">
-              예쁘기만 한 웹사이트가 아니라,
+              예쁘기만 한 웹사이트 말고,
               <br />
-              오픈하자마자 바로 운영할 수 있는
-              <br />
-              <span className="hero-cosmic-highlight">&lsquo;실제로 쓰이는 웹서비스&rsquo;</span>를 만듭니다.
+              오픈하자마자 바로 <span className="hero-cosmic-highlight">운영되는 웹서비스</span>가 필요하다면?
             </p>
             <div className="hero-cosmic-actions">
               <a href="#introduce" className="hero-cosmic-btn hero-cosmic-btn-primary">
@@ -442,7 +440,7 @@ function App() {
               </h2>
               <p>기획부터 개발까지, 실제로 쓰이는 웹 서비스를 한 번에 완성해 드립니다.
                 <br />
-                웹사이트가 아닌 운영 가능한 서비스를 만나 보세요.</p>
+                웹사이트가 아닌 <span className="section-header-highlight">운영 가능한 서비스</span>를 만나 보세요.</p>
             </div>
             <div className="grid two">
               <div className="portfolio-card">
@@ -556,7 +554,13 @@ function App() {
               <h2>
                 <span className="section-header-title-accent">진행 방식</span>
               </h2>
-              <p>요청 전달부터 배포·검수까지 투명한 단계로 진행합니다.</p>
+              <p>
+                요청 전달부터 배포·검수까지 투명한 단계로 진행합니다.
+                <br /><br />
+                복잡해 보이지만,
+                <br />
+                실제 제작은 <span className="section-header-highlight">빠르게</span> 진행됩니다.
+              </p>
             </div>
             <div className="process-rows">
               <div className="process-flow">
@@ -658,6 +662,20 @@ function App() {
           </div>
         </section>
 
+        <div className="pricing-lead section muted">
+          <div className="container">
+            <p className="pricing-lead-text">
+              <span className="pricing-lead-line pricing-lead-line-1">어렵게 설명하시지 않아도,</span>
+              <span className="pricing-lead-line pricing-lead-line-2 pricing-lead-accent">필요한 건 이미 정리돼 있습니다.</span>
+            </p>
+            <a href="#pricing" className="pricing-lead-arrow" aria-label="가격 섹션으로 이동">
+              <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                <path d="M7 8l5 5 5-5M7 14l5 5 5-5" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
         <section id="pricing" className="section">
           <div className="container">
             <div className="section-header">
@@ -675,7 +693,7 @@ function App() {
                 <span className="card-icon price-icon-basic" aria-hidden><CardIcon type="credit" /></span>
                 <div className="card-body">
                   <h3>베이직 패키지</h3>
-                  <p className="price-tagline">심플한 시작</p>
+                  <p className="price-tagline">비즈니스 소개를 위한 웹사이트가 필요하신 경우</p>
                   <div className="price-block">
                     <p className="price-original">정상가 43만 원</p>
                     <p className="price-main">20<span className="price-unit">만 원</span></p>
@@ -702,7 +720,7 @@ function App() {
                 <span className="card-icon price-icon-featured" aria-hidden><CardIcon type="credit" /></span>
                 <div className="card-body">
                   <h3>서비스형 패키지</h3>
-                  <p className="price-tagline">가장 많이 선택하는</p>
+                  <p className="price-tagline">예약·문의까지 한 번에 필요하신 경우</p>
                   <div className="price-block">
                     <p className="price-original">정상가 72만 원</p>
                     <p className="price-main featured">40<span className="price-unit">만 원</span></p>

@@ -10,12 +10,30 @@
   background: var(--bg-primary);
 }
 
+/* 섹션 경계 없이 이어지도록: main에 배경 한 번만 적용, 섹션은 투명 */
+main {
+  background: var(--bg-primary);
+  background-image:
+    radial-gradient(ellipse 90% 60% at 50% -10%, rgba(59, 130, 246, 0.2) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 50% at 100% 50%, rgba(139, 92, 246, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse 70% 50% at 0% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+}
+
+.light main {
+  background: var(--bg-primary);
+  background-image:
+    radial-gradient(ellipse 90% 60% at 50% -10%, rgba(59, 130, 246, 0.08) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 50% at 100% 50%, rgba(139, 92, 246, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse 70% 50% at 0% 50%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
+}
+
 /* 스크롤 애니메이션 기본 상태 */
 .section-header:not(.animate-in),
 .info-card:not(.animate-in),
 .portfolio-card:not(.animate-in),
 .price-card:not(.animate-in),
-.work-card:not(.animate-in) {
+.work-card:not(.animate-in),
+.pricing-lead:not(.animate-in) .pricing-lead-line {
   opacity: 0;
   transform: translateY(30px);
 }
@@ -166,6 +184,21 @@
   width: 95%;
 }
 
+/* 데스크톱: 네비를 화면 정중앙에 배치 (absolute 기준은 .site-header) */
+.header-nav {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+/* 로고 텍스트 좌→우 연한 색 채우기 호버용 (애니메이션 퍼센트) */
+@property --logo-fill {
+  syntax: '<percentage>';
+  initial-value: 0%;
+  inherits: false;
+}
+
 .logo {
   display: inline-flex;
   align-items: center;
@@ -177,11 +210,39 @@
   transition: opacity 0.2s ease, transform 0.2s ease;
   transform: translateZ(0);
   backface-visibility: hidden;
+  --logo-text-base: var(--text-primary);
 }
 
-.logo:hover {
-  opacity: 0.9;
-  transform: translate3d(0, -1px, 0);
+.site-header:not(.scrolled) .logo {
+  --logo-text-base: rgba(255, 255, 255, 0.95);
+}
+
+.light .site-header:not(.scrolled) .logo {
+  --logo-text-base: var(--text-primary);
+}
+
+/* 호버 시 좌→우로 악센트 그라데이션(블루→퍼플)이 채워짐, 다크/라이트 공통 */
+.logo .logo-text {
+  --logo-fill: 0%;
+  background: linear-gradient(
+    90deg,
+    var(--accent) 0%,
+    var(--accent-purple) var(--logo-fill),
+    var(--logo-text-base) var(--logo-fill),
+    var(--logo-text-base) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  transition: --logo-fill 0.35s ease;
+}
+
+.logo:hover .logo-text {
+  --logo-fill: 100%;
+}
+
+.logo:hover .logo-icon {
+  transform: rotate(-30deg);
 }
 
 .logo-icon {
@@ -196,6 +257,7 @@
   font-size: 1rem;
   font-weight: 700;
   line-height: 1;
+  transition: transform 0.2s ease;
 }
 
 .logo-icon img {
@@ -346,18 +408,15 @@
   color: #fff;
 }
 
+/* 섹션·컨테이너 간격 통일: --space-section 사용 (services↔introduce 간격과 동일) */
 .section {
   padding: var(--space-section) 0;
   position: relative;
 }
 
-/* 히어로 제외 섹션: 배경 그라데이션으로 구분감 */
+/* 히어로 제외 섹션: 배경은 main에서 일괄 적용, 경계 없이 이어짐 */
 .section:not(.hero) {
-  background: var(--bg-primary);
-  background-image:
-    radial-gradient(ellipse 90% 60% at 50% -10%, rgba(59, 130, 246, 0.2) 0%, transparent 55%),
-    radial-gradient(ellipse 70% 50% at 100% 50%, rgba(139, 92, 246, 0.12) 0%, transparent 50%),
-    radial-gradient(ellipse 70% 50% at 0% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+  background: transparent;
 }
 
 /* 모바일: 섹션 패딩 축소 */
@@ -375,25 +434,80 @@
 }
 
 .section.muted {
-  background: var(--bg-secondary);
-  background-image:
-    linear-gradient(180deg, rgba(15, 21, 25, 0.98) 0%, var(--bg-secondary) 25%, var(--bg-secondary) 75%, rgba(10, 13, 17, 0.96) 100%),
-    radial-gradient(ellipse 80% 70% at 50% 20%, rgba(139, 92, 246, 0.18) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 80% at 85% 70%, rgba(59, 130, 246, 0.12) 0%, transparent 55%);
+  background: transparent;
 }
 
-.light .section:not(.hero) {
-  background-image:
-    radial-gradient(ellipse 90% 60% at 50% -10%, rgba(59, 130, 246, 0.08) 0%, transparent 55%),
-    radial-gradient(ellipse 70% 50% at 100% 50%, rgba(139, 92, 246, 0.06) 0%, transparent 50%),
-    radial-gradient(ellipse 70% 50% at 0% 50%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
+.pricing-lead {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-section) 0;
+  text-align: center;
 }
 
-.light .section.muted {
-  background-image:
-    linear-gradient(180deg, rgba(241, 245, 249, 0.99) 0%, var(--bg-secondary) 20%, var(--bg-secondary) 80%, rgba(248, 250, 252, 0.98) 100%),
-    radial-gradient(ellipse 80% 70% at 50% 20%, rgba(139, 92, 246, 0.07) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 80% at 85% 70%, rgba(59, 130, 246, 0.05) 0%, transparent 55%);
+.pricing-lead .container {
+  width: 100%;
+}
+
+.pricing-lead-text {
+  margin: 0;
+  font-size: clamp(2.2rem, 5vw, 2.7rem);
+  line-height: 1.5;
+  color: var(--text-secondary);
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.pricing-lead-line-1 {
+  letter-spacing: 0.08em;
+}
+
+.pricing-lead-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5.5rem;
+  color: var(--text-tertiary);
+  transition: color 0.2s ease;
+  animation: pricing-lead-arrow-bounce 1.8s ease-in-out infinite;
+}
+
+.pricing-lead-arrow:hover {
+  color: var(--accent);
+}
+
+@keyframes pricing-lead-arrow-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(14px); }
+}
+
+.pricing-lead-line {
+  display: block;
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pricing-lead-line-2 {
+  margin-top: 0.5rem;
+  transition-delay: 0.2s;
+}
+
+.pricing-lead.animate-in .pricing-lead-line {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.pricing-lead-accent {
+  font-weight: 800;
+  font-size: clamp(2.5rem, 6vw, 3rem);
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.02em;
 }
 
 .section-header {
@@ -452,8 +566,16 @@
   line-height: 1.7;
 }
 
+.section-header p .section-header-highlight {
+  font-weight: 700;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 #works {
-  margin-bottom: var(--space-4xl);
+  margin-bottom: var(--space-section);
   scroll-margin-top: 5rem;
 }
 
@@ -1269,7 +1391,7 @@
 }
 
 #introduce .grid.two {
-  margin-bottom: var(--space-3xl);
+  margin-bottom: var(--space-section);
 }
 
 #introduce .grid.two .portfolio-card {
@@ -1291,7 +1413,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-xl);
-  margin-bottom: var(--space-3xl);
+  margin-bottom: var(--space-section);
   width: 100%;
 }
 
@@ -1299,7 +1421,7 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: var(--space-xl);
+  gap: var(--space-md);
   width: 100%;
   max-width: 720px;
   margin: 0 auto;
@@ -1335,7 +1457,7 @@
   min-width: 0;
   position: relative;
   z-index: 1;
-  padding: 1rem 0;
+  padding: 0.5rem 0;
   text-align: left;
 }
 
