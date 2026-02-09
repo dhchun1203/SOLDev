@@ -2281,7 +2281,7 @@
   justify-content: center;
   box-shadow: 0 4px 24px var(--shadow-sm), inset 0 1px 0 rgba(255, 255, 255, 0.04);
   transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
-  z-index: 1000;
+  z-index: 998;
   opacity: 0;
   animation: fadeInUp 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   transform: translateZ(0);
@@ -2391,19 +2391,19 @@
   }
 }
 
-/* 모바일: ScrollToTop 버튼 위치 조정 */
+/* 모바일: ScrollToTop 버튼 크기 축소 – 본문과 겹치지 않도록 */
 @media (max-width: 767px) {
   .scroll-to-top {
-    bottom: max(1.5rem, env(safe-area-inset-bottom));
-    right: max(1.5rem, env(safe-area-inset-right));
-    width: 52px;
-    height: 52px;
-    border-radius: 12px;
+    bottom: max(1rem, env(safe-area-inset-bottom));
+    right: max(1rem, env(safe-area-inset-right));
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
   }
 
   .scroll-to-top svg {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
   }
 }
 

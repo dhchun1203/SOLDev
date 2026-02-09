@@ -305,7 +305,7 @@
   border: 1px solid var(--border-color, #e5e7eb);
   border-radius: 12px;
   font: inherit;
-  font-size: 0.9375rem;
+  font-size: 1rem; /* 16px 이상으로 두어 모바일 포커스 시 자동 확대 방지 */
   resize: none;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
@@ -345,52 +345,73 @@
   cursor: not-allowed;
 }
 
-/* 모바일: 패널 풀화면에 가깝게 */
+/* 모바일(767px): FAB 크기 축소 – 닫힐 때만, 열릴 땐 하단 기준 풀화면 */
+@media (max-width: 767px) {
+  .chatbot-widget {
+    --chatbot-panel-height: 85vh;
+    --chatbot-panel-max-height: none;
+  }
+
+  .chatbot-tray:not(.chatbot-tray--open) {
+    bottom: calc(44px + 0.4rem + max(1rem, env(safe-area-inset-bottom)));
+    right: max(1rem, env(safe-area-inset-right));
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+  }
+
+  .chatbot-tray:not(.chatbot-tray--open)::before {
+    border-radius: 10px;
+  }
+
+  .chatbot-tray-fab-face svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* 입력 포커스 시 iOS 자동 확대 방지 (16px 미만이면 확대됨) */
+  .chatbot-input {
+    font-size: 16px;
+  }
+
+  /* 열렸을 때: 뷰포트 기준 하단에 고정해 항상 화면 안에 보이게 */
+  .chatbot-tray--open {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100% !important;
+    max-width: none;
+    height: var(--chatbot-panel-height);
+    max-height: none;
+    min-height: 280px;
+    border-radius: var(--chatbot-radius) var(--chatbot-radius) 0 0;
+  }
+}
+
+/* 모바일(480px): 열린 패널 풀화면 – 767px 규칙보다 나중에 적용 */
 @media (max-width: 480px) {
   .chatbot-widget {
     --chatbot-panel-height: 90vh;
     --chatbot-panel-max-height: none;
   }
 
-  .chatbot-tray {
-    bottom: calc(52px + 0.5rem + max(1.5rem, env(safe-area-inset-bottom)));
-    right: max(1.5rem, env(safe-area-inset-right));
+  .chatbot-tray:not(.chatbot-tray--open) {
+    bottom: calc(44px + 0.4rem + max(1rem, env(safe-area-inset-bottom)));
+    right: max(1rem, env(safe-area-inset-right));
   }
 
   .chatbot-tray--open {
+    position: fixed;
+    left: 0;
     right: 0;
     bottom: 0;
-    width: 100%;
+    width: 100% !important;
     max-width: none;
     height: var(--chatbot-panel-height);
     max-height: none;
     border-radius: var(--chatbot-radius) var(--chatbot-radius) 0 0;
     border-bottom: none;
-  }
-}
-
-/* 모바일(767px): 스크롤 탑과 동일한 트레이(FAB) 크기/모서리 */
-@media (max-width: 767px) {
-  .chatbot-tray {
-    bottom: calc(52px + 0.5rem + max(1.5rem, env(safe-area-inset-bottom)));
-    right: max(1.5rem, env(safe-area-inset-right));
-    width: 52px;
-    height: 52px;
-    border-radius: 12px;
-  }
-
-  .chatbot-tray::before {
-    border-radius: 12px;
-  }
-
-  .chatbot-tray-fab-face svg {
-    width: 18px;
-    height: 18px;
-  }
-
-  .chatbot-tray--open {
-    bottom: calc(max(1.5rem, env(safe-area-inset-bottom)) + 52px + 0.5rem + 52px + 0.75rem);
-    right: max(1.5rem, env(safe-area-inset-right));
   }
 }
 
