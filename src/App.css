@@ -474,7 +474,11 @@ main {
 }
 
 .light .pricing-lead-emphasis {
+  color: transparent;
   background: linear-gradient(135deg, #f87171 0%, #dc2626 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .pricing-lead-arrow {
@@ -588,6 +592,10 @@ main {
 
 #works {
   margin-bottom: var(--space-section);
+  scroll-margin-top: 5rem;
+}
+
+#tech {
   scroll-margin-top: 5rem;
 }
 

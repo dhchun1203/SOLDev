@@ -1,11 +1,13 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { lazy, useCallback, useEffect, useRef, useState, Suspense } from 'react'
 import './App.css'
-import ChatBot from './components/ChatBot'
+
+const ChatBot = lazy(() => import('./components/ChatBot'))
 
 const NAV_LINKS: { href: string; label: string }[] = [
   { href: '#hero', label: '오픈 특가' },
   { href: '#introduce', label: '소개' },
   { href: '#works', label: '포트폴리오' },
+  { href: '#tech', label: '기술사양' },
   { href: '#pricing', label: '가격' },
 ]
 
@@ -471,7 +473,7 @@ function App() {
             </div>
             <div id="works">
               <div className="section-header">
-                <span className="section-header-badge">Works</span>
+                <span className="section-header-badge">PORTFOLIOS</span>
                 <h2>
                   <span className="section-header-title-accent">만든 결과물을</span>
                   <span className="section-header-title-line">직접 확인하세요</span>
@@ -492,6 +494,8 @@ function App() {
                     <img
                       src="/thumbnail/thumb_british.png"
                       alt="브랜드 리뉴얼 프로젝트"
+                      fetchPriority="high"
+                      decoding="async"
                     />
                   </div>
                   <div className="work-content">
@@ -515,6 +519,8 @@ function App() {
                   <img
                     src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=450&fit=crop"
                     alt="예약 관리 시스템"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <div className="work-content">
@@ -537,6 +543,8 @@ function App() {
                   <img
                     src="https://images.unsplash.com/photo-1558655146-364adaf1fcc9?w=800&h=450&fit=crop"
                     alt="프로모션 캠페인"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <div className="work-content">
@@ -611,7 +619,7 @@ function App() {
                 </div>
               </div>
             </div>
-            <div className="section-header">
+            <div id="tech" className="section-header">
               <span className="section-header-badge">Tech</span>
               <h2>
                 <span className="section-header-title-accent">기술 사양</span>
@@ -799,7 +807,9 @@ function App() {
           </svg>
         </button>
       )}
-      <ChatBot />
+      <Suspense fallback={null}>
+        <ChatBot />
+      </Suspense>
     </div>
   )
 }
