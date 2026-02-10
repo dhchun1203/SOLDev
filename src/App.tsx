@@ -481,28 +481,35 @@ function App() {
                 비슷한 목적의 프로젝트를 찾아 참고해 보세요.</p>
               </div>
               <div className="grid three">
-              <div className="work-card">
-                <div className="work-image">
-                  <img
-                    src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&h=450&fit=crop"
-                    alt="브랜드 리뉴얼 프로젝트"
-                  />
-                </div>
-                <div className="work-content">
-                  <span className="work-category">랜딩 페이지</span>
-                  <h3>브랜드 리뉴얼 프로젝트</h3>
-                  <p className="work-description">
-                    React 기반 반응형 랜딩 페이지 제작.
-                    <br />
-                    인터랙티브 UI와 SEO 최적화를 적용했습니다.
-                  </p>
-                  <div className="work-tags">
-                    <span className="tag">React</span>
-                    <span className="tag">TypeScript</span>
-                    <span className="tag">반응형</span>
+              <a
+                href="https://british-speak.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="work-card-link"
+              >
+                <div className="work-card">
+                  <div className="work-image">
+                    <img
+                      src="/thumbnail/thumb_british.png"
+                      alt="브랜드 리뉴얼 프로젝트"
+                    />
+                  </div>
+                  <div className="work-content">
+                    <span className="work-category">웹 서비스</span>
+                    <h3>학원 소개 / 문의 / 게시판 / 관리자 페이지</h3>
+                    <p className="work-description">
+                      React 기반 반응형 랜딩 페이지 제작.
+                      <br />
+                      인터랙티브 UI와 SEO 최적화를 적용했습니다.
+                    </p>
+                    <div className="work-tags">
+                      <span className="tag">React</span>
+                      <span className="tag">TypeScript</span>
+                      <span className="tag">반응형</span>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </a>
               <div className="work-card">
                 <div className="work-image">
                   <img
@@ -665,7 +672,7 @@ function App() {
         <div className="pricing-lead section muted">
           <div className="container">
             <p className="pricing-lead-text">
-              <span className="pricing-lead-line pricing-lead-line-1">어렵게 설명하시지 않아도,</span>
+              <span className="pricing-lead-line pricing-lead-line-1"><span className="pricing-lead-emphasis">어렵게</span> 설명하시지 않아도,</span>
               <span className="pricing-lead-line pricing-lead-line-2 pricing-lead-accent">필요한 건 이미 정리돼 있습니다.</span>
             </p>
             <a href="#pricing" className="pricing-lead-arrow" aria-label="가격 섹션으로 이동">
