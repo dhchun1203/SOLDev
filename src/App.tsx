@@ -478,16 +478,28 @@ function App() {
               transition={{ delay: 0.8 }}
             >
               <span className="hero-cosmic-metric">
-                <span className="hero-cosmic-metric-dot hero-cosmic-metric-dot-green" /> 평균 제작 기간 2-3주
+                <span className="hero-cosmic-metric-dot hero-cosmic-metric-dot-green" /> 평균 제작 기간 3-5일
               </span>
               <span className="hero-cosmic-metric">
-                <span className="hero-cosmic-metric-dot hero-cosmic-metric-dot-blue" /> 100% 맞춤 제작
+                <span className="hero-cosmic-metric-dot hero-cosmic-metric-dot-blue" /> 고객 맞춤 제작
               </span>
               <span className="hero-cosmic-metric">
                 <span className="hero-cosmic-metric-dot hero-cosmic-metric-dot-purple" /> 최신 기술 스택
               </span>
             </motion.div>
           </motion.div>
+
+          <a
+            href="#hero"
+            className="hero-cosmic-scroll-hint"
+            aria-label="아래 섹션으로 스크롤"
+          >
+            <span className="hero-cosmic-scroll-hint-icon" aria-hidden>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 5v14M19 12l-7 7-7-7" />
+              </svg>
+            </span>
+          </a>
         </motion.section>
 
         {/* 오픈 특가 섹션 */}
@@ -520,10 +532,10 @@ function App() {
                 </h2>
                 <div className="open-offer-desc">
                   <p className="open-offer-desc-lead">
-                    서비스 런칭 초기에만 수락하는 오픈 특가로 진행합니다.
+                    서비스 런칭 초기에만 오픈 특가로 진행합니다.
                   </p>
                   <p className="open-offer-desc-sub">
-                    정상가 기준의 절반 금액이지만 구성은 동일하며, 계약 종료 시 정상가로 진행합니다.
+                    정상가 기준의 절반 금액이지만 구성은 동일하며, 차후 정상가로 진행합니다.
                   </p>
                 </div>
                 <div className="open-offer-actions">
@@ -550,7 +562,7 @@ function App() {
                     <div className="open-offer-stat-glow open-offer-stat-glow-green" aria-hidden />
                     <div className="open-offer-stat-inner">
                       <span className="open-offer-stat-label">페이지</span>
-                      <span className="open-offer-stat-value">20장</span>
+                      <span className="open-offer-stat-value">20만 원</span>
                       <span className="open-offer-stat-sub">오픈특가</span>
                     </div>
                   </motion.div>
@@ -558,7 +570,7 @@ function App() {
                     <div className="open-offer-stat-glow open-offer-stat-glow-blue" aria-hidden />
                     <div className="open-offer-stat-inner">
                       <span className="open-offer-stat-label">서비스형</span>
-                      <span className="open-offer-stat-value">40장</span>
+                      <span className="open-offer-stat-value">40만 원</span>
                       <span className="open-offer-stat-sub">오픈특가</span>
                     </div>
                   </motion.div>
@@ -566,7 +578,7 @@ function App() {
                     <div className="open-offer-stat-glow open-offer-stat-glow-purple" aria-hidden />
                     <div className="open-offer-stat-inner">
                       <span className="open-offer-stat-label">그로스</span>
-                      <span className="open-offer-stat-value">80장</span>
+                      <span className="open-offer-stat-value">80만 원</span>
                       <span className="open-offer-stat-sub">오픈특가</span>
                     </div>
                   </motion.div>
@@ -600,7 +612,7 @@ function App() {
                       <div className="open-offer-card-desc">
                         <p>작업 결과물은 포트폴리오로 활용할 수 있습니다.</p>
                         <p className="open-offer-card-desc-sub">
-                          만약 실명/사명을 생략하고 싶으시다면 논의하여 반영합니다.
+                          민감한 개인 정보 혹은 회사명은 노출되지 않도록 게시됩니다.
                         </p>
                       </div>
                       <motion.button
@@ -1138,7 +1150,16 @@ function App() {
               <div className="price-card-wrap price-card-wrap-basic">
                 <div className="price-card-glow price-card-glow-basic" aria-hidden />
                 <div className="price-card">
-                <span className="card-icon price-icon-basic" aria-hidden><CardIcon type="credit" /></span>
+                <motion.div
+                  className="introduce-card-icon-wrap introduce-card-icon-blue price-card-icon-wrap"
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  aria-hidden
+                >
+                  <div className="introduce-card-icon-blur" aria-hidden />
+                  <div className="introduce-card-icon-inner">
+                    <CardIcon type="credit" />
+                  </div>
+                </motion.div>
                 <div className="card-body">
                   <h3>베이직 패키지</h3>
                   <p className="price-tagline">원 페이지 랜딩 사이트가 필요하신 경우</p>
@@ -1168,7 +1189,16 @@ function App() {
               <div className="price-card-wrap price-card-wrap-featured">
                 <div className="price-card-glow price-card-glow-featured" aria-hidden />
                 <div className="price-card featured">
-                <span className="card-icon price-icon-featured" aria-hidden><CardIcon type="credit" /></span>
+                <motion.div
+                  className="introduce-card-icon-wrap introduce-card-icon-purple price-card-icon-wrap"
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  aria-hidden
+                >
+                  <div className="introduce-card-icon-blur" aria-hidden />
+                  <div className="introduce-card-icon-inner">
+                    <CardIcon type="credit" />
+                  </div>
+                </motion.div>
                 <div className="card-body">
                   <h3>서비스형 패키지</h3>
                   <p className="price-tagline">예약·문의까지 한 번에 필요하신 경우</p>
@@ -1197,7 +1227,16 @@ function App() {
               <div className="price-card-wrap price-card-wrap-growth">
                 <div className="price-card-glow price-card-glow-growth" aria-hidden />
                 <div className="price-card growth">
-                <span className="card-icon price-icon-growth" aria-hidden><CardIcon type="credit" /></span>
+                <motion.div
+                  className="introduce-card-icon-wrap introduce-card-icon-growth price-card-icon-wrap"
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  aria-hidden
+                >
+                  <div className="introduce-card-icon-blur" aria-hidden />
+                  <div className="introduce-card-icon-inner">
+                    <CardIcon type="credit" />
+                  </div>
+                </motion.div>
                 <div className="card-body">
                   <h3>그로스 패키지</h3>
                   <p className="price-tagline">5페이지 규모 + API 연동이 필요한 경우</p>

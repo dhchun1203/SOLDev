@@ -645,7 +645,8 @@ main {
 .pricing-lead-accent {
   font-weight: 800;
   font-size: clamp(2.5rem, 6vw, 3rem);
-  background: var(--accent-gradient);
+  background: linear-gradient(90deg, #60a5fa 0%, #22d3ee 50%, #60a5fa 100%);
+  background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -915,6 +916,43 @@ main {
   max-width: 42rem;
   margin: 0 auto;
   text-align: center;
+}
+
+/* 히어로 하단 스크롤 유도 UI */
+.hero-cosmic-scroll-hint {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: color 0.2s ease;
+}
+.hero-cosmic-scroll-hint:hover {
+  color: rgba(255, 255, 255, 0.95);
+}
+.hero-cosmic-scroll-hint-icon {
+  display: flex;
+  width: 28px;
+  height: 28px;
+  animation: hero-scroll-bounce 2s ease-in-out infinite;
+}
+.hero-cosmic-scroll-hint-icon svg {
+  width: 100%;
+  height: 100%;
+}
+@keyframes hero-scroll-bounce {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(6px); opacity: 0.7; }
 }
 
 /* Badge: gradient purple → blue → cyan, backdrop-blur, rounded-full */
@@ -1204,6 +1242,15 @@ main {
     flex-direction: column;
     gap: 0.5rem;
     margin-top: 1.25rem;
+  }
+
+  .hero-cosmic-scroll-hint {
+    bottom: 1.5rem;
+    font-size: 0.7rem;
+  }
+  .hero-cosmic-scroll-hint-icon {
+    width: 24px;
+    height: 24px;
   }
 }
 
@@ -1641,6 +1688,7 @@ main {
 .offer-details-card-icon-wrap {
   position: relative;
   width: 4rem;
+  transition: transform 0.3s ease;
   height: 4rem;
   margin-bottom: 2rem;
 }
@@ -1893,6 +1941,20 @@ main {
   width: 4rem;
   height: 4rem;
   margin-bottom: 2rem;
+  transition: transform 0.3s ease;
+}
+/* 카드 호버 시 아이콘 애니메이션 (아이콘에 직접 호버하지 않아도 발동) */
+.introduce-card-wrap:hover .introduce-card-icon-wrap,
+.price-card-wrap:hover .price-card-icon-wrap,
+.price-card-wrap:hover .introduce-card-icon-wrap,
+.tech-card-wrap:hover .tech-card-icon-wrap,
+.tech-card-wrap:hover .introduce-card-icon-wrap,
+.disclaimer-block-wrap:hover .disclaimer-icon-wrap,
+.disclaimer-block-wrap:hover .introduce-card-icon-wrap {
+  transform: scale(1.1) rotate(5deg);
+}
+.offer-details-card-wrap:hover .offer-details-card-icon-wrap {
+  transform: scale(1.1) rotate(5deg);
 }
 .introduce-card-icon-blur {
   position: absolute;
@@ -1926,6 +1988,14 @@ main {
   background: linear-gradient(135deg, rgba(168, 85, 247, 0.2) 0%, rgba(236, 72, 153, 0.2) 100%);
   border-color: rgba(192, 132, 252, 0.3);
   color: #c084fc;
+}
+.introduce-card-icon-growth .introduce-card-icon-blur {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.3) 0%, rgba(34, 211, 238, 0.3) 100%);
+}
+.introduce-card-icon-growth .introduce-card-icon-inner {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(34, 211, 238, 0.2) 100%);
+  border-color: rgba(34, 211, 238, 0.3);
+  color: #22d3ee;
 }
 
 .introduce-card-heading-block {
@@ -2274,6 +2344,14 @@ main {
 .tech-card-icon-wrap .introduce-card-icon-inner svg {
   width: 32px;
   height: 32px;
+}
+.pricing-section .price-card-icon-wrap {
+  flex-shrink: 0;
+  align-self: flex-start;
+}
+.pricing-section .price-card-icon-wrap .introduce-card-icon-inner svg {
+  width: 24px;
+  height: 24px;
 }
 .tech-section .portfolio-card.tech-card {
   background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.8) 100%);
