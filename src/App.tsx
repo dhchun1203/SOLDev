@@ -1,5 +1,5 @@
 import { lazy, useCallback, useEffect, useRef, useState, Suspense } from 'react'
-import { motion } from 'motion/react'
+import { motion } from 'framer-motion'
 import { Code, Code2, Zap, Sparkles, ArrowRight, Gift, TrendingDown, Layers, Folder, CheckCircle2, Globe } from 'lucide-react'
 import './App.css'
 
@@ -118,7 +118,7 @@ function App() {
   const [showScrollTop, setShowScrollTop] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const heroRef = useRef<HTMLElement>(null)
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
+  const [, setMousePos] = useState({ x: 0, y: 0 })
 
   const closeMenu = useCallback(() => setMenuOpen(false), [])
 
