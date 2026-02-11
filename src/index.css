@@ -8,6 +8,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
+  color-scheme: dark;
 
   /* 참고 디자인: 다크 블루/인디고 베이스 + 블루·퍼플 악센트 */
   --bg-primary: #0A0D17;
@@ -42,28 +43,6 @@
   --space-section: 5rem;
   --space-block: 2.5rem;
   --space-component: 1.5rem;
-}
-
-.light {
-  --bg-primary: #f8fafc;
-  --bg-secondary: #f1f5f9;
-  --bg-card: #ffffff;
-  --bg-card-hover: #f8fafc;
-  --text-primary: #0f172a;
-  --text-secondary: #475569;
-  --text-tertiary: #64748b;
-  --border-color: #e2e8f0;
-  --shadow-sm: rgba(15, 23, 42, 0.06);
-  --shadow-md: rgba(15, 23, 42, 0.1);
-  --accent: #2563EB;
-  --accent-purple: #7C3AED;
-  --accent-icon: #A78BFA;
-  --accent-badge: rgba(139, 92, 246, 0.15);
-  --accent-gradient: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);
-  --accent-gradient-reverse: linear-gradient(135deg, #6D28D9 0%, #2563EB 100%);
-  --price-featured: #db2777;
-  --price-featured-glow: rgba(219, 39, 119, 0.25);
-  --price-check-basic: #16a34a;
 }
 
 * {

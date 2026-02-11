@@ -85,36 +85,9 @@ function CardIcon({ type }: { type: string }) {
   }
 }
 
-function DarkModeIcon({ isDark }: { isDark: boolean }) {
-  const size = 14
-  const iconStroke = { strokeWidth: 2, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const }
-  return isDark ? (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" {...iconStroke}>
-      <circle cx="12" cy="12" r="5" />
-      <line x1="12" y1="1" x2="12" y2="3" />
-      <line x1="12" y1="21" x2="12" y2="23" />
-      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-      <line x1="1" y1="12" x2="3" y2="12" />
-      <line x1="21" y1="12" x2="23" y2="12" />
-      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-    </svg>
-  ) : (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" {...iconStroke}>
-      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-    </svg>
-  )
-}
-
 function App() {
   const observerRef = useRef<IntersectionObserver | null>(null)
   const scrollTopRef = useRef(false)
-  const [isDark, setIsDark] = useState(() => {
-    const saved = localStorage.getItem('darkMode')
-    if (saved !== null) return saved === 'true'
-    return true
-  })
   const [showScrollTop, setShowScrollTop] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const heroRef = useRef<HTMLElement>(null)
@@ -136,7 +109,6 @@ function App() {
   const handleHeroMouseLeave = useCallback(() => {
     setMousePos({ x: 0, y: 0 })
   }, [])
-  const toggleDarkMode = useCallback(() => setIsDark((d) => !d), [])
   const scrollToTop = useCallback(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [])
@@ -196,17 +168,6 @@ function App() {
     }
   }, [])
 
-  // 테마: 기본 다크, 라이트 시 .light 추가 (참고 디자인이 다크 기준)
-  useEffect(() => {
-    if (isDark) {
-      document.documentElement.classList.remove('light')
-      localStorage.setItem('darkMode', 'true')
-    } else {
-      document.documentElement.classList.add('light')
-      localStorage.setItem('darkMode', 'false')
-    }
-  }, [isDark])
-
   // 모바일 메뉴 열림 시 body 스크롤 잠금
   useEffect(() => {
     if (menuOpen) {
@@ -262,18 +223,6 @@ function App() {
             ))}
           </nav>
           <div className="header-actions">
-            <button
-              className="dark-toggle"
-              type="button"
-              onClick={toggleDarkMode}
-              aria-label={isDark ? '라이트 모드로 전환' : '다크 모드로 전환'}
-            >
-              <span className="toggle-track">
-                <span className="toggle-thumb">
-                  <DarkModeIcon isDark={isDark} />
-                </span>
-              </span>
-            </button>
             <button className="cta" type="button">
               문의하기
             </button>
@@ -311,18 +260,6 @@ function App() {
             ))}
           </nav>
           <div className="side-menu-actions">
-            <button
-              className="dark-toggle"
-              type="button"
-              onClick={toggleDarkMode}
-              aria-label={isDark ? '라이트 모드로 전환' : '다크 모드로 전환'}
-            >
-              <span className="toggle-track">
-                <span className="toggle-thumb">
-                  <DarkModeIcon isDark={isDark} />
-                </span>
-              </span>
-            </button>
             <button className="cta" type="button" onClick={closeMenu}>
               문의하기
             </button>
@@ -348,24 +285,24 @@ function App() {
             <motion.div
               className="hero-cosmic-orb hero-cosmic-orb-1"
               animate={{ scale: [1, 1.3, 1], x: [0, 50, 0], y: [0, 30, 0] }}
-              transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+              transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
             />
             <motion.div
               className="hero-cosmic-orb hero-cosmic-orb-2"
               animate={{ scale: [1.2, 1, 1.2], x: [0, -50, 0], y: [0, -30, 0] }}
-              transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut' }}
+              transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut' }}
             />
             <motion.div
               className="hero-cosmic-orb hero-cosmic-orb-3"
               animate={{ scale: [1, 1.4, 1], rotate: [0, 180, 360] }}
-              transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+              transition={{ duration: 15, repeat: Infinity, ease: 'linear' }}
             />
           </div>
           <div className="hero-cosmic-floats">
             <motion.div
               className="hero-cosmic-float hero-cosmic-float-tl"
               animate={{ y: [0, -20, 0], rotate: [0, 10, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
               aria-hidden
             >
               <div className="hero-cosmic-float-card hero-cosmic-float-card-code">
@@ -375,7 +312,7 @@ function App() {
             <motion.div
               className="hero-cosmic-float hero-cosmic-float-tr"
               animate={{ y: [0, 20, 0], rotate: [0, -10, 0] }}
-              transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
+              transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut' }}
               aria-hidden
             >
               <div className="hero-cosmic-float-card hero-cosmic-float-card-zap">
@@ -385,7 +322,7 @@ function App() {
             <motion.div
               className="hero-cosmic-float hero-cosmic-float-ml"
               animate={{ y: [0, -15, 0], x: [0, 10, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+              transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
               aria-hidden
             >
               <div className="hero-cosmic-float-card hero-cosmic-float-card-spark">
@@ -399,14 +336,14 @@ function App() {
             initial="hidden"
             animate="visible"
             variants={{
-              visible: { transition: { staggerChildren: 0.1, delayChildren: 0.15 } },
+              visible: { transition: { staggerChildren: 0.07, delayChildren: 0.1 } },
               hidden: {},
             }}
           >
             <motion.div
               className="hero-cosmic-badge"
               variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-              transition={{ duration: 0.6, ease: 'easeOut' }}
+              transition={{ duration: 0.45, ease: 'easeOut' }}
             >
               <Sparkles className="hero-cosmic-badge-icon" size={16} strokeWidth={2} />
               <span>SOLDev · 웹서비스 제작</span>
@@ -414,7 +351,7 @@ function App() {
             <motion.div
               className="hero-cosmic-title-wrap"
               variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }}
-              transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
+              transition={{ duration: 0.45, delay: 0.12, ease: 'easeOut' }}
             >
               <h1 className="hero-cosmic-title">
                 <span className="hero-cosmic-title-white">실제로 </span>
@@ -423,7 +360,7 @@ function App() {
                   <motion.div
                     className="hero-cosmic-title-glow"
                     animate={{ opacity: [0.5, 0.8, 0.5] }}
-                    transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                    transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
                     aria-hidden
                   />
                 </span>
@@ -434,7 +371,7 @@ function App() {
                 className="hero-cosmic-subtitle"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 0.4 }}
+                transition={{ delay: 0.28 }}
               >
                 <p>메뉴얼이 아닌 <span className="hero-cosmic-subtitle-bold">현장에서 바로 쓰이는</span>,</p>
                 <p>
@@ -450,7 +387,7 @@ function App() {
             <motion.div
               className="hero-cosmic-actions"
               variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-              transition={{ duration: 0.6, delay: 0.5, ease: 'easeOut' }}
+              transition={{ duration: 0.45, delay: 0.35, ease: 'easeOut' }}
             >
               <motion.a
                 href="#introduce"
@@ -475,7 +412,7 @@ function App() {
             <motion.div
               className="hero-cosmic-metrics"
               variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
-              transition={{ delay: 0.8 }}
+              transition={{ delay: 0.55 }}
             >
               <span className="hero-cosmic-metric">
                 <span className="hero-cosmic-metric-dot hero-cosmic-metric-dot-green" /> 평균 제작 기간 3-5일
@@ -561,7 +498,7 @@ function App() {
                   <motion.div className="open-offer-stat open-offer-stat-green" whileHover={{ scale: 1.05 }}>
                     <div className="open-offer-stat-glow open-offer-stat-glow-green" aria-hidden />
                     <div className="open-offer-stat-inner">
-                      <span className="open-offer-stat-label">페이지</span>
+                      <span className="open-offer-stat-label">베이직</span>
                       <span className="open-offer-stat-value">20만 원</span>
                       <span className="open-offer-stat-sub">오픈특가</span>
                     </div>
@@ -1292,13 +1229,14 @@ function App() {
       </footer>
 
       {showScrollTop && (
-        <button
-          className="scroll-to-top"
-          type="button"
-          onClick={scrollToTop}
-          aria-label="맨 위로 이동"
-        >
-          <svg
+        <div className="scroll-to-top-wrap" aria-hidden="true">
+          <button
+            className="scroll-to-top"
+            type="button"
+            onClick={scrollToTop}
+            aria-label="맨 위로 이동"
+          >
+            <svg
             width="20"
             height="20"
             viewBox="0 0 24 24"
@@ -1310,7 +1248,8 @@ function App() {
           >
             <path d="M18 15l-6-6-6 6" />
           </svg>
-        </button>
+          </button>
+        </div>
       )}
       <Suspense fallback={null}>
         <ChatBot />
