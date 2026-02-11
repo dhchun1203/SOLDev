@@ -347,7 +347,7 @@ function App() {
               transition={{ duration: 0.45, delay: 0.12, ease: 'easeOut' }}
             >
               <h1 className="hero-cosmic-title">
-                <span className="hero-cosmic-title-white">실제로 </span>
+                <span className="hero-cosmic-title-white">오픈 즉시 </span>
                 <span className="hero-cosmic-title-gradient-wrap">
                   <span className="hero-cosmic-title-gradient">쓰이는</span>
                   <motion.div
@@ -366,7 +366,6 @@ function App() {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.28 }}
               >
-                <p>메뉴얼이 아닌 <span className="hero-cosmic-subtitle-bold">현장에서 바로 쓰이는</span>,</p>
                 <p>
                   오픈하자마자 바로{' '}
                   <span className="hero-cosmic-highlight-wrap">
@@ -383,7 +382,7 @@ function App() {
               transition={{ duration: 0.45, delay: 0.35, ease: 'easeOut' }}
             >
               <motion.a
-                href="#introduce"
+                href="#works"
                 className="hero-cosmic-btn hero-cosmic-btn-primary"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
@@ -531,7 +530,9 @@ function App() {
                         alt="포트폴리오 워크스페이스"
                         loading="lazy"
                       />
-                      <div className="open-offer-card-image-overlay" aria-hidden />
+                      <div className="open-offer-card-image-overlay" aria-hidden>
+                        <img src="/computer-person.png" alt="" className="open-offer-card-overlay-img" />
+                      </div>
                     </div>
                     <div className="open-offer-card-body">
                       <div className="open-offer-card-badge">
@@ -697,7 +698,8 @@ function App() {
                     <h3 className="introduce-card-title">웹사이트가 아닌 웹서비스</h3>
                   </div>
                   <p className="introduce-card-text">
-                    이 상품은 &quot;웹사이트&quot;가 아니라{' '}
+                    이 상품은 &quot;웹사이트&quot;가 아니라,
+                    <br />
                     <span className="introduce-card-text-highlight">오픈 후 바로 운영 가능한 웹서비스</span>를 구축합니다.
                   </p>
                 </div>
@@ -891,35 +893,132 @@ function App() {
                   실제 제작은 <span className="process-desc-highlight">빠르게</span> 진행됩니다.
                 </p>
               </motion.div>
+              <div className="process-decoration-inline" aria-hidden>
+                <img src="/calendar-person.png" alt="" className="process-decoration-inline-img" />
+              </div>
               <div className="process-rows">
-              <div className="process-flow">
+              <motion.div
+                className="process-flow"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-100px" }}
+                variants={{
+                  hidden: {},
+                  visible: {
+                    transition: {
+                      staggerChildren: 0.3,
+                      delayChildren: 0.2,
+                    },
+                  },
+                }}
+              >
                 <div className="process-track" aria-hidden />
-                <div className="process-step">
-                  <span className="process-node"><span className="process-num">1</span></span>
+                <motion.div
+                  className="process-step"
+                  variants={{
+                    hidden: { opacity: 0, y: 20, scale: 0.95 },
+                    visible: {
+                      opacity: 1,
+                      y: 0,
+                      scale: 1,
+                      transition: {
+                        duration: 0.5,
+                        ease: "easeOut",
+                      },
+                    },
+                  }}
+                >
+                  <span className="process-node">
+                    <span className="process-num">1</span>
+                  </span>
                   <span className="process-label">요청사항 / 참고 사이트 전달</span>
                   <p className="process-desc">원하시는 방향만 편하게 알려주세요.<br />참고 사이트가 있다면 함께 전달해주시면 좋아요.<br />정리되지 않아도 괜찮아요, 제가 기준을 잡아드립니다.</p>
-                </div>
-                <div className="process-step">
-                  <span className="process-node"><span className="process-num">2</span></span>
+                </motion.div>
+                <motion.div
+                  className="process-step"
+                  variants={{
+                    hidden: { opacity: 0, y: 20, scale: 0.95 },
+                    visible: {
+                      opacity: 1,
+                      y: 0,
+                      scale: 1,
+                      transition: {
+                        duration: 0.5,
+                        ease: "easeOut",
+                      },
+                    },
+                  }}
+                >
+                  <span className="process-node">
+                    <span className="process-num">2</span>
+                  </span>
                   <span className="process-label">페이지 구성안 확정</span>
                   <p className="process-desc">전달주신 내용을 바탕으로 페이지 구성과 기능 흐름을 먼저 정리해드립니다.<br />이 단계에서 방향만 맞추면 이후는 빠르게 진행됩니다.</p>
-                </div>
-                <div className="process-step">
-                  <span className="process-node"><span className="process-num">3</span></span>
+                </motion.div>
+                <motion.div
+                  className="process-step"
+                  variants={{
+                    hidden: { opacity: 0, y: 20, scale: 0.95 },
+                    visible: {
+                      opacity: 1,
+                      y: 0,
+                      scale: 1,
+                      transition: {
+                        duration: 0.5,
+                        ease: "easeOut",
+                      },
+                    },
+                  }}
+                >
+                  <span className="process-node">
+                    <span className="process-num">3</span>
+                  </span>
                   <span className="process-label">개발 진행</span>
                   <p className="process-desc">확정된 구성안을 기준으로 디자인과 기능 개발을 동시에 진행합니다.<br />중간중간 확인이 필요할 경우 공유드려요.</p>
-                </div>
-                <div className="process-step">
-                  <span className="process-node"><span className="process-num">4</span></span>
+                </motion.div>
+                <motion.div
+                  className="process-step"
+                  variants={{
+                    hidden: { opacity: 0, y: 20, scale: 0.95 },
+                    visible: {
+                      opacity: 1,
+                      y: 0,
+                      scale: 1,
+                      transition: {
+                        duration: 0.5,
+                        ease: "easeOut",
+                      },
+                    },
+                  }}
+                >
+                  <span className="process-node">
+                    <span className="process-num">4</span>
+                  </span>
                   <span className="process-label">배포 및 도메인 연결</span>
                   <p className="process-desc">완성된 웹서비스를 실제 서비스 환경에 배포합니다.<br />도메인이 있다면 연결까지 함께 진행해드립니다.<br />오픈 준비는 이 단계에서 마무리돼요.</p>
-                </div>
-                <div className="process-step">
-                  <span className="process-node"><span className="process-num">5</span></span>
+                </motion.div>
+                <motion.div
+                  className="process-step"
+                  variants={{
+                    hidden: { opacity: 0, y: 20, scale: 0.95 },
+                    visible: {
+                      opacity: 1,
+                      y: 0,
+                      scale: 1,
+                      transition: {
+                        duration: 0.5,
+                        ease: "easeOut",
+                      },
+                    },
+                  }}
+                >
+                  <span className="process-node">
+                    <span className="process-num">5</span>
+                  </span>
                   <span className="process-label">최종 검수 후 완료</span>
                   <p className="process-desc">최종 확인 후 바로 운영하실 수 있도록 정리해드립니다.<br />이후 간단한 수정이나 문의도 편하게 남겨주세요.</p>
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
               <div className="disclaimer-block-wrap">
                 <div className="disclaimer-block-glow" aria-hidden />
                 <div className="disclaimer-block">
@@ -946,13 +1045,7 @@ function App() {
             </div>
             </div>
             <div id="tech" className="tech-section">
-              <motion.div
-                className="tech-header"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-              >
+              <div className="tech-header">
                 <div className="tech-badge">TECH</div>
                 <h2 className="tech-title">
                   <span className="tech-title-gradient">기술 사양</span>
@@ -960,71 +1053,51 @@ function App() {
                   <span className="tech-title-white">최신 웹 기술 기반</span>
                 </h2>
                 <p className="tech-desc">최신 웹 기술 기반으로 빠르고 안정적인 웹사이트를 제작합니다.</p>
-              </motion.div>
-              <div className="tech-grid">
-              <motion.div
-                className="tech-card-wrap"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-              >
-                <div className="tech-card-glow" aria-hidden />
-                <div className="portfolio-card tech-card">
-                <motion.div
-                  className="introduce-card-icon-wrap introduce-card-icon-blue tech-card-icon-wrap"
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                >
-                  <div className="introduce-card-icon-blur" aria-hidden />
-                  <div className="introduce-card-icon-inner">
-                    <CardIcon type="code" />
+              </div>
+              <div className="tech-block-wrap">
+                <div className="tech-block-glow" aria-hidden />
+                <div className="tech-block">
+                  <motion.div
+                    className="introduce-card-icon-wrap introduce-card-icon-blue tech-icon-wrap"
+                    whileHover={{ scale: 1.1, rotate: -5 }}
+                  >
+                    <div className="introduce-card-icon-blur" aria-hidden />
+                    <div className="introduce-card-icon-inner">
+                      <CardIcon type="code" />
+                    </div>
+                  </motion.div>
+                  <div className="tech-block-body">
+                    <span className="tech-block-label">기술 사양</span>
+                    <h3 className="tech-block-title">최신 웹 기술 기반</h3>
+                    <ul className="tech-list">
+                  <li>
+                    <strong className="tech-list-heading">React / Next.js 기반 웹 제작</strong>
+                    <span className="tech-list-desc">검증된 라이브러리로 유지보수와 확장이 쉬운 구조를 만듭니다.</span>
+                  </li>
+                  <li>
+                    <strong className="tech-list-heading">반응형 웹 (모바일/PC)</strong>
+                    <span className="tech-list-desc">화면 크기에 맞춰 레이아웃이 자동으로 최적화됩니다.</span>
+                  </li>
+                  <li>
+                    <strong className="tech-list-heading">인터랙티브 UI 적용</strong>
+                    <span className="tech-list-desc">클릭·스크롤에 자연스럽게 반응하는 사용자 중심 인터랙션</span>
+                  </li>
+                  <li>
+                    <strong className="tech-list-heading">관리자 페이지 및 서버 연동</strong>
+                    <span className="tech-list-desc">예약·문의 내역 확인과 상태 관리를 한 곳에서 할 수 있습니다.</span>
+                  </li>
+                  <li>
+                    <strong className="tech-list-heading">안정적인 배포 환경 (Vercel)</strong>
+                    <span className="tech-list-desc">빠른 속도와 안정적인 서비스 운영을 위한 인프라를 사용합니다.</span>
+                  </li>
+                  <li>
+                    <strong className="tech-list-heading">SEO 기본 최적화 포함</strong>
+                    <span className="tech-list-desc">검색 노출에 유리한 기본 구조와 메타 설정을 적용합니다.</span>
+                  </li>
+                </ul>
                   </div>
-                </motion.div>
-                <div className="card-body">
-                  <span className="card-label">기술 사양</span>
-                  <h3>최신 웹 기술 기반</h3>
-                  <ul className="list">
-                    <li>
-                      React / Next.js 기반 웹 제작
-                      <span className="subtle">
-                        검증된 라이브러리로 유지보수와 확장이 쉬운 구조를 만듭니다.
-                      </span>
-                    </li>
-                    <li>
-                      반응형 웹 (모바일/PC)
-                      <span className="subtle">
-                        화면 크기에 맞춰 레이아웃이 자동으로 최적화됩니다.
-                      </span>
-                    </li>
-                    <li>
-                      인터랙티브 UI 적용
-                      <span className="subtle">
-                        클릭·스크롤에 자연스럽게 반응하는 사용자 중심 인터랙션
-                      </span>
-                    </li>
-                    <li>
-                      관리자 페이지 및 서버 연동
-                      <span className="subtle">
-                        예약·문의 내역 확인과 상태 관리를 한 곳에서 할 수 있습니다.
-                      </span>
-                    </li>
-                    <li>
-                      안정적인 배포 환경 (Vercel)
-                      <span className="subtle">
-                        빠른 속도와 안정적인 서비스 운영을 위한 인프라를 사용합니다.
-                      </span>
-                    </li>
-                    <li>
-                      SEO 기본 최적화 포함
-                      <span className="subtle">
-                        검색 노출에 유리한 기본 구조와 메타 설정을 적용합니다.
-                      </span>
-                    </li>
-                  </ul>
                 </div>
               </div>
-              </motion.div>
-            </div>
             </div>
           </div>
         </section>
@@ -1200,10 +1273,27 @@ function App() {
       <footer className="site-footer">
         <div className="container footer-content">
           <div className="footer-brand">
-            <div className="footer-logo">
-              <div className="logo-icon">SOL</div>
-              <span className="logo-text">SOLDev</span>
-            </div>
+            <a className="logo logo-new footer-logo" href="#hero" aria-label="SOLDev 홈">
+              <motion.div
+                className="logo-inner"
+                whileHover={{ scale: 1.02 }}
+                transition={{ type: 'spring', stiffness: 400 }}
+              >
+                <div className="logo-icon-wrap">
+                  <div className="logo-icon-glow" aria-hidden />
+                  <div className="logo-icon-box">
+                    <span className="logo-icon-sol">SOL</span>
+                  </div>
+                  <div className="logo-accent-dot" aria-hidden />
+                </div>
+                <div className="logo-text-wrap">
+                  <span className="logo-text-gradient">SOLDev</span>
+                  <div className="logo-code-wrap">
+                    <Code className="logo-code-icon" aria-hidden size={16} />
+                  </div>
+                </div>
+              </motion.div>
+            </a>
             <p className="footer-description">
               최신 웹 기술로 빠르고 안정적인 웹사이트를 제작합니다.
               <br />
