@@ -14,6 +14,9 @@ export default defineConfig({
           if (id.includes('node_modules/react/') || id.includes('node_modules/react-dom/')) {
             return 'vendor'
           }
+          if (id.includes('node_modules/framer-motion')) {
+            return 'framer-motion'
+          }
           if (id.includes('ChatBot') || id.includes('components/ChatBot')) {
             return 'chatbot'
           }

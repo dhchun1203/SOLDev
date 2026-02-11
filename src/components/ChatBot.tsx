@@ -178,19 +178,25 @@ export default function ChatBot() {
     setError(null)
   }, [])
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault()
-      sendMessage()
-    }
-  }
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault()
+        sendMessage()
+      }
+    },
+    [sendMessage]
+  )
 
-  const handleTrayKeyDown = (e: React.KeyboardEvent) => {
-    if (!open && (e.key === 'Enter' || e.key === ' ')) {
-      e.preventDefault()
-      setOpen(true)
-    }
-  }
+  const handleTrayKeyDown = useCallback(
+    (e: React.KeyboardEvent) => {
+      if (!open && (e.key === 'Enter' || e.key === ' ')) {
+        e.preventDefault()
+        setOpen(true)
+      }
+    },
+    [open]
+  )
 
   return (
     <div className="chatbot-widget">

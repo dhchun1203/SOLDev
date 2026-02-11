@@ -1,4 +1,4 @@
-import { lazy, useCallback, useEffect, useRef, useState, Suspense } from 'react'
+import { lazy, memo, useCallback, useEffect, useRef, useState, Suspense } from 'react'
 import { motion } from 'framer-motion'
 import { Code, Code2, Zap, Sparkles, ArrowRight, Gift, TrendingDown, Layers, Folder, CheckCircle2, Globe } from 'lucide-react'
 import './App.css'
@@ -15,7 +15,22 @@ const NAV_LINKS: { href: string; label: string }[] = [
 
 const stroke = { strokeWidth: 2, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const }
 
-function CardIcon({ type }: { type: string }) {
+const heroStaggerVariants = {
+  visible: { transition: { staggerChildren: 0.07, delayChildren: 0.1 } },
+  hidden: {},
+}
+
+const heroItemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
+}
+
+const heroTitleVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0 },
+}
+
+const CardIcon = memo(function CardIcon({ type }: { type: string }) {
   const size = 24
   const common = { width: size, height: size, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', ...stroke }
   switch (type) {
@@ -83,32 +98,16 @@ function CardIcon({ type }: { type: string }) {
         </svg>
       )
   }
-}
+})
 
 function App() {
   const observerRef = useRef<IntersectionObserver | null>(null)
   const scrollTopRef = useRef(false)
   const [showScrollTop, setShowScrollTop] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
-  const heroRef = useRef<HTMLElement>(null)
-  const [, setMousePos] = useState({ x: 0, y: 0 })
 
   const closeMenu = useCallback(() => setMenuOpen(false), [])
 
-  const handleHeroMouseMove = useCallback((e: React.MouseEvent<HTMLElement>) => {
-    const el = heroRef.current
-    if (!el) return
-    const rect = el.getBoundingClientRect()
-    const x = (e.clientX - rect.left) / rect.width
-    const y = (e.clientY - rect.top) / rect.height
-    const nx = x * 2 - 1
-    const ny = y * 2 - 1
-    requestAnimationFrame(() => setMousePos({ x: nx, y: ny }))
-  }, [])
-
-  const handleHeroMouseLeave = useCallback(() => {
-    setMousePos({ x: 0, y: 0 })
-  }, [])
   const scrollToTop = useCallback(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [])
@@ -269,11 +268,8 @@ function App() {
 
       <main>
         <motion.section
-          ref={heroRef}
           className="hero-cosmic"
           aria-label="메인 비주얼"
-          onMouseMove={handleHeroMouseMove}
-          onMouseLeave={handleHeroMouseLeave}
         >
           <div className="hero-cosmic-bg" aria-hidden="true" />
           <div className="hero-cosmic-mesh" aria-hidden="true">
@@ -335,14 +331,11 @@ function App() {
             className="hero-cosmic-inner"
             initial="hidden"
             animate="visible"
-            variants={{
-              visible: { transition: { staggerChildren: 0.07, delayChildren: 0.1 } },
-              hidden: {},
-            }}
+            variants={heroStaggerVariants}
           >
             <motion.div
               className="hero-cosmic-badge"
-              variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+              variants={heroItemVariants}
               transition={{ duration: 0.45, ease: 'easeOut' }}
             >
               <Sparkles className="hero-cosmic-badge-icon" size={16} strokeWidth={2} />
@@ -350,7 +343,7 @@ function App() {
             </motion.div>
             <motion.div
               className="hero-cosmic-title-wrap"
-              variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }}
+              variants={heroTitleVariants}
               transition={{ duration: 0.45, delay: 0.12, ease: 'easeOut' }}
             >
               <h1 className="hero-cosmic-title">
@@ -386,7 +379,7 @@ function App() {
             </motion.div>
             <motion.div
               className="hero-cosmic-actions"
-              variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+              variants={heroItemVariants}
               transition={{ duration: 0.45, delay: 0.35, ease: 'easeOut' }}
             >
               <motion.a
