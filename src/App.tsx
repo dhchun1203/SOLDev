@@ -809,19 +809,24 @@ function App() {
                   transition={{ duration: 0.6, delay: 0.1 }}
                 >
                   <div className="works-card-glow" aria-hidden />
-                  <div className="work-card-link">
+                  <a
+                    href="https://solmontproject.vercel.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="work-card-link"
+                  >
                     <div className="work-card works-card">
                       <div className="work-image">
                         <img
-                          src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=450&fit=crop"
+                          src="/thumbnail/thumb_solmont.png"
                           alt="예약 관리 시스템"
                           loading="lazy"
                           decoding="async"
                         />
                       </div>
                       <div className="work-content">
-                        <span className="work-category">웹 서비스</span>
-                        <h3>예약 관리 시스템</h3>
+                        <span className="work-category">랜딩 페이지</span>
+                        <h3>패션 브랜드 소개 랜딩페이지</h3>
                         <p className="work-description">
                           Next.js와 Supabase를 활용한 예약 관리 웹 서비스.
                           <br />
@@ -834,7 +839,7 @@ function App() {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </a>
                 </motion.div>
                 <motion.div
                   className="works-card-wrap"
