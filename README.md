@@ -159,6 +159,30 @@ npm run preview
 
 ---
 
+## SEO (네이버 / 구글)
+
+### 도메인 변경 시
+
+배포 주소를 **실제 도메인**으로 바꾼 경우, `index.html`에서 아래 항목의 `https://soldev.vercel.app/` 를 **실제 배포 주소**로 일괄 수정하세요.
+
+- `og:url` (Open Graph URL)
+- `og:image` (공유 미리보기 이미지 절대 URL)
+- `twitter:image`
+- `link rel="canonical"` 의 `href`
+- JSON-LD 스크립트 안의 `url` (WebSite, Organization)
+
+### 추가로 하면 좋은 것
+
+1. **네이버 서치어드바이저**  
+   [네이버 서치어드바이저](https://searchadvisor.naver.com/)에서 사이트 등록 후 **사이트 소유 확인**을 진행하고, 발급받은 메타 태그를 `index.html` `<head>`에 추가하세요.  
+   - 예: `<meta name="naver-site-verification" content="발급코드" />`
+
+2. **Google Search Console**  
+   [Google Search Console](https://search.google.com/search-console)에 사이트를 등록한 뒤 **사이트맵(sitemap)** 제출을 권장합니다.  
+   - 필요하면 프로젝트에 `sitemap.xml`을 생성해 두고, 빌드/배포 결과물에 포함시키면 됩니다.
+
+---
+
 ## 요약
 
 - **SOLDev** 오픈 특가·포트폴리오/웹 제작 안내용 SPA  
