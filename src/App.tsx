@@ -521,7 +521,7 @@ function App() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                <div className="open-offer-card-wrap">
+                <div className="open-offer-card-wrap" tabIndex={0}>
                   <div className="open-offer-card-glow" aria-hidden />
                   <div className="open-offer-card">
                     <div className="open-offer-card-image">
@@ -592,6 +592,7 @@ function App() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
+                tabIndex={0}
               >
                 <div className="offer-details-card-glow offer-details-card-glow-purple" aria-hidden />
                 <div className="offer-details-card">
@@ -624,6 +625,7 @@ function App() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.1 }}
+                tabIndex={0}
               >
                 <div className="offer-details-card-glow offer-details-card-glow-blue" aria-hidden />
                 <div className="offer-details-card">
@@ -681,6 +683,7 @@ function App() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
+                tabIndex={0}
               >
                 <div className="introduce-card-glow introduce-card-glow-blue" aria-hidden />
                 <div className="introduce-card">
@@ -711,6 +714,7 @@ function App() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.1 }}
+                tabIndex={0}
               >
                 <div className="introduce-card-glow introduce-card-glow-purple" aria-hidden />
                 <div className="introduce-card">
@@ -767,6 +771,7 @@ function App() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6 }}
+                  tabIndex={0}
                 >
                   <div className="works-card-glow" aria-hidden />
                   <a
@@ -807,6 +812,7 @@ function App() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.1 }}
+                  tabIndex={0}
                 >
                   <div className="works-card-glow" aria-hidden />
                   <a
@@ -849,6 +855,7 @@ function App() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.2 }}
+                  tabIndex={0}
                 >
                   <div className="works-card-glow" aria-hidden />
                   <a
@@ -1033,7 +1040,7 @@ function App() {
                   <p className="process-desc">최종 확인 후 바로 운영하실 수 있도록 정리해드립니다.<br />이후 간단한 수정이나 문의도 편하게 남겨주세요.</p>
                 </motion.div>
               </motion.div>
-              <div className="disclaimer-block-wrap">
+              <div className="disclaimer-block-wrap" tabIndex={0}>
                 <div className="disclaimer-block-glow" aria-hidden />
                 <div className="disclaimer-block">
                   <motion.div
@@ -1068,7 +1075,7 @@ function App() {
                 </h2>
                 <p className="tech-desc">최신 웹 기술 기반으로 빠르고 안정적인 웹사이트를 제작합니다.</p>
               </div>
-              <div className="tech-block-wrap">
+              <div className="tech-block-wrap" tabIndex={0}>
                 <div className="tech-block-glow" aria-hidden />
                 <div className="tech-block">
                   <motion.div
@@ -1164,7 +1171,7 @@ function App() {
               </p>
             </motion.div>
             <div className="pricing-grid grid three">
-              <div className="price-card-wrap price-card-wrap-basic">
+              <div className="price-card-wrap price-card-wrap-basic" tabIndex={0}>
                 <div className="price-card-glow price-card-glow-basic" aria-hidden />
                 <div className="price-card">
                 <motion.div
@@ -1203,7 +1210,7 @@ function App() {
                 </div>
               </div>
               </div>
-              <div className="price-card-wrap price-card-wrap-featured">
+              <div className="price-card-wrap price-card-wrap-featured" tabIndex={0}>
                 <div className="price-card-glow price-card-glow-featured" aria-hidden />
                 <div className="price-card featured">
                 <motion.div
@@ -1241,7 +1248,7 @@ function App() {
                 </div>
               </div>
               </div>
-              <div className="price-card-wrap price-card-wrap-growth">
+              <div className="price-card-wrap price-card-wrap-growth" tabIndex={0}>
                 <div className="price-card-glow price-card-glow-growth" aria-hidden />
                 <div className="price-card growth">
                 <motion.div

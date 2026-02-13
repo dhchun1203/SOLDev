@@ -1548,7 +1548,8 @@ main {
   opacity: 0.3;
   transition: opacity 0.3s ease;
 }
-.open-offer-card-wrap:hover .open-offer-card-glow {
+.open-offer-card-wrap:hover .open-offer-card-glow,
+.open-offer-card-wrap:focus-within .open-offer-card-glow {
   opacity: 0.5;
 }
 .open-offer-card {
@@ -1881,7 +1882,8 @@ main {
   transition: opacity 0.5s ease;
   pointer-events: none;
 }
-.offer-details-card-wrap:hover .offer-details-card-glow {
+.offer-details-card-wrap:hover .offer-details-card-glow,
+.offer-details-card-wrap:focus-within .offer-details-card-glow {
   opacity: 1;
 }
 .offer-details-card-glow-purple {
@@ -2128,7 +2130,8 @@ main {
   transition: opacity 0.5s ease;
   pointer-events: none;
 }
-.introduce-card-wrap:hover .introduce-card-glow {
+.introduce-card-wrap:hover .introduce-card-glow,
+.introduce-card-wrap:focus-within .introduce-card-glow {
   opacity: 1;
 }
 .introduce-card-glow-blue {
@@ -2365,7 +2368,8 @@ main {
   transition: opacity 0.5s ease;
   pointer-events: none;
 }
-.works-card-wrap:hover .works-card-glow {
+.works-card-wrap:hover .works-card-glow,
+.works-card-wrap:focus-within .works-card-glow {
   opacity: 1;
 }
 .works-section .work-card-link {
@@ -2559,7 +2563,8 @@ main {
   transition: opacity 0.5s ease;
   pointer-events: none;
 }
-.tech-card-wrap:hover .tech-card-glow {
+.tech-card-wrap:hover .tech-card-glow,
+.tech-card-wrap:focus-within .tech-card-glow {
   opacity: 1;
 }
 .tech-card-icon-wrap {
@@ -2624,7 +2629,8 @@ main {
   transition: opacity 0.5s ease;
   pointer-events: none;
 }
-.tech-block-wrap:hover .tech-block-glow {
+.tech-block-wrap:hover .tech-block-glow,
+.tech-block-wrap:focus-within .tech-block-glow {
   opacity: 1;
 }
 .tech-block {
@@ -2928,7 +2934,8 @@ main {
 .pricing-section .price-card-glow-growth {
   background: linear-gradient(135deg, rgba(59, 130, 246, 0.4) 0%, rgba(34, 211, 238, 0.4) 100%);
 }
-.pricing-section .price-card-wrap:hover .price-card-glow {
+.pricing-section .price-card-wrap:hover .price-card-glow,
+.pricing-section .price-card-wrap:focus-within .price-card-glow {
   opacity: 1;
 }
 .pricing-section .price-card {
@@ -4004,7 +4011,8 @@ main {
   transition: opacity 0.5s ease;
   pointer-events: none;
 }
-.disclaimer-block-wrap:hover .disclaimer-block-glow {
+.disclaimer-block-wrap:hover .disclaimer-block-glow,
+.disclaimer-block-wrap:focus-within .disclaimer-block-glow {
   opacity: 1;
 }
 .disclaimer-block {
