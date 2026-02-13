@@ -1,9 +1,9 @@
+/* 데스크탑 최상단: 헤더 위까지 히어로와 동일한 배경으로 채움 */
 .page {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(30, 41, 80, 0.25) 0%, transparent 50%),
-    linear-gradient(180deg, #0A0D17 0%, #0A0D17 100%);
+  background: linear-gradient(180deg, #0f172a 0%, #172554 25%, #0A0D17 100%);
 }
 
 /* 섹션 경계 없이 이어지도록: main에 배경 한 번만 적용, 섹션은 투명 */
@@ -110,6 +110,7 @@ main {
   position: sticky;
   top: 0;
   z-index: 10;
+  /* 스크롤 최상단: 배경 완전 투명(히어로가 비침), 스크롤 시 .scrolled에서 반투명 */
   background: transparent;
   backdrop-filter: none;
   border-bottom: none;
@@ -375,7 +376,7 @@ main {
 .nav {
   display: flex;
   gap: 2rem;
-  font-size: 0.95rem;
+  font-size: 1.2rem;
 }
 
 .nav a {
@@ -736,11 +737,11 @@ main {
 
 #works {
   margin-bottom: var(--space-section);
-  scroll-margin-top: 5rem;
+  scroll-margin-top: var(--scroll-offset, 5.5rem);
 }
 
 #tech {
-  scroll-margin-top: 5rem;
+  scroll-margin-top: var(--scroll-offset, 5.5rem);
 }
 
 /* 모바일: 섹션 헤더 폰트 크기 축소 */
@@ -777,11 +778,14 @@ main {
 }
 
 /* 코스믹 히어로 섹션 (상단 비주얼) – 풀스크린, 중앙 정렬 */
+/* 히어로 배경이 화면 최상단(헤더 뒤)까지 덮이도록 위로 당김 */
+/* margin-top -5rem 보정: 섹션 높이 = 뷰포트 + 5rem → 화면 하단까지 꽉 참 */
 .hero-cosmic {
   position: relative;
-  min-height: 100vh;
-  margin-top: -75px;
-  padding: calc(75px + 4rem) 1.5rem 5rem 1.5rem;
+  min-height: calc(100vh + 5rem);
+  min-height: calc(100dvh + 5rem);
+  margin-top: -5rem;
+  padding: calc(5rem + 4rem) 1.5rem 5rem 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -936,15 +940,11 @@ main {
 
 /* 히어로 하단 스크롤 유도 UI */
 .hero-cosmic-scroll-hint {
-  position: absolute;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
+  margin-top: 1.5rem;
   color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
   font-size: 0.75rem;
@@ -1212,9 +1212,10 @@ main {
 
 @media (max-width: 767px) {
   .hero-cosmic {
-    min-height: 100vh;
-    margin-top: -75px;
-    padding: calc(75px + 3rem) 1rem 4rem 1rem;
+    min-height: calc(100vh + 5rem);
+    min-height: calc(100dvh + 5rem);
+    margin-top: -5rem;
+    padding: calc(5rem + 3rem) 1rem 4rem 1rem;
   }
 
   /* 모바일: 애니메이션/플로팅이 텍스트·버튼 위에 겹치지 않도록 콘텐츠를 위로 */
@@ -1283,7 +1284,7 @@ main {
   }
 
   .hero-cosmic-scroll-hint {
-    bottom: 1.5rem;
+    margin-top: 1.25rem;
     font-size: 0.7rem;
   }
   .hero-cosmic-scroll-hint-icon {
@@ -1297,6 +1298,7 @@ main {
   position: relative;
   padding: 8rem 1rem;
   overflow: hidden;
+  scroll-margin-top: var(--scroll-offset, 5.5rem);
 }
 .open-offer-bg {
   position: absolute;
@@ -2035,6 +2037,7 @@ main {
   position: relative;
   padding: 8rem 1rem;
   overflow: hidden;
+  scroll-margin-top: var(--scroll-offset, 5.5rem);
 }
 .introduce-bg {
   position: absolute;
@@ -2314,7 +2317,7 @@ main {
 .works-section {
   margin-top: 16rem;
   margin-bottom: 16rem;
-  scroll-margin-top: 5rem;
+  scroll-margin-top: var(--scroll-offset, 5.5rem);
 }
 .works-header {
   text-align: center;
@@ -2494,7 +2497,7 @@ main {
 .process-section {
   margin-top: 16rem;
   margin-bottom: 16rem;
-  scroll-margin-top: 5rem;
+  scroll-margin-top: var(--scroll-offset, 5.5rem);
 }
 .process-header {
   text-align: center;
@@ -2548,7 +2551,7 @@ main {
 .tech-section {
   margin-top: 16rem;
   margin-bottom: 16rem;
-  scroll-margin-top: 5rem;
+  scroll-margin-top: var(--scroll-offset, 5.5rem);
 }
 .tech-header {
   text-align: center;
@@ -2861,6 +2864,7 @@ main {
   position: relative;
   padding: 16rem 1rem;
   overflow: hidden;
+  scroll-margin-top: var(--scroll-offset, 5.5rem);
 }
 .pricing-section-bg {
   position: absolute;
@@ -4583,9 +4587,8 @@ main {
 
 /* 모바일: 헤더 및 네비게이션 조정 */
 @media (max-width: 767px) {
-  /* 메뉴 클릭 시 앵커 스크롤 시 헤더 하단이 섹션 시작에 맞도록 */
   html {
-    scroll-padding-top: calc(5rem - 6px);
+    scroll-padding-top: var(--scroll-offset, 5.5rem);
   }
 
   .site-header {
@@ -4765,7 +4768,7 @@ main {
 .side-menu-nav a {
   display: block;
   padding: 0.85rem 0.5rem;
-  font-size: 1.05rem;
+  font-size: 1.125rem;
   font-weight: 500;
   color: var(--text-primary);
   text-decoration: none;
@@ -5037,10 +5040,10 @@ main {
   }
 }
 
-/* 모바일: ScrollToTop 래퍼·버튼 크기 축소 */
+/* 모바일: ScrollToTop 래퍼·버튼 크기 축소, 하단에서 더 위로 */
 @media (max-width: 767px) {
   .scroll-to-top-wrap {
-    bottom: max(1rem, env(safe-area-inset-bottom));
+    bottom: calc(2.5rem + max(1rem, env(safe-area-inset-bottom)));
     right: max(1rem, env(safe-area-inset-right));
   }
 

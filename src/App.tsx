@@ -179,11 +179,44 @@ function App() {
     }
   }, [menuOpen])
 
+  // 앵커 id로 스크롤 (헤더 높이 + 여백 적용, 메뉴 닫힌 뒤 레이아웃 반영)
+  const scrollToAnchor = useCallback((id: string) => {
+    const el = document.getElementById(id)
+    if (!el) return
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        const header = document.querySelector('.site-header') as HTMLElement | null
+        const headerHeight = header?.offsetHeight ?? 88
+        const gap = 8
+        const offset = headerHeight + gap
+        const top = el.getBoundingClientRect().top + window.scrollY - offset
+        window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' })
+      })
+    })
+  }, [])
+
+  const handleNavClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
+    const href = (e.currentTarget.getAttribute('href') || '').trim()
+    if (!href.startsWith('#')) {
+      closeMenu()
+      return
+    }
+    const id = href.slice(1)
+    const el = document.getElementById(id)
+    if (!el) {
+      closeMenu()
+      return
+    }
+    e.preventDefault()
+    closeMenu()
+    scrollToAnchor(id)
+  }, [scrollToAnchor])
+
   return (
     <div className="page">
       <header className="site-header">
         <div className="container header-inner">
-          <a className="logo logo-new" href="#hero" onClick={closeMenu}>
+          <a className="logo logo-new" href="#hero" onClick={handleNavClick}>
             <motion.div
               className="logo-inner"
               whileHover={{ scale: 1.02 }}
@@ -218,7 +251,7 @@ function App() {
           </a>
           <nav className="nav header-nav">
             {NAV_LINKS.map(({ href, label }) => (
-              <a key={href} href={href} onClick={closeMenu}>{label}</a>
+              <a key={href} href={href} onClick={handleNavClick}>{label}</a>
             ))}
           </nav>
           <div className="header-actions">
@@ -255,7 +288,7 @@ function App() {
         <aside className="side-menu-drawer">
           <nav className="side-menu-nav">
             {NAV_LINKS.map(({ href, label }) => (
-              <a key={href} href={href} onClick={closeMenu}>{label}</a>
+              <a key={href} href={href} onClick={handleNavClick}>{label}</a>
             ))}
           </nav>
           <div className="side-menu-actions">
@@ -416,19 +449,18 @@ function App() {
                 <span className="hero-cosmic-metric-dot hero-cosmic-metric-dot-purple" /> 최신 기술 스택
               </span>
             </motion.div>
+            <a
+              href="#hero"
+              className="hero-cosmic-scroll-hint"
+              aria-label="아래 섹션으로 스크롤"
+            >
+              <span className="hero-cosmic-scroll-hint-icon" aria-hidden>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 5v14M19 12l-7 7-7-7" />
+                </svg>
+              </span>
+            </a>
           </motion.div>
-
-          <a
-            href="#hero"
-            className="hero-cosmic-scroll-hint"
-            aria-label="아래 섹션으로 스크롤"
-          >
-            <span className="hero-cosmic-scroll-hint-icon" aria-hidden>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M12 5v14M19 12l-7 7-7-7" />
-              </svg>
-            </span>
-          </a>
         </motion.section>
 
         {/* 오픈 특가 섹션 */}
@@ -481,7 +513,7 @@ function App() {
                     className="open-offer-btn open-offer-btn-secondary"
                     whileHover={{ scale: 1.05, y: -2 }}
                     whileTap={{ scale: 0.95 }}
-                    onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
+                    onClick={() => scrollToAnchor('pricing')}
                   >
                     작업 범위 보기
                   </motion.button>
@@ -1142,7 +1174,7 @@ function App() {
               <span className="pricing-lead-line pricing-lead-line-1"><span className="pricing-lead-emphasis">어렵게</span> 설명하시지 않아도,</span>
               <span className="pricing-lead-line pricing-lead-line-2 pricing-lead-accent">필요한 건 이미 정리돼 있습니다.</span>
             </p>
-            <a href="#pricing" className="pricing-lead-arrow" aria-label="가격 섹션으로 이동">
+            <a href="#pricing" className="pricing-lead-arrow" aria-label="가격 섹션으로 이동" onClick={(e) => { e.preventDefault(); scrollToAnchor('pricing') }}>
               <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
                 <path d="M7 8l5 5 5-5M7 14l5 5 5-5" />
               </svg>
@@ -1301,7 +1333,7 @@ function App() {
       <footer className="site-footer">
         <div className="container footer-content">
           <div className="footer-brand">
-            <a className="logo logo-new footer-logo" href="#hero" aria-label="SOLDev 홈">
+            <a className="logo logo-new footer-logo" href="#hero" aria-label="SOLDev 홈" onClick={(e) => { e.preventDefault(); scrollToAnchor('hero') }}>
               <motion.div
                 className="logo-inner"
                 whileHover={{ scale: 1.02 }}

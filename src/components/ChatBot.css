@@ -344,7 +344,7 @@
     transition: none;
   }
   .chatbot-tray:not(.chatbot-tray--open) {
-    bottom: calc(44px + 0.4rem + max(1rem, env(safe-area-inset-bottom)));
+    bottom: calc(44px + 0.4rem + 2.5rem + max(1rem, env(safe-area-inset-bottom)));
     right: max(1rem, env(safe-area-inset-right));
     width: 44px;
     height: 44px;
@@ -423,7 +423,7 @@
   }
 
   .chatbot-tray:not(.chatbot-tray--open) {
-    bottom: calc(44px + 0.4rem + max(1rem, env(safe-area-inset-bottom)));
+    bottom: calc(44px + 0.4rem + 2.5rem + max(1rem, env(safe-area-inset-bottom)));
     right: max(1rem, env(safe-area-inset-right));
   }
 
