@@ -1085,7 +1085,7 @@ function App() {
                     <h3 className="tech-block-title">최신 웹 기술 기반</h3>
                     <ul className="tech-list">
                   <li>
-                    <strong className="tech-list-heading">React / Next.js 기반 웹 제작</strong>
+                    <strong className="tech-list-heading">TypeScript / Tailwind CSS / Next.js 기반 웹 제작</strong>
                     <span className="tech-list-desc">검증된 라이브러리로 유지보수와 확장이 쉬운 구조를 만듭니다.</span>
                   </li>
                   <li>

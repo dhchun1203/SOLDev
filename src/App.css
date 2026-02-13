@@ -1721,6 +1721,70 @@ main {
     max-width: 100%;
     padding: 0 0.5rem;
   }
+  /* 모바일: 카드 글로우가 좌우로 잘리지 않도록 섹션 overflow 완화 */
+  .open-offer,
+  .offer-details,
+  .introduce-section,
+  .pricing-section {
+    overflow: visible;
+  }
+  /* 모바일 폰트 크기 규격 (일괄 적용) */
+  .page {
+    --m-fs-xs: 0.5625rem;   /* 배지, 라벨 */
+    --m-fs-sm: 0.625rem;    /* 캡션, 보조 문구 */
+    --m-fs-md: 0.75rem;     /* 본문, 설명, 리스트 */
+    --m-fs-lg: 0.8125rem;  /* 섹션 타이틀(h2) */
+    --m-fs-xl: 0.875rem;   /* 카드 헤딩, 강조 제목 */
+  }
+  .section-header-badge { font-size: var(--m-fs-xs); }
+  .section-header h2 { font-size: var(--m-fs-lg); }
+  .section-header p { font-size: var(--m-fs-md); }
+  .open-offer-card-title { font-size: var(--m-fs-xl); }
+  .open-offer-card-desc p { font-size: var(--m-fs-md); }
+  .open-offer-card-desc-sub { font-size: var(--m-fs-sm) !important; }
+  .offer-details-title { font-size: var(--m-fs-lg); }
+  .offer-details-desc { font-size: var(--m-fs-md); }
+  .offer-details-card-heading { font-size: var(--m-fs-xl); }
+  .offer-details-list-item span,
+  .offer-details-card-text p { font-size: var(--m-fs-md); }
+  .offer-details-card-text-sub { font-size: var(--m-fs-sm) !important; }
+  .introduce-title,
+  .works-title,
+  .process-title,
+  .tech-title,
+  .pricing-title { font-size: var(--m-fs-lg); }
+  .introduce-desc,
+  .works-desc,
+  .process-desc,
+  .tech-desc,
+  .pricing-desc { font-size: var(--m-fs-md); }
+  .introduce-card-title { font-size: var(--m-fs-xl); }
+  .introduce-card-text,
+  .introduce-card-text-block .introduce-card-text { font-size: var(--m-fs-md); }
+  .introduce-card-label { font-size: var(--m-fs-sm); }
+  /* 워크 카드, 가격, 디스클레임, 테크, 배지 등 동일 규격 */
+  .open-offer-badge,
+  .offer-details-badge,
+  .introduce-badge,
+  .works-badge,
+  .process-badge,
+  .tech-badge,
+  .pricing-badge { font-size: var(--m-fs-xs); }
+  .works-section .work-card.works-card .work-category { font-size: var(--m-fs-sm); }
+  .works-section .work-card.works-card .work-content h3 { font-size: var(--m-fs-xl); }
+  .works-section .work-card.works-card .work-description { font-size: var(--m-fs-md); }
+  .works-section .work-card.works-card .work-tags .tag { font-size: var(--m-fs-sm); }
+  .price-card h3,
+  .price-card .price-tagline,
+  .disclaimer-block h3,
+  .tech-block-title { font-size: var(--m-fs-xl); }
+  .price-card .price-features li,
+  .price-card .meta-list li,
+  .disclaimer-block .list li { font-size: var(--m-fs-md); }
+  .tech-block-label,
+  .disclaimer-block .card-label { font-size: var(--m-fs-sm); }
+  .tech-list-heading { font-size: var(--m-fs-lg); }
+  .tech-list-desc { font-size: var(--m-fs-md); }
 }
 
 /* ========== 오픈 특가 조건 섹션 (Offer details) ========== */
@@ -3899,6 +3963,24 @@ main {
 
   .process-step .process-desc {
     font-size: 0.8125rem;
+  }
+
+  /* 모바일: 1,3,5 스텝도 2,4와 동일하게 호버 시 텍스트가 노드에 붙지 않도록 transform 통일 */
+  .process-step .process-label,
+  .process-step .process-desc {
+    transform-origin: left center;
+  }
+  .process-step:nth-child(even) .process-label,
+  .process-step:nth-child(even) .process-desc {
+    transform-origin: left center;
+  }
+  .process-step:hover .process-label,
+  .process-step:hover .process-desc {
+    transform: scale(1.02);
+  }
+  .process-step:nth-child(even):hover .process-label,
+  .process-step:nth-child(even):hover .process-desc {
+    transform: scale(1.02);
   }
 
   .process-decoration-inline {
