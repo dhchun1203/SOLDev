@@ -851,7 +851,12 @@ function App() {
                   transition={{ duration: 0.6, delay: 0.2 }}
                 >
                   <div className="works-card-glow" aria-hidden />
-                  <div className="work-card-link">
+                  <a
+                    href="https://solfood-eight.vercel.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="work-card-link"
+                  >
                     <div className="work-card works-card">
                       <div className="work-image">
                         <img
@@ -878,7 +883,7 @@ function App() {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </a>
                 </motion.div>
               </div>
             </div>
