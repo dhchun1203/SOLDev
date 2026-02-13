@@ -1231,7 +1231,7 @@ function App() {
                   </div>
                 </motion.div>
                 <div className="card-body">
-                  <h3>서비스형 패키지</h3>
+                  <h3>서비스 패키지</h3>
                   <p className="price-tagline">예약·문의까지 한 번에 필요하신 경우</p>
                   <div className="price-block">
                     <p className="price-original">정상가 80만 원</p>
