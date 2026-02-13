@@ -788,13 +788,13 @@ function App() {
                         <span className="work-category">웹 서비스</span>
                         <h3>학원 소개 / 문의 / 게시판 / 관리자 페이지</h3>
                         <p className="work-description">
-                          React 기반 반응형 랜딩 페이지 제작.
+                          학원 소개부터 문의, 게시판, 관리자 기능까지
                           <br />
-                          인터랙티브 UI와 SEO 최적화를 적용했습니다.
+                          운영에 필요한 핵심 기능을 하나로 구성한 웹페이지입니다.
                         </p>
                         <div className="work-tags">
-                          <span className="tag">React</span>
-                          <span className="tag">TypeScript</span>
+                          <span className="tag">학원 운영 시스템</span>
+                          <span className="tag">문의 관리 구조</span>
                           <span className="tag">반응형</span>
                         </div>
                       </div>
@@ -828,14 +828,16 @@ function App() {
                         <span className="work-category">랜딩 페이지</span>
                         <h3>패션 브랜드 소개 랜딩페이지</h3>
                         <p className="work-description">
-                          Next.js와 Supabase를 활용한 예약 관리 웹 서비스.
+                          브랜드의 철학과 감성을 중심으로 구성한
                           <br />
-                          관리자 페이지와 사용자 페이지를 구축했습니다.
+                          패션 브랜드 소개 랜딩 페이지입니다.
+                          <br />
+                          이미지와 스토리텔링을 통해 브랜드 가치를 전달합니다.
                         </p>
                         <div className="work-tags">
-                          <span className="tag">Next.js</span>
-                          <span className="tag">Supabase</span>
-                          <span className="tag">관리자</span>
+                          <span className="tag">브랜드 아이덴티티</span>
+                          <span className="tag">스토리텔링</span>
+                          <span className="tag">반응형</span>
                         </div>
                       </div>
                     </div>
@@ -853,24 +855,26 @@ function App() {
                     <div className="work-card works-card">
                       <div className="work-image">
                         <img
-                          src="https://images.unsplash.com/photo-1558655146-364adaf1fcc9?w=800&h=450&fit=crop"
-                          alt="프로모션 캠페인"
+                          src="/thumbnail/thumb_solfood.png"
+                          alt="요식업 소개 및 판매 웹페이지"
                           loading="lazy"
                           decoding="async"
                         />
                       </div>
                       <div className="work-content">
-                        <span className="work-category">마이크로 사이트</span>
-                        <h3>프로모션 캠페인</h3>
+                        <span className="work-category">프로모션 페이지</span>
+                        <h3>요식업 소개 및 판매 웹페이지</h3>
                         <p className="work-description">
-                          스크롤 애니메이션과 인터랙티브 요소가 포함된 프로모션 페이지.
+                          방문자를 실제 주문 고객으로 전환하도록 설계된
                           <br />
-                          모바일 최적화를 적용했습니다.
+                          전환 중심 레스토랑 랜딩 페이지입니다.
+                          <br />
+                          브랜드 신뢰와 매출 상승을 동시에 고려했습니다.
                         </p>
                         <div className="work-tags">
-                          <span className="tag">React</span>
-                          <span className="tag">애니메이션</span>
-                          <span className="tag">모바일</span>
+                          <span className="tag">반응형</span>
+                          <span className="tag">인터랙션</span>
+                          <span className="tag">모바일 최적화</span>
                         </div>
                       </div>
                     </div>
