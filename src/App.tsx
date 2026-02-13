@@ -586,15 +586,15 @@ function App() {
             </motion.div>
 
             <div className="offer-details-cards">
-              <motion.div
-                className="offer-details-card-wrap offer-details-card-wrap-purple"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                tabIndex={0}
-              >
+              <div className="offer-details-card-wrap offer-details-card-wrap-purple" tabIndex={0}>
                 <div className="offer-details-card-glow offer-details-card-glow-purple" aria-hidden />
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                  style={{ height: '100%' }}
+                >
                 <div className="offer-details-card">
                   <motion.div
                     className="offer-details-card-icon-wrap offer-details-card-icon-purple"
@@ -617,17 +617,18 @@ function App() {
                     </li>
                   </ul>
                 </div>
-              </motion.div>
+                </motion.div>
+              </div>
 
-              <motion.div
-                className="offer-details-card-wrap offer-details-card-wrap-blue"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                tabIndex={0}
-              >
+              <div className="offer-details-card-wrap offer-details-card-wrap-blue" tabIndex={0}>
                 <div className="offer-details-card-glow offer-details-card-glow-blue" aria-hidden />
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.1 }}
+                  style={{ height: '100%' }}
+                >
                 <div className="offer-details-card">
                   <motion.div
                     className="offer-details-card-icon-wrap offer-details-card-icon-blue"
@@ -644,7 +645,8 @@ function App() {
                     <p className="offer-details-card-text-sub">민감 정보와 계정 정보는 노출하지 않습니다.</p>
                   </div>
                 </div>
-              </motion.div>
+                </motion.div>
+              </div>
             </div>
           </div>
         </section>
@@ -677,15 +679,15 @@ function App() {
             </motion.div>
 
             <div className="introduce-cards">
-              <motion.div
-                className="introduce-card-wrap introduce-card-wrap-blue"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                tabIndex={0}
-              >
+              <div className="introduce-card-wrap introduce-card-wrap-blue" tabIndex={0}>
                 <div className="introduce-card-glow introduce-card-glow-blue" aria-hidden />
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                  style={{ height: '100%' }}
+                >
                 <div className="introduce-card">
                   <motion.div
                     className="introduce-card-icon-wrap introduce-card-icon-blue"
@@ -706,17 +708,18 @@ function App() {
                     <span className="introduce-card-text-highlight">오픈 후 바로 운영 가능한 웹서비스</span>를 구축합니다.
                   </p>
                 </div>
-              </motion.div>
+                </motion.div>
+              </div>
 
-              <motion.div
-                className="introduce-card-wrap introduce-card-wrap-purple"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                tabIndex={0}
-              >
+              <div className="introduce-card-wrap introduce-card-wrap-purple" tabIndex={0}>
                 <div className="introduce-card-glow introduce-card-glow-purple" aria-hidden />
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.1 }}
+                  style={{ height: '100%' }}
+                >
                 <div className="introduce-card">
                   <motion.div
                     className="introduce-card-icon-wrap introduce-card-icon-purple"
@@ -742,7 +745,8 @@ function App() {
                     </p>
                   </div>
                 </div>
-              </motion.div>
+                </motion.div>
+              </div>
             </div>
             <div id="works" className="works-section">
               <motion.div
@@ -765,15 +769,15 @@ function App() {
                 </p>
               </motion.div>
               <div className="works-grid">
-                <motion.div
-                  className="works-card-wrap"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6 }}
-                  tabIndex={0}
-                >
+                <div className="works-card-wrap" tabIndex={0}>
                   <div className="works-card-glow" aria-hidden />
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    style={{ flex: 1, minHeight: 0 }}
+                  >
                   <a
                     href="https://british-speak.vercel.app/"
                     target="_blank"
@@ -805,16 +809,17 @@ function App() {
                       </div>
                     </div>
                   </a>
-                </motion.div>
-                <motion.div
-                  className="works-card-wrap"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.1 }}
-                  tabIndex={0}
-                >
+                  </motion.div>
+                </div>
+                <div className="works-card-wrap" tabIndex={0}>
                   <div className="works-card-glow" aria-hidden />
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                    style={{ flex: 1, minHeight: 0 }}
+                  >
                   <a
                     href="https://solmontproject.vercel.app/"
                     target="_blank"
@@ -848,16 +853,17 @@ function App() {
                       </div>
                     </div>
                   </a>
-                </motion.div>
-                <motion.div
-                  className="works-card-wrap"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  tabIndex={0}
-                >
+                  </motion.div>
+                </div>
+                <div className="works-card-wrap" tabIndex={0}>
                   <div className="works-card-glow" aria-hidden />
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    style={{ flex: 1, minHeight: 0 }}
+                  >
                   <a
                     href="https://solfood-eight.vercel.app/"
                     target="_blank"
@@ -891,7 +897,8 @@ function App() {
                       </div>
                     </div>
                   </a>
-                </motion.div>
+                  </motion.div>
+                </div>
               </div>
             </div>
             <div id="process" className="process-section">

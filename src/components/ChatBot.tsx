@@ -47,7 +47,7 @@ function saveHistory(messages: ChatMessage[]) {
   }
 }
 
-const TRAY_CLOSE_DURATION_MS = 380
+const TRAY_CLOSE_DURATION_MS = 320
 
 export default function ChatBot() {
   const [open, setOpen] = useState(false)
@@ -71,13 +71,16 @@ export default function ChatBot() {
 
   useEffect(() => {
     if (!closing) return
-    const t = setTimeout(() => setClosing(false), TRAY_CLOSE_DURATION_MS)
+    const t = setTimeout(() => {
+      setOpen(false)
+      setClosing(false)
+    }, TRAY_CLOSE_DURATION_MS)
     return () => clearTimeout(t)
   }, [closing])
 
   const closeTray = useCallback(() => {
     setClosing(true)
-    setOpen(false)
+    /* open은 슬라이드다운 애니메이션 끝난 뒤 false로 (useEffect에서 처리) */
   }, [])
 
   const sendMessage = useCallback(async () => {

@@ -119,6 +119,22 @@
   transition: opacity 0.22s ease 0.1s;
 }
 
+/* 닫을 때: 패널 페이드아웃 (데스크톱; 모바일에서는 오버라이드로 제거) */
+.chatbot-tray--closing .chatbot-tray-panel {
+  opacity: 0;
+  transition: opacity 0.12s ease;
+}
+
+@keyframes chatbot-slide-up {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+@keyframes chatbot-slide-down {
+  from { transform: translateY(0); }
+  to { transform: translateY(100%); }
+}
+
 .chatbot-panel-header {
   display: flex;
   align-items: center;
@@ -317,13 +333,16 @@
   cursor: not-allowed;
 }
 
-/* 모바일(767px): FAB 크기 축소 – 닫힐 때만, 열릴 땐 하단 기준 풀화면 */
+/* 모바일(767px): 모달 올라오기/내려가기만 사용, 나머지 애니메이션 제거 */
 @media (max-width: 767px) {
   .chatbot-widget {
     --chatbot-panel-height: 85vh;
     --chatbot-panel-max-height: none;
   }
 
+  .chatbot-tray:not(.chatbot-tray--open):not(.chatbot-tray--closing) {
+    transition: none;
+  }
   .chatbot-tray:not(.chatbot-tray--open) {
     bottom: calc(44px + 0.4rem + max(1rem, env(safe-area-inset-bottom)));
     right: max(1rem, env(safe-area-inset-right));
@@ -332,17 +351,49 @@
     border-radius: 100px;
   }
 
+  .chatbot-tray:hover:not(.chatbot-tray--open):not(.chatbot-tray--closing),
+  .chatbot-tray:active:not(.chatbot-tray--open):not(.chatbot-tray--closing) {
+    transform: none;
+  }
+  .chatbot-tray-fab-face,
+  .chatbot-tray-fab-face svg {
+    transition: none;
+  }
+  .chatbot-tray:hover:not(.chatbot-tray--open):not(.chatbot-tray--closing) .chatbot-tray-fab-face svg,
+  .chatbot-tray:active:not(.chatbot-tray--open):not(.chatbot-tray--closing) .chatbot-tray-fab-face svg {
+    transform: none;
+  }
+
   .chatbot-tray-fab-face svg {
     width: 16px;
     height: 16px;
   }
 
-  /* 입력 포커스 시 iOS 자동 확대 방지 (16px 미만이면 확대됨) */
-  .chatbot-input {
-    font-size: 16px;
+  .chatbot-tray-panel {
+    transition: none;
+  }
+  .chatbot-tray--open .chatbot-tray-panel {
+    transition: none;
+  }
+  .chatbot-tray--closing .chatbot-tray-panel {
+    transition: none;
   }
 
-  /* 열렸을 때: 뷰포트 기준 하단에 고정해 항상 화면 안에 보이게 */
+  .chatbot-btn-icon {
+    transition: none;
+  }
+  .chatbot-send {
+    transition: none;
+  }
+  .chatbot-send:hover:not(:disabled) {
+    transform: none;
+  }
+  .chatbot-input {
+    font-size: 16px;
+    transition: none;
+  }
+
+  /* 열렸을 때: 화면 아래에서 슬라이드 업만 (확장 애니메이션 제거) */
   .chatbot-tray--open {
     position: fixed;
     left: 0;
@@ -354,10 +405,17 @@
     max-height: none;
     min-height: 280px;
     border-radius: var(--chatbot-radius) var(--chatbot-radius) 0 0;
+    transition: none;
+    animation: chatbot-slide-up 0.32s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+  }
+
+  /* 닫기 버튼 누르면 아래로 슬라이드 다운 (keyframes로 재생) */
+  .chatbot-tray--open.chatbot-tray--closing {
+    animation: chatbot-slide-down 0.32s cubic-bezier(0.32, 0.72, 0, 1) forwards;
   }
 }
 
-/* 모바일(480px): 열린 패널 풀화면 – 767px 규칙보다 나중에 적용 */
+/* 모바일(480px): 767px 규칙 상속, 높이만 90vh */
 @media (max-width: 480px) {
   .chatbot-widget {
     --chatbot-panel-height: 90vh;
@@ -370,15 +428,6 @@
   }
 
   .chatbot-tray--open {
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100% !important;
-    max-width: none;
-    height: var(--chatbot-panel-height);
-    max-height: none;
-    border-radius: var(--chatbot-radius) var(--chatbot-radius) 0 0;
     border-bottom: none;
   }
 }

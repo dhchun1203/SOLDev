@@ -4,6 +4,9 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
+  server: {
+    host: true, // 같은 Wi-Fi 기기에서 접속 가능 (0.0.0.0)
+  },
   build: {
     target: 'es2020',
     minify: 'esbuild',
