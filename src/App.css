@@ -108,8 +108,10 @@ main {
 }
 
 .site-header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 10;
   /* 스크롤 최상단: 배경 완전 투명(히어로가 비침), 스크롤 시 .scrolled에서 반투명 */
   background: transparent;
