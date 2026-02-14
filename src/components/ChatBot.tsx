@@ -1,22 +1,17 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
+import {
+  chatbotStorageKey,
+  chatbotMaxHistory,
+  chatbotModel,
+  chatbotSystemPrompts,
+} from '../config/chatbot'
 import './ChatBot.css'
 
-const STORAGE_KEY = 'soldev_chat_history'
-const MAX_HISTORY = 50
 const GROQ_CHAT_URL = 'https://api.groq.com/openai/v1/chat/completions'
-const GROQ_MODEL = 'llama-3.3-70b-versatile'
 
 function detectLanguage(text: string): 'ko' | 'en' {
   const koreanRegex = /[\uAC00-\uD7A3]/
   return koreanRegex.test(text) ? 'ko' : 'en'
-}
-
-function getSystemPrompt(lang: 'ko' | 'en'): string {
-  const prompts = {
-    ko: '당신은 SOLDev 웹 제작 서비스의 친절한 상담 챗봇입니다. 웹사이트/웹서비스 제작, 오픈 특가, 베이직 및 서비스형 패키지, 반응형과 React/Next.js 기술 등에 대해 간결하고 도움이 되는 답변을 한국어로 제공하세요. 회사 소개나 가격 문의가 오면 사이트 내용을 바탕으로 안내하고, 구체적인 문의는 문의하기를 권유하세요.',
-    en: 'You are a helpful support chatbot for SOLDev, a web development service. Answer concisely in English about website/web app development, open special offers, Basic/Service packages, responsive design, React/Next.js, etc. When asked about the company or pricing, refer to the site content and suggest using the contact form for specific requests.',
-  }
-  return prompts[lang]
 }
 
 export type ChatMessage = {
@@ -29,10 +24,10 @@ export type ChatMessage = {
 
 function loadHistory(): ChatMessage[] {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY)
+    const raw = localStorage.getItem(chatbotStorageKey)
     if (!raw) return []
     const parsed = JSON.parse(raw) as ChatMessage[]
-    return Array.isArray(parsed) ? parsed.slice(-MAX_HISTORY) : []
+    return Array.isArray(parsed) ? parsed.slice(-chatbotMaxHistory) : []
   } catch {
     return []
   }
@@ -40,8 +35,8 @@ function loadHistory(): ChatMessage[] {
 
 function saveHistory(messages: ChatMessage[]) {
   try {
-    const toSave = messages.slice(-MAX_HISTORY)
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(toSave))
+    const toSave = messages.slice(-chatbotMaxHistory)
+    localStorage.setItem(chatbotStorageKey, JSON.stringify(toSave))
   } catch {
     // ignore
   }
@@ -112,7 +107,7 @@ export default function ChatBot() {
     setMessages((prev) => [...prev, modelMsg])
 
     try {
-      const systemPrompt = getSystemPrompt(lang)
+      const systemPrompt = chatbotSystemPrompts[lang]
       const historyWithUser: ChatMessage[] = [...messages, userMsg]
       const prevTurns = historyWithUser.slice(0, -1).slice(-20)
       const apiMessages: { role: 'system' | 'user' | 'assistant'; content: string }[] = [
@@ -131,7 +126,7 @@ export default function ChatBot() {
           Authorization: `Bearer ${apiKey}`,
         },
         body: JSON.stringify({
-          model: GROQ_MODEL,
+          model: chatbotModel,
           messages: apiMessages,
           max_tokens: 1024,
         }),
@@ -177,7 +172,7 @@ export default function ChatBot() {
 
   const clearHistory = useCallback(() => {
     setMessages([])
-    localStorage.removeItem(STORAGE_KEY)
+    localStorage.removeItem(chatbotStorageKey)
     setError(null)
   }, [])
 
