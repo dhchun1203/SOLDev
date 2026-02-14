@@ -4,6 +4,7 @@
   flex-direction: column;
   min-height: 100vh;
   background: linear-gradient(180deg, #0f172a 0%, #172554 25%, #0A0D17 100%);
+  overflow-x: hidden;
 }
 
 /* 섹션 경계 없이 이어지도록: main에 배경 한 번만 적용, 섹션은 투명 */

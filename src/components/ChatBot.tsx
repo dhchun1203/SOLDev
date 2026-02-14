@@ -42,7 +42,7 @@ function saveHistory(messages: ChatMessage[]) {
   }
 }
 
-const TRAY_CLOSE_DURATION_MS = 320
+const TRAY_CLOSE_DURATION_MS = 300
 
 export default function ChatBot() {
   const [open, setOpen] = useState(false)
@@ -68,7 +68,7 @@ export default function ChatBot() {
     if (!closing) return
     const t = setTimeout(() => {
       setOpen(false)
-      setClosing(false)
+      setTimeout(() => setClosing(false), 0)
     }, TRAY_CLOSE_DURATION_MS)
     return () => clearTimeout(t)
   }, [closing])
@@ -196,26 +196,15 @@ export default function ChatBot() {
     [open]
   )
 
-  return (
-    <div className="chatbot-widget">
-      <div
-        className={`chatbot-tray ${open ? 'chatbot-tray--open' : ''} ${closing ? 'chatbot-tray--closing' : ''}`}
-        role={open ? undefined : 'button'}
-        tabIndex={open ? undefined : 0}
-        aria-label={open ? undefined : '챗봇 열기'}
-        aria-expanded={open}
-        onClick={!open ? () => setOpen(true) : undefined}
-        onKeyDown={handleTrayKeyDown}
-      >
-        {/* 닫힐 때: FAB 버튼처럼 보이는 말풍선 아이콘 */}
-        <span className="chatbot-tray-fab-face" aria-hidden={open}>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
-          </svg>
-        </span>
-        {/* 열릴 때: 버튼이 채팅창으로 확장된 내용 */}
-        <div className="chatbot-tray-panel" aria-hidden={!open}>
-          <div className="chatbot-panel-header">
+  const fabSvg = (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+    </svg>
+  )
+
+  const panelContent = (
+    <>
+      <div className="chatbot-panel-header">
             <h3 className="chatbot-panel-title">SOLDev 상담</h3>
             <div className="chatbot-panel-actions">
               <button
@@ -298,6 +287,55 @@ export default function ChatBot() {
                 <polygon points="22 2 15 22 11 13 2 9 22 2" />
               </svg>
             </button>
+          </div>
+    </>
+  )
+
+  return (
+    <div className="chatbot-widget">
+      {/* 데스크톱: 모달과 FAB 분리 → 축소 애니메이션 없음 */}
+      <div className="chatbot-desktop">
+        {open ? (
+          <div
+            className={`chatbot-tray chatbot-tray--open chatbot-tray--modal ${closing ? 'chatbot-tray--closing' : ''}`}
+            aria-expanded
+          >
+            <div className="chatbot-tray-panel" aria-hidden={false}>
+              {panelContent}
+            </div>
+          </div>
+        ) : (
+          <div
+            className="chatbot-tray"
+            role="button"
+            tabIndex={0}
+            aria-label="챗봇 열기"
+            aria-expanded={false}
+            onClick={() => setOpen(true)}
+            onKeyDown={handleTrayKeyDown}
+          >
+            <span className="chatbot-tray-fab-face" aria-hidden={false}>
+              {fabSvg}
+            </span>
+          </div>
+        )}
+      </div>
+      {/* 모바일: 기존 단일 트레이 (슬라이드 업/다운) */}
+      <div className="chatbot-mobile">
+        <div
+          className={`chatbot-tray ${open ? 'chatbot-tray--open' : ''} ${closing ? 'chatbot-tray--closing' : ''}`}
+          role={open ? undefined : 'button'}
+          tabIndex={open ? undefined : 0}
+          aria-label={open ? undefined : '챗봇 열기'}
+          aria-expanded={open}
+          onClick={!open ? () => setOpen(true) : undefined}
+          onKeyDown={handleTrayKeyDown}
+        >
+          <span className="chatbot-tray-fab-face" aria-hidden={open}>
+            {fabSvg}
+          </span>
+          <div className="chatbot-tray-panel" aria-hidden={!open}>
+            {panelContent}
           </div>
         </div>
       </div>
