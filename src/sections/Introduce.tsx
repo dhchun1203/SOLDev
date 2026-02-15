@@ -1,11 +1,14 @@
 import { motion } from 'framer-motion'
-import { Globe, Layers } from 'lucide-react'
+import { ChevronDown, Globe, Layers } from 'lucide-react'
 import { defaultTransition, defaultViewport } from '../constants/motion'
 import { Works } from './Works'
 import { Process } from './Process'
-import { Tech } from './Tech'
 
-export function Introduce() {
+export type IntroduceProps = {
+  scrollToAnchor: (id: string) => void
+}
+
+export function Introduce({ scrollToAnchor }: IntroduceProps) {
   return (
     <section id="introduce" className="introduce-section">
       <div className="introduce-bg" aria-hidden="true" />
@@ -23,14 +26,13 @@ export function Introduce() {
         >
           <div className="introduce-badge">INTRODUCE</div>
           <h2 className="introduce-title">
-            <span className="introduce-title-gradient">이런 결과물을</span>
-            <br />
-            <span className="introduce-title-white">제공합니다</span>
+            <span className="introduce-title-gradient">&apos;운영&apos;</span>
+            <span className="introduce-title-white">까지 완성합니다</span>
           </h2>
           <p className="introduce-desc">
-            기획부터 개발까지, 실제로 쓰이는 웹 서비스를 한 번에 완성해 드립니다.
-            <br />
-            웹사이트가 아닌 <span className="introduce-desc-highlight">운영 가능한 웹서비스</span>를 만나 보세요.
+            예약·문의 수집 + 관리자 관리까지 포함된{' '}
+            <span className="introduce-desc-highlight">&apos;운영형&apos;</span>
+            구조입니다.
           </p>
         </motion.div>
 
@@ -56,12 +58,16 @@ export function Introduce() {
                 </motion.div>
                 <div className="introduce-card-heading-block">
                   <p className="introduce-card-label">제공 형태</p>
-                  <h3 className="introduce-card-title">웹사이트가 아닌 웹서비스</h3>
+                  <h3 className="introduce-card-title">랜딩 + 문의가 자동으로 모이는 구조</h3>
                 </div>
-                <p className="introduce-card-text">
-                  이 상품은 &quot;웹사이트&quot;가 아니라,
-                  <br />
-                  <span className="introduce-card-text-highlight">오픈 후 바로 운영 가능한 웹서비스</span>를 구축합니다.
+                <ul className="introduce-card-list">
+                  <li>문의/예약 폼을 한 곳에 모아 저장</li>
+                  <li>알림/상태 변경(대기→완료)까지 가능</li>
+                  <li>모바일에서 입력/확인하기 쉽게 최적화</li>
+                </ul>
+                <p className="introduce-card-text introduce-card-text-close">
+                  운영이 <span className="introduce-card-text-highlight">&apos;수기&apos;</span>가 아니라{' '}
+                  <span className="introduce-card-text-highlight">&apos;시스템&apos;</span>이 됩니다.
                 </p>
               </div>
             </motion.div>
@@ -87,27 +93,51 @@ export function Introduce() {
                   </div>
                 </motion.div>
                 <div className="introduce-card-heading-block">
-                  <p className="introduce-card-label introduce-card-label-purple">운영 흐름</p>
-                  <h3 className="introduce-card-title">관리자까지 포함된 서비스 구조</h3>
+                  <p className="introduce-card-label introduce-card-label-purple">운영 기능</p>
+                  <h3 className="introduce-card-title">관리자 페이지까지 포함</h3>
                 </div>
-                <div className="introduce-card-text-block">
-                  <p className="introduce-card-text">
-                    방문자는 예약·문의만 남기고,
-                    관리자는 별도의 관리자 페이지에서
-                    내역 확인·상태 관리까지 바로 할 수 있습니다.
-                  </p>
-                  <p className="introduce-card-text">
-                    즉, <span className="introduce-card-text-highlight">운영을 전제로 설계된 완성형 웹서비스</span>입니다.
-                  </p>
-                </div>
+                <ul className="introduce-card-list">
+                  <li>문의/예약 목록 자동 저장</li>
+                  <li>상태 관리 및 메모 기록</li>
+                  <li>대시보드 형 관리자 페이지 제작</li>
+                </ul>
+                <p className="introduce-card-text introduce-card-text-close">
+                  고객 응대가 빨라져서 <span className="introduce-card-text-highlight">이탈이 줄어듭니다.</span>
+                </p>
               </div>
             </motion.div>
           </div>
         </div>
 
+        <motion.div
+          className="introduce-cta-wrap"
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={defaultViewport}
+          transition={defaultTransition}
+        >
+          <a
+            href="#works"
+            className="introduce-cta"
+            onClick={(e) => {
+              e.preventDefault()
+              scrollToAnchor('works')
+            }}
+          >
+            포트폴리오로 확인하기
+            <motion.span
+              className="introduce-cta-chevron"
+              animate={{ y: [0, 5, 0] }}
+              transition={{ duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}
+              aria-hidden
+            >
+              <ChevronDown size={20} strokeWidth={2} />
+            </motion.span>
+          </a>
+        </motion.div>
+
         <Works />
         <Process />
-        <Tech />
       </div>
     </section>
   )

@@ -8,8 +8,8 @@ export const navLinks: NavLink[] = [
   { href: '#hero', label: '오픈 특가' },
   { href: '#introduce', label: '소개' },
   { href: '#works', label: '포트폴리오' },
-  { href: '#tech', label: '기술사양' },
   { href: '#pricing', label: '가격' },
+  { href: '#tech', label: '기술사양' },
 ]
 
 export const ctaLabel = '문의하기'

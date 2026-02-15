@@ -12,9 +12,9 @@ export type WorkItem = {
 export const worksItems: WorkItem[] = [
   {
     id: 'british',
-    title: '학원 소개 / 문의 / 게시판 / 관리자 페이지',
-    description: `학원 소개부터 문의, 게시판, 관리자 기능까지
-운영에 필요한 핵심 기능을 하나로 구성한 웹페이지입니다.`,
+    title: '학원 운영 페이지',
+    description: `학원 운영을 위한
+문의 관리 + 게시판 + 관리자 시스템 구축`,
     image: '/thumbnail/thumb_british.png',
     imageAlt: '브랜드 리뉴얼 프로젝트',
     link: 'https://british-speak.vercel.app/',

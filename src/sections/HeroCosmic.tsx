@@ -108,12 +108,13 @@ export function HeroCosmic() {
             transition={{ delay: 0.28 }}
           >
             <p>
-              오픈하자마자 바로{' '}
+              만들고 끝나는 사이트 말고,
+              <br />
               <span className="hero-cosmic-highlight-wrap">
-                <span className="hero-cosmic-highlight">운영되는 웹서비스</span>
+                <span className="hero-cosmic-highlight">바로 매출로 연결되는 웹서비스</span>
                 <span className="hero-cosmic-highlight-underline" aria-hidden />
               </span>
-              가 필요하다면?
+              가 필요하신가요?
             </p>
           </motion.div>
         </motion.div>

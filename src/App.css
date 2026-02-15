@@ -2279,6 +2279,68 @@ main {
 .introduce-card-text:last-child {
   margin-bottom: 0;
 }
+.introduce-card-list {
+  margin: 0 0 1rem;
+  padding-left: 0;
+  list-style: none;
+  font-size: 1.125rem;
+  line-height: 1.625;  /* leading-relaxed */
+  color: var(--text-secondary);
+}
+.introduce-card-list li {
+  position: relative;
+  padding-left: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+.introduce-card-list li:last-child {
+  margin-bottom: 0;
+}
+.introduce-card-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.introduce-card-text-close {
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+}
+
+.introduce-cta-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 2.5rem;
+}
+.introduce-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 10px;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.25s ease, background 0.2s ease, border-color 0.2s ease;
+}
+.introduce-cta:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 16px rgba(59, 130, 246, 0.2);
+  transform: translate3d(0, -1px, 0);
+}
+.introduce-cta-chevron {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 0.15rem;
+}
+
 .introduce-card-text-highlight {
   color: var(--accent);
   font-weight: 600;
@@ -2303,6 +2365,13 @@ main {
   .introduce-header {
     margin-bottom: 3rem;
   }
+  .introduce-cta-wrap {
+    margin-top: 2rem;
+  }
+  .introduce-cta {
+    font-size: 0.875rem;
+    padding: 0.45rem 0.9rem;
+  }
   /* 소개 카드 텍스트: 기술 사양(tech-block) 카드와 동일한 크기 구조 */
   .introduce-card .introduce-card-label {
     font-size: 0.625rem;   /* tech-block-label과 동일 (--m-fs-sm) */
@@ -2311,7 +2380,8 @@ main {
     font-size: 1.1rem;     /* tech-block-title 모바일과 동일 */
   }
   .introduce-card .introduce-card-text,
-  .introduce-card .introduce-card-text-block .introduce-card-text {
+  .introduce-card .introduce-card-text-block .introduce-card-text,
+  .introduce-card .introduce-card-list {
     font-size: 0.8125rem;   /* tech-list-desc 모바일과 동일 */
   }
 }
@@ -2538,6 +2608,7 @@ main {
   font-size: 1.125rem;
   line-height: 1.75;
   color: var(--text-secondary);
+  white-space: pre-line;
 }
 .process-desc-highlight {
   color: var(--accent);
@@ -2551,6 +2622,14 @@ main {
 }
 
 /* ========== Tech 섹션 (기술 사양) ========== */
+.tech-section-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+.tech-section-wrapper .tech-section {
+  position: relative;
+  z-index: 1;
+}
 .tech-section {
   margin-top: 16rem;
   margin-bottom: 16rem;
@@ -2595,6 +2674,43 @@ main {
   font-size: 1.125rem;
   line-height: 1.75;
   color: var(--text-secondary);
+}
+.tech-points-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  max-width: 36rem;
+  margin: 0 auto 1.5rem;
+}
+.tech-grid-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  line-height: 1.4;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+.tech-grid-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(59, 130, 246, 0.25);
+}
+.tech-grid-item-check {
+  flex-shrink: 0;
+  color: var(--accent);
+}
+.tech-section .tech-block-close {
+  margin: 1.25rem 0 0;
+  text-align: center;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1.6;
+  color: var(--text-primary);
 }
 .tech-grid {
   display: flex;
@@ -2662,6 +2778,22 @@ main {
   .tech-section {
     margin-top: 8rem;
     margin-bottom: 8rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .tech-points-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+    max-width: 100%;
+  }
+  .tech-grid-item {
+    padding: 0.875rem 1rem;
+    font-size: 0.875rem;
+  }
+  .tech-section .tech-block-close {
+    margin-top: 1rem;
+    font-size: 0.9375rem;
   }
 }
 
