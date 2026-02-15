@@ -1215,10 +1215,10 @@ main {
 
 @media (max-width: 767px) {
   .hero-cosmic {
-    min-height: calc(100vh + 5rem);
-    min-height: calc(100dvh + 5rem);
-    margin-top: -5rem;
-    padding: calc(5rem + 3rem) 1rem 4rem 1rem;
+    min-height: 100vh;
+    min-height: 100dvh;
+    margin-top: 0;
+    padding: var(--scroll-offset, 5.5rem) 1rem 4rem 1rem;
   }
 
   /* 모바일: 애니메이션/플로팅이 텍스트·버튼 위에 겹치지 않도록 콘텐츠를 위로 */
@@ -2218,6 +2218,9 @@ main {
 .introduce-card-icon-blue .introduce-card-icon-blur {
   background: linear-gradient(135deg, rgba(59, 130, 246, 0.3) 0%, rgba(6, 182, 212, 0.3) 100%);
 }
+.introduce-card-icon-green .introduce-card-icon-blur {
+  background: linear-gradient(135deg, rgba(21, 128, 61, 0.35) 0%, rgba(34, 197, 94, 0.25) 100%);
+}
 .introduce-card-icon-purple .introduce-card-icon-blur {
   background: linear-gradient(135deg, rgba(168, 85, 247, 0.3) 0%, rgba(236, 72, 153, 0.3) 100%);
 }
@@ -2235,6 +2238,11 @@ main {
   background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(6, 182, 212, 0.2) 100%);
   border-color: rgba(96, 165, 250, 0.3);
   color: #60a5fa;
+}
+.introduce-card-icon-green .introduce-card-icon-inner {
+  background: linear-gradient(135deg, rgba(21, 128, 61, 0.25) 0%, rgba(34, 197, 94, 0.2) 100%);
+  border-color: rgba(34, 197, 94, 0.35);
+  color: #4ade80;
 }
 .introduce-card-icon-purple .introduce-card-icon-inner {
   background: linear-gradient(135deg, rgba(168, 85, 247, 0.2) 0%, rgba(236, 72, 153, 0.2) 100%);
@@ -2745,6 +2753,10 @@ main {
 .pricing-section .price-card-icon-wrap {
   flex-shrink: 0;
   align-self: flex-start;
+  transition: transform 0.3s ease;
+}
+.pricing-section .price-card-wrap:hover .price-card-icon-wrap {
+  transform: scale(1.1) rotate(5deg);
 }
 .pricing-section .price-card-icon-wrap .introduce-card-icon-inner svg {
   width: 24px;
@@ -3151,7 +3163,7 @@ main {
   pointer-events: none;
 }
 .pricing-section .price-card-glow-basic {
-  background: linear-gradient(135deg, rgba(34, 197, 94, 0.35) 0%, rgba(59, 130, 246, 0.35) 100%);
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.4) 0%, rgba(22, 163, 74, 0.3) 100%);
 }
 .pricing-section .price-card-glow-featured {
   background: linear-gradient(135deg, rgba(168, 85, 247, 0.4) 0%, rgba(236, 72, 153, 0.4) 100%);
@@ -3176,7 +3188,7 @@ main {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
 }
 .pricing-section .price-card-wrap-basic:hover .price-card {
-  border-color: rgba(96, 165, 250, 0.5);
+  border-color: rgba(34, 197, 94, 0.5);
 }
 .pricing-section .price-card.featured {
   border-color: rgba(192, 132, 252, 0.4);
@@ -4604,7 +4616,8 @@ main {
 }
 
 .price-card.featured .price-cta.primary:hover {
-  background: #f43f5e;
+  background: var(--price-featured);
+  border-color: var(--price-featured);
   box-shadow:
     0 0 24px rgba(236, 72, 153, 0.5),
     0 0 48px rgba(219, 39, 119, 0.35),
@@ -4651,6 +4664,36 @@ main {
     0 0 24px rgba(59, 130, 246, 0.5),
     0 0 48px rgba(139, 92, 246, 0.35),
     inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+/* 베이직 패키지: 초록 계열 카드 테마 */
+.price-card.basic {
+  border-color: rgba(34, 197, 94, 0.35);
+  box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.2), 0 8px 32px rgba(34, 197, 94, 0.12);
+}
+
+.price-card.basic:hover {
+  box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.3), 0 16px 40px rgba(34, 197, 94, 0.18);
+}
+
+/* 베이직 상담 신청(primary): featured와 동일 디자인, 초록 계열(어두운 톤) */
+.price-card.basic .price-cta.primary {
+  background: var(--price-basic);
+  border-color: var(--price-basic);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  box-shadow:
+    0 0 18px rgba(21, 128, 61, 0.35),
+    0 0 36px rgba(21, 128, 61, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.price-card.basic .price-cta.primary:hover {
+  background: var(--price-basic);
+  border-color: var(--price-basic);
+  box-shadow:
+    0 0 24px rgba(21, 128, 61, 0.4),
+    0 0 48px rgba(21, 128, 61, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .divider {

@@ -44,7 +44,7 @@ export function Pricing() {
               />
               <div className={`price-card ${pkg.variant ?? ''}`.trim()}>
                 <motion.div
-                  className={`introduce-card-icon-wrap introduce-card-icon-${pkg.variant === 'growth' ? 'growth' : pkg.variant === 'featured' ? 'purple' : 'blue'} price-card-icon-wrap`}
+                  className={`introduce-card-icon-wrap introduce-card-icon-${pkg.variant === 'growth' ? 'growth' : pkg.variant === 'featured' ? 'purple' : pkg.variant === 'basic' ? 'green' : 'blue'} price-card-icon-wrap`}
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   aria-hidden
                 >

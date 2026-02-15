@@ -13,6 +13,6 @@ export const navLinks: NavLink[] = [
 ]
 
 export const ctaLabel = '문의하기'
-export const footerDescription = `최신 웹 기술로 빠르고 안정적인 웹사이트를 제작합니다.
-React/Next.js 기반의 반응형 웹 개발 서비스를 제공합니다.`
+export const footerDescription = `운영까지 완성하는 웹서비스 제작.
+빠르고 안정적인 구조로 설계합니다.`
 export const copyright = '© 2026 SOLDev™. All Rights Reserved.'

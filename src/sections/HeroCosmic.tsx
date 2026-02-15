@@ -6,7 +6,11 @@ import {
   heroTitleVariants,
 } from '../constants/motion'
 
-export function HeroCosmic() {
+export type HeroCosmicProps = {
+  scrollToAnchor: (id: string) => void
+}
+
+export function HeroCosmic({ scrollToAnchor }: HeroCosmicProps) {
   return (
     <motion.section
       className="hero-cosmic"
@@ -162,6 +166,10 @@ export function HeroCosmic() {
           href="#hero"
           className="hero-cosmic-scroll-hint"
           aria-label="아래 섹션으로 스크롤"
+          onClick={(e) => {
+            e.preventDefault()
+            scrollToAnchor('hero')
+          }}
         >
           <span className="hero-cosmic-scroll-hint-icon" aria-hidden>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">

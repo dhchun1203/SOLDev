@@ -38,7 +38,7 @@ export const pricingPackages: PricePackage[] = [
     ],
     meta: ['제작 기간: 약 3영업일', '수정 3회 포함'],
     ctaLabel: '상담 신청',
-    ctaVariant: 'ghost',
+    ctaVariant: 'primary',
   },
   {
     id: 'featured',

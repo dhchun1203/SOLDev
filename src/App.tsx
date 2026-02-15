@@ -127,7 +127,7 @@ function App() {
       />
 
       <main>
-        <HeroCosmic />
+        <HeroCosmic scrollToAnchor={scrollToAnchor} />
         <OpenOffer scrollToAnchor={scrollToAnchor} />
         <Introduce scrollToAnchor={scrollToAnchor} />
         <PricingLead scrollToAnchor={scrollToAnchor} />
