@@ -1,8 +1,9 @@
 :root {
   font-family: 'IBM Plex Sans KR', -apple-system, BlinkMacSystemFont, system-ui,
     'Segoe UI', sans-serif;
-  font-size: 1.0625rem; /* 17px – 기본 가독성 확대 */
+  font-size: 0.818rem; /* 약 13.1px – 77% 배율 */
   line-height: 1.6;
+  --scale: 0.77; /* 개체/폰트 77% 배율 */
   font-weight: 400;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
