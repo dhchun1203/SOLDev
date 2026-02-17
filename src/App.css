@@ -1214,9 +1214,11 @@ main {
 }
 
 @media (max-width: 767px) {
+  /* 모바일: 배경 하단 끊김 방지 – 뷰포트보다 아래로 넉넉히 확장 */
   .hero-cosmic {
     min-height: 100vh;
     min-height: 100dvh;
+    min-height: calc(100dvh + 4rem);
     margin-top: 0;
     padding: var(--scroll-offset, 5.5rem) 1rem 4rem 1rem;
   }
@@ -1263,6 +1265,15 @@ main {
   .hero-cosmic-title {
     font-size: clamp(2rem, 9vw, 2.75rem);
     margin-bottom: 1rem;
+  }
+  /* 모바일: 배경·타이틀 애니메이션 비활성화 */
+  .hero-cosmic-title-gradient {
+    animation: none;
+  }
+  .hero-cosmic-metric-dot-green,
+  .hero-cosmic-metric-dot-blue,
+  .hero-cosmic-metric-dot-purple {
+    animation: none;
   }
 
   .hero-cosmic-subtitle {
@@ -1719,16 +1730,16 @@ main {
     text-align: center;
   }
   .open-offer-stat-label {
-    font-size: 0.625rem;
+    font-size: 0.8125rem;
     margin-bottom: 0.15rem;
   }
   .open-offer-stat-value {
-    font-size: 0.75rem;
+    font-size: 1.0625rem;
     font-weight: 800;
     white-space: nowrap;
   }
   .open-offer-stat-sub {
-    font-size: 0.5625rem;
+    font-size: 0.75rem;
     white-space: nowrap;
   }
   .open-offer-right {
@@ -1758,20 +1769,20 @@ main {
   .disclaimer-block-glow {
     opacity: 0 !important;
   }
-  /* 모바일 폰트 크기 규격 (일괄 적용) */
+  /* 모바일 폰트 크기 규격 (카드 가독성 위해 한 단계 확대) */
   .page {
-    --m-fs-xs: 0.5625rem;   /* 배지, 라벨 */
-    --m-fs-sm: 0.625rem;    /* 캡션, 보조 문구 */
-    --m-fs-md: 0.75rem;     /* 본문, 설명, 리스트 */
-    --m-fs-lg: 0.8125rem;  /* 섹션 타이틀(h2) */
-    --m-fs-xl: 0.875rem;   /* 카드 헤딩, 강조 제목 */
+    --m-fs-xs: 0.625rem;    /* 배지, 라벨 */
+    --m-fs-sm: 0.75rem;     /* 캡션, 보조 문구 */
+    --m-fs-md: 0.875rem;    /* 본문, 설명, 리스트 */
+    --m-fs-lg: 0.9375rem;  /* 섹션 타이틀(h2) */
+    --m-fs-xl: 1rem;       /* 카드 헤딩, 강조 제목 */
   }
   .section-header-badge { font-size: var(--m-fs-xs); }
   .section-header h2 { font-size: var(--m-fs-lg); }
   .section-header p { font-size: var(--m-fs-md); }
-  .open-offer-card-title { font-size: var(--m-fs-xl); }
+  .open-offer-card-title { font-size: 1.125rem; }
   .open-offer-card-desc p { font-size: var(--m-fs-md); }
-  .open-offer-card-desc-sub { font-size: var(--m-fs-sm) !important; }
+  .open-offer-card-desc-sub { font-size: var(--m-fs-md) !important; }
   .offer-details-title { font-size: var(--m-fs-lg); }
   .offer-details-desc { font-size: var(--m-fs-md); }
   .offer-details-card-heading { font-size: var(--m-fs-xl); }
@@ -1787,7 +1798,7 @@ main {
   .works-desc,
   .process-desc,
   .tech-desc,
-  .pricing-desc { font-size: var(--m-fs-md); }
+  .pricing-desc { font-size: 0.875rem; }
   /* 워크 카드, 가격, 디스클레임, 테크, 배지 등 동일 규격 */
   .open-offer-badge,
   .offer-details-badge,
@@ -2108,7 +2119,7 @@ main {
   );
   border: 1px solid rgba(192, 132, 252, 0.3);
   border-radius: 9999px;
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-weight: 700;
   color: #e9d5ff;
   text-transform: uppercase;
@@ -2134,7 +2145,7 @@ main {
 .introduce-desc {
   max-width: 42rem;
   margin: 0 auto;
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   line-height: 1.75;
   color: var(--text-secondary);
 }
@@ -2275,7 +2286,7 @@ main {
 }
 .introduce-card-label {
   margin: 0 0 0.5rem;
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-weight: 700;
   color: #60a5fa;
   text-transform: uppercase;
@@ -2286,13 +2297,13 @@ main {
 }
 .introduce-card-title {
   margin: 0;
-  font-size: 1.875rem;
+  font-size: 2rem;
   font-weight: 900;
   color: var(--text-primary);
 }
 .introduce-card-text {
   margin: 0 0 1rem;
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   line-height: 1.7;
   color: var(--text-secondary);
 }
@@ -2303,7 +2314,7 @@ main {
   margin: 0 0 1rem;
   padding-left: 0;
   list-style: none;
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   line-height: 1.625;  /* leading-relaxed */
   color: var(--text-secondary);
 }
@@ -2340,7 +2351,7 @@ main {
   align-items: center;
   gap: 0.4rem;
   padding: 0.5rem 1rem;
-  font-size: 0.9375rem;
+  font-size: 1.0625rem;
   font-weight: 500;
   color: var(--text-primary);
   background: transparent;
@@ -2392,17 +2403,17 @@ main {
     font-size: 0.875rem;
     padding: 0.45rem 0.9rem;
   }
-  /* 소개 카드 텍스트: 기술 사양(tech-block) 카드와 동일한 크기 구조 */
+  /* 소개 카드 텍스트: 모바일 가독성 */
   .introduce-card .introduce-card-label {
-    font-size: 0.625rem;   /* tech-block-label과 동일 (--m-fs-sm) */
+    font-size: 0.875rem;
   }
   .introduce-card .introduce-card-title {
-    font-size: 1.1rem;     /* tech-block-title 모바일과 동일 */
+    font-size: 1.3125rem;
   }
   .introduce-card .introduce-card-text,
   .introduce-card .introduce-card-text-block .introduce-card-text,
   .introduce-card .introduce-card-list {
-    font-size: 0.8125rem;   /* tech-list-desc 모바일과 동일 */
+    font-size: 1rem;
   }
 }
 
@@ -2455,7 +2466,7 @@ main {
 .works-desc {
   max-width: 42rem;
   margin: 0 auto;
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   line-height: 1.75;
   color: var(--text-secondary);
 }
@@ -2548,17 +2559,17 @@ main {
   flex: 1;
   min-height: 2.8em;
   color: #cbd5e1;
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 .works-section .work-card.works-card .work-category {
   color: #60a5fa;
-  font-size: 0.8rem;
+  font-size: 0.875rem;
   font-weight: 600;
   letter-spacing: 0.08em;
 }
 .works-section .work-card.works-card .work-content h3 {
   color: var(--text-primary);
-  font-size: 1.2rem;
+  font-size: 1.3125rem;
   font-weight: 800;
 }
 .works-section .work-card.works-card .work-tags .tag {
@@ -2625,7 +2636,7 @@ main {
 .process-desc {
   max-width: 42rem;
   margin: 0 auto;
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   line-height: 1.75;
   color: var(--text-secondary);
   white-space: pre-line;
@@ -2666,7 +2677,7 @@ main {
   background: linear-gradient(90deg, rgba(168, 85, 247, 0.2) 0%, rgba(236, 72, 153, 0.2) 50%, rgba(168, 85, 247, 0.2) 100%);
   border: 1px solid rgba(192, 132, 252, 0.3);
   border-radius: 9999px;
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-weight: 700;
   color: #e9d5ff;
   text-transform: uppercase;
@@ -2691,7 +2702,7 @@ main {
 .tech-desc {
   max-width: 42rem;
   margin: 0 auto;
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   line-height: 1.75;
   color: var(--text-secondary);
 }
@@ -2710,7 +2721,7 @@ main {
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: calc(12px * var(--scale));
-  font-size: 0.9375rem;
+  font-size: 1.0625rem;
   font-weight: 500;
   color: var(--text-primary);
   line-height: 1.4;
@@ -2727,7 +2738,7 @@ main {
 .tech-section .tech-block-close {
   margin: 1.25rem 0 0;
   text-align: center;
-  font-size: 1.0625rem;
+  font-size: 1.1875rem;
   font-weight: 600;
   line-height: 1.6;
   color: var(--text-primary);
@@ -2922,7 +2933,7 @@ main {
 }
 .tech-list-heading {
   font-weight: 700;
-  font-size: 0.9375rem;
+  font-size: 1.0625rem;
   letter-spacing: -0.01em;
   line-height: 1.35;
   background: linear-gradient(90deg, #3b82f6 0%, #60a5fa 20%, #22d3ee 50%, #06b6d4 80%, #3b82f6 100%);
@@ -2938,7 +2949,7 @@ main {
 }
 .tech-list-desc {
   font-weight: 400;
-  font-size: 0.875rem;
+  font-size: 1rem;
   color: var(--text-secondary);
   line-height: 1.65;
   padding-left: 0;
@@ -2955,17 +2966,17 @@ main {
     height: 3.5rem;
   }
   .tech-block-title {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
   }
   .tech-list li {
     margin: 0 -0.5rem;
     padding: 0.75rem 0.75rem 0.75rem 1rem;
   }
   .tech-list-heading {
-    font-size: 0.875rem;
+    font-size: 0.9375rem;
   }
   .tech-list-desc {
-    font-size: 0.8125rem;
+    font-size: 0.875rem;
   }
 }
 
@@ -3644,7 +3655,7 @@ main {
   list-style: none;
   padding: 0;
   margin: 0 0 var(--space-sm);
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: var(--text-secondary);
   line-height: 1.75;
 }
@@ -3661,7 +3672,7 @@ main {
   left: 0;
   color: var(--price-check-basic);
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 1.0625rem;
 }
 
 .price-card.featured .price-features li.included.featured::before {
@@ -3674,7 +3685,7 @@ main {
   left: 0;
   color: #ef4444;
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
 .price-card .meta-list {
@@ -3702,7 +3713,7 @@ main {
 .portfolio-card h3,
 .price-card h3 {
   margin: 0 0 0.25rem;
-  font-size: 1.25rem;
+  font-size: 1.375rem;
   font-weight: 700;
   color: var(--text-primary);
   text-align: left;
@@ -3716,7 +3727,7 @@ main {
 .portfolio-card .card-label {
   display: block;
   color: var(--accent-icon);
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   font-weight: 600;
   letter-spacing: 0.04em;
   margin-bottom: 0.35rem;
@@ -4125,7 +4136,7 @@ main {
 .process-step .process-label {
   flex: 1;
   min-width: 0;
-  font-size: 1rem;
+  font-size: 1.125rem;
   font-weight: 600;
   color: var(--text-primary);
   line-height: 1.35;
@@ -4153,7 +4164,7 @@ main {
   flex: 1;
   min-width: 0;
   margin: 0;
-  font-size: 0.9375rem;
+  font-size: 1.0625rem;
   line-height: 1.65;
   color: var(--text-secondary);
   text-align: left;
@@ -4214,11 +4225,11 @@ main {
   }
 
   .process-step .process-label {
-    font-size: 0.875rem;
+    font-size: 0.9375rem;
   }
 
   .process-step .process-desc {
-    font-size: 0.8125rem;
+    font-size: 0.875rem;
   }
 
   /* 모바일: 1,3,5 스텝도 2,4와 동일하게 호버 시 텍스트가 노드에 붙지 않도록 transform 통일 */
@@ -4745,7 +4756,7 @@ main {
 
 .footer-description {
   color: var(--text-secondary);
-  font-size: 0.95rem;
+  font-size: 1.0625rem;
   line-height: 1.6;
   margin: 0;
   max-width: calc(500px * var(--scale));
@@ -4760,7 +4771,7 @@ main {
 
 .footer-nav a {
   color: var(--text-primary);
-  font-size: 0.95rem;
+  font-size: 1.0625rem;
   text-decoration: none;
   transition: color 0.2s ease;
   position: relative;
@@ -4772,7 +4783,7 @@ main {
 
 .footer-copyright {
   color: var(--text-tertiary);
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
 /* 모바일: 헤더 및 네비게이션 조정 */

@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Code2, Zap, Sparkles, ArrowRight } from 'lucide-react'
 import {
@@ -10,7 +11,29 @@ export type HeroCosmicProps = {
   scrollToAnchor: (id: string) => void
 }
 
+const orb1Animate = { scale: [1, 1.3, 1], x: [0, 50, 0], y: [0, 30, 0] }
+const orb1Transition = { duration: 9, repeat: Infinity, ease: 'easeInOut' as const }
+const orb2Animate = { scale: [1.2, 1, 1.2], x: [0, -50, 0], y: [0, -30, 0] }
+const orb2Transition = { duration: 11, repeat: Infinity, ease: 'easeInOut' as const }
+const orb3Animate = { scale: [1, 1.4, 1], rotate: [0, 180, 360] }
+const orb3Transition = { duration: 15, repeat: Infinity, ease: 'linear' as const }
+const floatTlAnimate = { y: [0, -20, 0], rotate: [0, 10, 0] }
+const floatTlTransition = { duration: 4, repeat: Infinity, ease: 'easeInOut' as const }
+const floatTrAnimate = { y: [0, 20, 0], rotate: [0, -10, 0] }
+const floatTrTransition = { duration: 5.5, repeat: Infinity, ease: 'easeInOut' as const }
+const floatMlAnimate = { y: [0, -15, 0], x: [0, 10, 0] }
+const floatMlTransition = { duration: 5, repeat: Infinity, ease: 'easeInOut' as const }
+
 export function HeroCosmic({ scrollToAnchor }: HeroCosmicProps) {
+  const [isMobile, setIsMobile] = useState(false)
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 767px)')
+    const set = () => setIsMobile(mq.matches)
+    set()
+    mq.addEventListener('change', set)
+    return () => mq.removeEventListener('change', set)
+  }, [])
+
   return (
     <motion.section
       className="hero-cosmic"
@@ -25,25 +48,25 @@ export function HeroCosmic({ scrollToAnchor }: HeroCosmicProps) {
       <div className="hero-cosmic-orbs" aria-hidden="true">
         <motion.div
           className="hero-cosmic-orb hero-cosmic-orb-1"
-          animate={{ scale: [1, 1.3, 1], x: [0, 50, 0], y: [0, 30, 0] }}
-          transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
+          animate={isMobile ? undefined : orb1Animate}
+          transition={isMobile ? undefined : orb1Transition}
         />
         <motion.div
           className="hero-cosmic-orb hero-cosmic-orb-2"
-          animate={{ scale: [1.2, 1, 1.2], x: [0, -50, 0], y: [0, -30, 0] }}
-          transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut' }}
+          animate={isMobile ? undefined : orb2Animate}
+          transition={isMobile ? undefined : orb2Transition}
         />
         <motion.div
           className="hero-cosmic-orb hero-cosmic-orb-3"
-          animate={{ scale: [1, 1.4, 1], rotate: [0, 180, 360] }}
-          transition={{ duration: 15, repeat: Infinity, ease: 'linear' }}
+          animate={isMobile ? undefined : orb3Animate}
+          transition={isMobile ? undefined : orb3Transition}
         />
       </div>
       <div className="hero-cosmic-floats">
         <motion.div
           className="hero-cosmic-float hero-cosmic-float-tl"
-          animate={{ y: [0, -20, 0], rotate: [0, 10, 0] }}
-          transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+          animate={floatTlAnimate}
+          transition={floatTlTransition}
           aria-hidden
         >
           <div className="hero-cosmic-float-card hero-cosmic-float-card-code">
@@ -52,8 +75,8 @@ export function HeroCosmic({ scrollToAnchor }: HeroCosmicProps) {
         </motion.div>
         <motion.div
           className="hero-cosmic-float hero-cosmic-float-tr"
-          animate={{ y: [0, 20, 0], rotate: [0, -10, 0] }}
-          transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut' }}
+          animate={floatTrAnimate}
+          transition={floatTrTransition}
           aria-hidden
         >
           <div className="hero-cosmic-float-card hero-cosmic-float-card-zap">
@@ -62,8 +85,8 @@ export function HeroCosmic({ scrollToAnchor }: HeroCosmicProps) {
         </motion.div>
         <motion.div
           className="hero-cosmic-float hero-cosmic-float-ml"
-          animate={{ y: [0, -15, 0], x: [0, 10, 0] }}
-          transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+          animate={floatMlAnimate}
+          transition={floatMlTransition}
           aria-hidden
         >
           <div className="hero-cosmic-float-card hero-cosmic-float-card-spark">
