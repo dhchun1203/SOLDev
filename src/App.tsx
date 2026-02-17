@@ -23,6 +23,7 @@ const ChatBot = lazy(() => import('./components/ChatBot'))
 
 function App() {
   const observerRef = useRef<IntersectionObserver | null>(null)
+  const scrollSentinelRef = useRef<HTMLDivElement>(null)
   const scrollTopRef = useRef(false)
   const [showScrollTop, setShowScrollTop] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
@@ -37,9 +38,11 @@ function App() {
   )
 
   const scrollToTop = useCallback(() => {
+    if (typeof window === 'undefined') return
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [])
 
+  /* Animate-in: IntersectionObserver only, no scroll read */
   useEffect(() => {
     observerRef.current = new IntersectionObserver(
       (entries) => {
@@ -50,45 +53,52 @@ function App() {
           }
         })
       },
-      {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px',
-      }
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
     )
-
     const elementsToObserve = document.querySelectorAll(
       '.section-header, .info-card, .portfolio-card, .price-card, .work-card, .pricing-lead'
     )
-
-    elementsToObserve.forEach((el) => {
-      observerRef.current?.observe(el)
-    })
-
-    let rafId = 0
-    const handleScroll = () => {
-      const y = window.scrollY
-      const header = document.querySelector('.site-header')
-      if (y > 50) header?.classList.add('scrolled')
-      else header?.classList.remove('scrolled')
-
-      const shouldShow = y > 300
-      if (shouldShow !== scrollTopRef.current) {
-        scrollTopRef.current = shouldShow
-        setShowScrollTop(shouldShow)
-      }
-    }
-    const onScroll = () => {
-      if (rafId) cancelAnimationFrame(rafId)
-      rafId = requestAnimationFrame(handleScroll)
-    }
-
-    window.addEventListener('scroll', onScroll, { passive: true })
-    handleScroll()
-
+    elementsToObserve.forEach((el) => observerRef.current?.observe(el))
     return () => {
       elementsToObserve.forEach((el) => observerRef.current?.unobserve(el))
-      window.removeEventListener('scroll', onScroll)
-      if (rafId) cancelAnimationFrame(rafId)
+    }
+  }, [])
+
+  /* Header .scrolled + scroll-to-top visibility: IntersectionObserver only (no scroll listener) */
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+
+    const headerEl = document.querySelector('.site-header')
+    const sentinel = scrollSentinelRef.current
+    if (!headerEl || !sentinel) return
+
+    const headerObserver = new IntersectionObserver(
+      (entries) => {
+        const e = entries[0]
+        if (!e) return
+        if (e.isIntersecting) headerEl.classList.remove('scrolled')
+        else headerEl.classList.add('scrolled')
+      },
+      { rootMargin: '-50px 0px 0px 0px', threshold: 0 }
+    )
+    headerObserver.observe(sentinel)
+
+    const scrollTopObserver = new IntersectionObserver(
+      (entries) => {
+        const e = entries[0]
+        if (!e) return
+        const shouldShow = !e.isIntersecting
+        if (shouldShow === scrollTopRef.current) return
+        scrollTopRef.current = shouldShow
+        setShowScrollTop(shouldShow)
+      },
+      { rootMargin: '-300px 0px 0px 0px', threshold: 0 }
+    )
+    scrollTopObserver.observe(sentinel)
+
+    return () => {
+      headerObserver.disconnect()
+      scrollTopObserver.disconnect()
     }
   }, [])
 
@@ -127,6 +137,8 @@ function App() {
       />
 
       <main>
+        {/* Sentinel for IntersectionObserver only (no scroll read). Header: past 50px = .scrolled; past 300px = show scroll-to-top. */}
+        <div ref={scrollSentinelRef} aria-hidden className="scroll-sentinel" />
         <HeroCosmic scrollToAnchor={scrollToAnchor} />
         <OpenOffer scrollToAnchor={scrollToAnchor} />
         <Introduce scrollToAnchor={scrollToAnchor} />

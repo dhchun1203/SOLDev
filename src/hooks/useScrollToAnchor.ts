@@ -18,6 +18,7 @@ function easeOutCubic(t: number): number {
 
 export function useScrollToAnchor() {
   const scrollToAnchor = useCallback((id: string) => {
+    if (typeof window === 'undefined' || typeof document === 'undefined') return
     const el = document.getElementById(id)
     if (!el) return
     requestAnimationFrame(() => {
