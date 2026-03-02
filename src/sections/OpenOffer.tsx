@@ -104,7 +104,7 @@ export function OpenOffer({ scrollToAnchor }: OpenOfferProps) {
                   <img
                     src="https://images.unsplash.com/photo-1661169398420-e8d229fb39f4?w=1080&q=80"
                     alt="포트폴리오 워크스페이스"
-                    loading="lazy"
+                    fetchPriority="high"
                   />
                   <div className="open-offer-card-image-overlay" aria-hidden>
                     <img src="/computer-person.png" alt="" className="open-offer-card-overlay-img" />

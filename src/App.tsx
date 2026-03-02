@@ -15,10 +15,12 @@ import { ScrollToTop } from './components/layout/ScrollToTop'
 import { HeroCosmic } from './sections/HeroCosmic'
 import { OpenOffer } from './sections/OpenOffer'
 import { Introduce } from './sections/Introduce'
-import { PricingLead } from './sections/PricingLead'
 import { Pricing } from './sections/Pricing'
 import { Tech } from './sections/Tech'
 
+const PricingLead = lazy(() =>
+  import('./sections/PricingLead').then((m) => ({ default: m.PricingLead }))
+)
 const ChatBot = lazy(() => import('./components/ChatBot'))
 
 function App() {
@@ -142,7 +144,9 @@ function App() {
         <HeroCosmic scrollToAnchor={scrollToAnchor} />
         <OpenOffer scrollToAnchor={scrollToAnchor} />
         <Introduce scrollToAnchor={scrollToAnchor} />
-        <PricingLead scrollToAnchor={scrollToAnchor} />
+        <Suspense fallback={null}>
+          <PricingLead scrollToAnchor={scrollToAnchor} />
+        </Suspense>
         <Pricing />
         <Tech />
       </main>
