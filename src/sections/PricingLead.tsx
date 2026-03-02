@@ -1,8 +1,30 @@
+import { useEffect, useRef } from 'react'
+
 export type PricingLeadProps = {
   scrollToAnchor: (id: string) => void
 }
 
 export function PricingLead({ scrollToAnchor }: PricingLeadProps) {
+  const contentRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const el = contentRef.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-in')
+            observer.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
   return (
     <div className="pricing-lead-section">
       <div className="pricing-lead-bg" aria-hidden />
@@ -10,7 +32,7 @@ export function PricingLead({ scrollToAnchor }: PricingLeadProps) {
         <div className="pricing-lead-orb pricing-lead-orb-tl" />
         <div className="pricing-lead-orb pricing-lead-orb-br" />
       </div>
-      <div className="pricing-lead section muted">
+      <div ref={contentRef} className="pricing-lead section muted">
         <div className="container">
           <p className="pricing-lead-text">
             <span className="pricing-lead-line pricing-lead-line-1">
