@@ -327,7 +327,16 @@
   font: inherit;
   font-size: 1rem; /* 16px 이상으로 두어 모바일 포커스 시 자동 확대 방지 */
   resize: none;
+  overflow-y: auto;
+  scrollbar-width: none; /* Firefox: 스크롤바 숨기기 */
+  -ms-overflow-style: none; /* IE/Edge: 스크롤바 숨기기 */
   transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.chatbot-input::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none; /* Chrome/Safari: 스크롤바 숨기기 */
 }
 
 .chatbot-input:focus {
